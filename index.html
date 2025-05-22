@@ -52,9 +52,7 @@
     main {
       max-width: 800px; margin: 6rem auto 2rem; padding: 0 1rem;
     }
-    .hero-image {
-      width: 300px; border-radius: 8px; margin: 1.5rem auto;
-    }
+    .hero-image { width: 300px; border-radius: 8px; margin: 1.5rem auto; }
     h1 { text-align: center; margin-bottom: 0.5rem; }
     h2 { text-align: center; font-weight: 400; color: #555; margin-bottom: 1.5rem; }
     p { margin: 1rem 0; text-align: justify; }
@@ -67,13 +65,19 @@
     .social-buttons {
       display: flex; justify-content: center; gap: 1rem;
     }
+    /* Brand colors for buttons */
     .social-buttons a {
-      padding: 0.75rem 1.5rem; background-color: #14494c;
-      color: #fff; border-radius: 4px; font-weight: bold;
+      padding: 0.75rem 1.5rem; color: #fff; border-radius: 4px; font-weight: bold;
     }
-    .footer-text {
-      font-size: 0.9rem; color: #777;
-    }
+    .social-buttons a.instagram { background-color: #E1306C; }
+    .social-buttons a.facebook  { background-color: #4267B2; }
+    .social-buttons a.linkedin  { background-color: #0077B5; }
+    .social-buttons a.twitter   { background-color: #1DA1F2; }
+    .social-buttons a.github    { background-color: #24292E; }
+
+    /* Footer centered under main content */
+    .footer-text { font-size: 0.9rem; color: #777; }
+
   </style>
 </head>
 <body>
@@ -111,10 +115,11 @@
 
     <div class="social-footer">
       <div class="social-buttons">
-        <a href="#">INSTAGRAM</a>
-        <a href="#">FACEBOOK</a>
-        <a href="#">LINKEDIN</a>
-        <a href="#">TWITTER</a>
+        <a href="#" class="instagram">INSTAGRAM</a>
+        <a href="#" class="facebook">FACEBOOK</a>
+        <a href="#" class="linkedin">LINKEDIN</a>
+        <a href="#" class="twitter">TWITTER</a>
+        <a href="#" class="github">GITHUB</a>
       </div>
       <p class="footer-text">© 2025 Tomas Partman</p>
     </div>

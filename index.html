@@ -33,20 +33,18 @@
       justify-content: space-between;
       align-items: center;
       padding: 0.5rem 2rem;
-      background-color: rgba(255, 255, 255, 0.5);
+      background-color: rgba(255, 255, 255, 0.4);
       backdrop-filter: blur(5px);
       z-index: 1000;
     }
     /* Ensure content doesn't go under fixed nav */
-    main, footer {
-      margin-top: 3rem;
-    }
+    main, footer { margin-top: 3rem; }
     .home-link { display: flex; align-items: center; }
     .favicon-icon { width: 24px; height: 24px; margin-right: 0.5rem; }
     /* Nav links in black */
     .nav a { color: #000; font-weight: 400; font-size: 0.95rem; }
     .nav-right { display: flex; gap: 1.5rem; align-items: center; }
-    .search-icon svg { width: 20px; height: 20px; stroke: #000; }
+    .search-icon svg { width: 16px; height: 16px; stroke: #000; fill: none; }
 
     /* Hero title: larger & thinner */
     .hero-title {
@@ -80,17 +78,19 @@
   <header>
     <div class="nav">
       <!-- Left: favicon + Home link -->
-      <a href="#" class="home-link"><img src="images/favicon.png" alt="" class="favicon-icon"><span>Home</span></a>
+      <a href="#" class="home-link">
+        <img src="images/favicon.png" alt="" class="favicon-icon">
+        <span>Home</span>
+      </a>
       <!-- Right nav links -->
       <div class="nav-right">
         <a href="#about">About</a>
         <a href="#books">Books</a>
         <a href="#blog">Travel Blog</a>
-        <a href="#" class="search-icon">
-          <!-- Simple black & white magnifying glass SVG -->
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="11" cy="11" r="8"></circle>
-            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        <a href="#" class="search-icon" aria-label="Search">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <circle cx="11" cy="11" r="8" />
+            <line x1="21" y1="21" x2="16.65" y2="16.65" />
           </svg>
         </a>
       </div>

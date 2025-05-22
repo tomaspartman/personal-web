@@ -25,7 +25,7 @@
       justify-content: flex-end;
     }
     .nav {
-      position: absolute;
+      position: fixed;
       top: 0;
       left: 0;
       width: 100%;
@@ -33,9 +33,13 @@
       justify-content: space-between;
       align-items: center;
       padding: 1rem 2rem;
-      background-color: rgba(255, 255, 255, 0.8);
+      background-color: rgba(255, 255, 255, 0.5); /* viac priesvitné */
       backdrop-filter: blur(5px);
-      z-index: 10;
+      z-index: 1000;
+    }
+    /* Ensure content doesn't go under fixed nav */
+    main, footer {
+      margin-top: 4rem;
     }
     .home-link { display: flex; align-items: center; }
     .favicon-icon { width: 28px; height: 28px; margin-right: 0.5rem; }
@@ -69,7 +73,7 @@
     .social-buttons a { display: block; padding: 0.75rem; background-color: #14494c; color: #fff; border-radius: 4px; font-weight: bold; text-align: center; }
 
     /* Footer */
-    footer { text-align: center; margin: 2rem 0; font-size: 0.9rem; color: #777; }
+    footer { text-align: center; margin: 2rem auto; padding: 0 1rem; font-size: 0.9rem; color: #777; }
   </style>
 </head>
 <body>

@@ -84,7 +84,7 @@
     /* Main content */
     main {
       max-width: 800px;
-      margin: 2rem auto;
+      margin: 6rem auto 2rem; /* add top margin to clear nav */
       padding: 0 1rem;
     }
     .hero-image {
@@ -111,7 +111,6 @@
     .social-buttons {
       display: flex;
       justify-content: center;
-      flex-wrap: wrap;
       gap: 1rem;
       margin: 2rem 0;
     }
@@ -123,16 +122,15 @@
       font-weight: bold;
     }
 
-    /* Footer centered */
+    /* Footer centered under main content */
     footer {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 0 1rem;
       text-align: center;
-      margin: 2rem 0;
       font-size: 0.9rem;
       color: #777;
     }
-
-    /* Avoid main/footer under nav */
-    main, footer { padding-top: 3rem; }
 
   </style>
 </head>

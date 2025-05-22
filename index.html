@@ -16,8 +16,27 @@
     img { display: block; max-width: 100%; }
 
     /* Header & navigation */
-    header { position: relative; background: url('images/header-bg.jpg') center/cover no-repeat; height: 60vh; display: flex; flex-direction: column; }
-    .nav { display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; }
+    header {
+      position: relative;
+      background: url('images/header-bg.jpg') center/cover no-repeat;
+      height: 60vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+    .nav {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background-color: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(5px);
+      z-index: 10;
+    }
     .home-link { display: flex; align-items: center; }
     .favicon-icon { width: 28px; height: 28px; margin-right: 0.5rem; }
     /* Nav links in black */
@@ -26,7 +45,17 @@
     .search-icon { font-size: 1.2rem; color: #000; }
 
     /* Hero title: larger & thinner */
-    .hero-title { flex: 1; display: flex; align-items: center; justify-content: center; font-size: 5rem; font-weight: 100; color: #fff; text-shadow: 0 2px 8px rgba(0,0,0,0.6); }
+    .hero-title {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 5rem;
+      font-weight: 100;
+      color: #fff;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+      pointer-events: none;
+    }
 
     /* Main content */
     main { max-width: 800px; margin: 2rem auto; padding: 0 1rem; }

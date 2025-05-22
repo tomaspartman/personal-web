@@ -26,112 +26,54 @@
     }
     .nav {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      top: 0; left: 0; width: 100%;
+      display: flex; justify-content: space-between; align-items: center;
       padding: 0.5rem 2rem;
-      background-color: rgba(255, 255, 255, 0.4);
+      background-color: rgba(255,255,255,0.4);
       backdrop-filter: blur(5px);
       z-index: 1000;
     }
-    .home-link {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
+    .home-link { display: flex; align-items: center; gap: 0.5rem; }
     .favicon-icon { width: 24px; height: 24px; }
-    .nav-right {
-      display: flex;
-      gap: 1.5rem;
-      align-items: center;
-    }
-    .nav-right a {
-      display: flex;
-      align-items: center;
-      color: #000;
-      font-weight: 400;
-      font-size: 0.95rem;
-    }
-    .search-icon {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .search-icon svg {
-      width: 16px;
-      height: 16px;
-      stroke: #000;
-      stroke-width: 2;
-      fill: none;
-    }
+    .nav-right { display: flex; gap: 1.5rem; align-items: center; }
+    .nav-right a { display: flex; align-items: center; color: #000; font-weight: 400; font-size: 0.95rem; }
+    .search-icon { display: flex; align-items: center; justify-content: center; }
+    .search-icon svg { width: 16px; height: 16px; stroke: #000; stroke-width: 2; fill: none; }
 
     /* Hero title */
     .hero-title {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 5rem;
-      font-weight: 100;
-      color: #fff;
+      flex: 1; display: flex; align-items: center; justify-content: center;
+      font-size: 5rem; font-weight: 100; color: #fff;
       text-shadow: 0 2px 8px rgba(0,0,0,0.6);
       pointer-events: none;
     }
 
     /* Main content */
     main {
-      max-width: 800px;
-      margin: 6rem auto 2rem; /* add top margin to clear nav */
-      padding: 0 1rem;
+      max-width: 800px; margin: 6rem auto 2rem; padding: 0 1rem;
     }
     .hero-image {
-      width: 300px;
-      border-radius: 8px;
-      margin: 1.5rem auto;
+      width: 300px; border-radius: 8px; margin: 1.5rem auto;
     }
-    h1 {
-      text-align: center;
-      margin-bottom: 0.5rem;
-    }
-    h2 {
-      text-align: center;
-      font-weight: 400;
-      color: #555;
-      margin-bottom: 1.5rem;
-    }
-    p {
-      margin: 1rem 0;
-      text-align: justify;
-    }
+    h1 { text-align: center; margin-bottom: 0.5rem; }
+    h2 { text-align: center; font-weight: 400; color: #555; margin-bottom: 1.5rem; }
+    p { margin: 1rem 0; text-align: justify; }
 
-    /* Social buttons centered */
+    /* Social & footer wrapper */
+    .social-footer {
+      display: flex; flex-direction: column; align-items: center;
+      gap: 1rem; margin-top: 2rem;
+    }
     .social-buttons {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      margin: 2rem 0;
+      display: flex; justify-content: center; gap: 1rem;
     }
     .social-buttons a {
-      padding: 0.75rem 1.5rem;
-      background-color: #14494c;
-      color: #fff;
-      border-radius: 4px;
-      font-weight: bold;
+      padding: 0.75rem 1.5rem; background-color: #14494c;
+      color: #fff; border-radius: 4px; font-weight: bold;
     }
-
-    /* Footer centered under main content */
-    footer {
-      max-width: 800px;
-      margin: 2rem auto;
-      padding: 0 1rem;
-      text-align: center;
-      font-size: 0.9rem;
-      color: #777;
+    .footer-text {
+      font-size: 0.9rem; color: #777;
     }
-
   </style>
 </head>
 <body>
@@ -158,7 +100,6 @@
 
   <main>
     <img src="images/hero-photo.jpg" alt="Tomas Partman" class="hero-image">
-
     <h1>Welcome to My Creative Space!</h1>
     <h2>Discover My World Through Lens and Pen</h2>
 
@@ -168,16 +109,15 @@
     <p>Feel free to navigate through the pages, explore my photo galleries, read through my blog posts, and dive into the little creative universe I’ve built here. I hope you find something that resonates with you, and perhaps leaves you with a little spark of inspiration.</p>
     <p>I'm thrilled to have you here and I can't wait to share my journey with you. So take your time, explore, and enjoy the ride!</p>
 
-    <div class="social-buttons">
-      <a href="#">INSTAGRAM</a>
-      <a href="#">FACEBOOK</a>
-      <a href="#">LINKEDIN</a>
-      <a href="#">TWITTER</a>
+    <div class="social-footer">
+      <div class="social-buttons">
+        <a href="#">INSTAGRAM</a>
+        <a href="#">FACEBOOK</a>
+        <a href="#">LINKEDIN</a>
+        <a href="#">TWITTER</a>
+      </div>
+      <p class="footer-text">© 2025 Tomas Partman</p>
     </div>
   </main>
-
-  <footer>
-    <p>© 2025 Tomas Partman</p>
-  </footer>
 </body>
 </html>

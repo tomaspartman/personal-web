@@ -7,7 +7,7 @@
   <!-- Favicon -->
   <link rel="icon" href="images/favicon.png" type="image/png">
   <!-- Google Font Roboto -->
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700&display=swap" rel="stylesheet">
   <style>
     /* Reset & basic styles */
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -20,12 +20,13 @@
     .nav { display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; }
     .home-link { display: flex; align-items: center; }
     .favicon-icon { width: 28px; height: 28px; margin-right: 0.5rem; }
-    .nav a { color: #fff; font-weight: 400; font-size: 1rem; }
+    /* Nav links in black */
+    .nav a { color: #000; font-weight: 400; font-size: 1rem; }
     .nav-right { display: flex; gap: 2rem; align-items: center; }
-    .search-icon { font-size: 1.2rem; }
+    .search-icon { font-size: 1.2rem; color: #000; }
 
-    /* Hero title */
-    .hero-title { flex: 1; display: flex; align-items: center; justify-content: center; font-size: 4rem; font-weight: 300; color: #fff; text-shadow: 0 2px 8px rgba(0,0,0,0.6); }
+    /* Hero title: larger & thinner */
+    .hero-title { flex: 1; display: flex; align-items: center; justify-content: center; font-size: 5rem; font-weight: 100; color: #fff; text-shadow: 0 2px 8px rgba(0,0,0,0.6); }
 
     /* Main content */
     main { max-width: 800px; margin: 2rem auto; padding: 0 1rem; }
@@ -46,7 +47,7 @@
   <header>
     <div class="nav">
       <!-- Left: favicon + Home link -->
-      <a href="#" class="home-link"><img src="images/favicon.png" alt="Tomas Partman" class="favicon-icon"><span>Home</span></a>
+      <a href="#" class="home-link"><img src="images/favicon.png" alt="" class="favicon-icon"><span>Home</span></a>
       <!-- Right nav links -->
       <div class="nav-right">
         <a href="#about">About</a>
@@ -83,4 +84,3 @@
   </footer>
 </body>
 </html>
-

@@ -32,21 +32,21 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1rem 2rem;
-      background-color: rgba(255, 255, 255, 0.5); /* viac priesvitné */
+      padding: 0.5rem 2rem; /* Reduced vertical padding by 50% */
+      background-color: rgba(255, 255, 255, 0.5);
       backdrop-filter: blur(5px);
       z-index: 1000;
     }
     /* Ensure content doesn't go under fixed nav */
     main, footer {
-      margin-top: 4rem;
+      margin-top: 3rem; /* Adjusted to match reduced nav height */
     }
     .home-link { display: flex; align-items: center; }
-    .favicon-icon { width: 28px; height: 28px; margin-right: 0.5rem; }
+    .favicon-icon { width: 24px; height: 24px; margin-right: 0.5rem; }
     /* Nav links in black */
-    .nav a { color: #000; font-weight: 400; font-size: 1rem; }
-    .nav-right { display: flex; gap: 2rem; align-items: center; }
-    .search-icon { font-size: 1.2rem; color: #000; }
+    .nav a { color: #000; font-weight: 400; font-size: 0.95rem; }
+    .nav-right { display: flex; gap: 1.5rem; align-items: center; }
+    .search-icon { font-size: 1.1rem; color: #000; }
 
     /* Hero title: larger & thinner */
     .hero-title {
@@ -69,11 +69,30 @@
     p { margin: 1rem 0; text-align: justify; }
 
     /* Social buttons */
-    .social-buttons { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin: 2rem 0; }
-    .social-buttons a { display: block; padding: 0.75rem; background-color: #14494c; color: #fff; border-radius: 4px; font-weight: bold; text-align: center; }
+    .social-buttons {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1rem;
+      margin: 2rem 0;
+    }
+    .social-buttons a {
+      display: block;
+      padding: 0.75rem;
+      background-color: #14494c;
+      color: #fff;
+      border-radius: 4px;
+      font-weight: bold;
+      text-align: center;
+    }
 
     /* Footer */
-    footer { text-align: center; margin: 2rem auto; padding: 0 1rem; font-size: 0.9rem; color: #777; }
+    footer {
+      text-align: center;
+      margin: 2rem auto;
+      padding: 0 1rem;
+      font-size: 0.9rem;
+      color: #777;
+    }
   </style>
 </head>
 <body>

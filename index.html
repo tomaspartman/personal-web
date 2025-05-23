@@ -10,74 +10,83 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700&display=swap" rel="stylesheet">
   <style>
     /* Reset & basic styles */
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Roboto', sans-serif; color: #333; line-height: 1.6; }
-    a { text-decoration: none; color: inherit; }
-    img { display: block; max-width: 100%; }
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family:'Roboto',sans-serif; color:#333; line-height:1.6; }
+    a { text-decoration:none; color:inherit; }
+    img { display:block; max-width:100%; height:auto; }
 
     /* Header & navigation */
     header {
-      position: relative;
-      background: url('images/header-bg.jpg') center/cover no-repeat;
-      height: 60vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
+      position:relative;
+      background:url('images/header-bg.jpg') center/cover no-repeat;
+      height:60vh;
+      display:flex; flex-direction:column; justify-content:flex-end;
     }
     .nav {
-      position: fixed;
-      top: 0; left: 0; width: 100%;
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 0.5rem 2rem;
-      background-color: rgba(255,255,255,0.4);
-      backdrop-filter: blur(5px);
-      z-index: 1000;
+      position:fixed; top:0; left:0; width:100%;
+      display:flex; justify-content:space-between; align-items:center;
+      padding:0.5rem 2rem;
+      background-color:rgba(255,255,255,0.4);
+      backdrop-filter:blur(5px); z-index:1000;
     }
-    .home-link { display: flex; align-items: center; gap: 0.5rem; }
-    .favicon-icon { width: 24px; height: 24px; }
-    .nav-right { display: flex; gap: 1.5rem; align-items: center; }
-    .nav-right a { display: flex; align-items: center; color: #000; font-weight: 400; font-size: 0.95rem; }
-    .search-icon { display: flex; align-items: center; justify-content: center; }
-    .search-icon svg { width: 16px; height: 16px; stroke: #000; stroke-width: 2; fill: none; }
+    .home-link { display:flex; align-items:center; gap:0.5rem; }
+    .favicon-icon { width:24px; height:24px; }
+    .nav-right { display:flex; gap:1.5rem; align-items:center; }
+    .nav-right a { font-weight:400; font-size:0.95rem; color:#000; }
+    .search-icon svg { width:16px; height:16px; stroke:#000; stroke-width:2; fill:none; }
 
     /* Hero title */
     .hero-title {
-      flex: 1; display: flex; align-items: center; justify-content: center;
-      font-size: 5rem; font-weight: 100; color: #fff;
-      text-shadow: 0 2px 8px rgba(0,0,0,0.6);
-      pointer-events: none;
+      flex:1; display:flex; align-items:center; justify-content:center;
+      font-size:5rem; font-weight:100; color:#fff;
+      text-shadow:0 2px 8px rgba(0,0,0,0.6);
+      pointer-events:none;
+      padding:0 1rem;
     }
 
     /* Main content */
     main {
-      max-width: 800px; margin: 6rem auto 2rem; padding: 0 1rem;
+      max-width:800px; margin:6rem auto 2rem; padding:0 1rem;
     }
-    .hero-image { width: 300px; border-radius: 8px; margin: 1.5rem auto; }
-    h1 { text-align: center; margin-bottom: 0.5rem; }
-    h2 { text-align: center; font-weight: 400; color: #555; margin-bottom: 1.5rem; }
-    p { margin: 1rem 0; text-align: justify; }
+    .hero-image { width:300px; border-radius:8px; margin:1.5rem auto; }
+    h1 { text-align:center; margin-bottom:0.5rem; }
+    h2 { text-align:center; font-weight:400; color:#555; margin-bottom:1.5rem; }
+    p { margin:1rem 0; text-align:justify; }
 
     /* Social & footer wrapper */
     .social-footer {
-      display: flex; flex-direction: column; align-items: center;
-      gap: 1rem; margin-top: 2rem;
+      display:flex; flex-direction:column; align-items:center;
+      gap:1rem; margin-top:2rem;
     }
     .social-buttons {
-      display: flex; justify-content: center; gap: 1rem;
+      display:flex; justify-content:center; gap:1rem;
+      flex-wrap:wrap;
     }
-    /* Brand colors for buttons */
     .social-buttons a {
-      padding: 0.75rem 1.5rem; color: #fff; border-radius: 4px; font-weight: bold;
+      padding:0.75rem 1.5rem; color:#fff; border-radius:4px; font-weight:bold;
     }
-    .social-buttons a.instagram { background-color: #E1306C; }
-    .social-buttons a.facebook  { background-color: #4267B2; }
-    .social-buttons a.linkedin  { background-color: #0077B5; }
-    .social-buttons a.twitter   { background-color: #1DA1F2; }
-    .social-buttons a.github    { background-color: #24292E; }
+    .instagram { background-color:#E1306C; }
+    .facebook  { background-color:#4267B2; }
+    .linkedin  { background-color:#0077B5; }
+    .twitter   { background-color:#1DA1F2; }
+    .github    { background-color:#24292E; }
+    .footer-text { font-size:0.9rem; color:#777; }
 
-    /* Footer centered under main content */
-    .footer-text { font-size: 0.9rem; color: #777; }
-
+    /* Responsive adjustments */
+    @media (max-width:768px) {
+      .nav { padding:0.5rem 1rem; }
+      .nav-right { display:none; }
+      .search-icon { order:-1; margin-left:auto; }
+      .hero-title { font-size:3rem; padding:0 0.5rem; }
+      .hero-image { width:80vw; }
+      .social-buttons a { flex:1 1 45%; }
+    }
+    @media (max-width:480px) {
+      .nav { padding:0.5rem; }
+      .home-link span { font-size:0.9rem; }
+      .hero-title { font-size:2.5rem; }
+      .social-buttons a { flex:1 1 100%; max-width:300px; }
+    }
   </style>
 </head>
 <body>
@@ -91,13 +100,13 @@
         <a href="#about">About</a>
         <a href="#books">Books</a>
         <a href="#blog">Travel Blog</a>
-        <a href="#" class="search-icon" aria-label="Search">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-            <circle cx="11" cy="11" r="8" />
-            <line x1="21" y1="21" x2="16.65" y2="16.65" />
-          </svg>
-        </a>
       </div>
+      <a href="#" class="search-icon" aria-label="Search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <circle cx="11" cy="11" r="8" />
+          <line x1="21" y1="21" x2="16.65" y2="16.65" />
+        </svg>
+      </a>
     </div>
     <div class="hero-title">Tomas Partman</div>
   </header>

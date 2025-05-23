@@ -1,0 +1,68 @@
+    /* Reset & basic styles */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Roboto', sans-serif; color: #333; line-height: 1.6; }
+    a { text-decoration: none; color: inherit; }
+    img { display: block; max-width: 100%; }
+
+    /* Header & navigation */
+    header {
+      position: relative;
+      background: url('images/header-bg.jpg') center/cover no-repeat;
+      height: 60vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+    .nav {
+      position: fixed;
+      top: 0; left: 0; width: 100%;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 0.5rem 2rem;
+      background-color: rgba(255,255,255,0.4);
+      backdrop-filter: blur(5px);
+      z-index: 1000;
+    }
+    .home-link { display: flex; align-items: center; gap: 0.5rem; }
+    .favicon-icon { width: 24px; height: 24px; }
+    .nav-right { display: flex; gap: 1.5rem; align-items: center; }
+    .nav-right a { display: flex; align-items: center; color: #000; font-weight: 400; font-size: 0.95rem; }
+    .search-icon { display: flex; align-items: center; justify-content: center; }
+    .search-icon svg { width: 16px; height: 16px; stroke: #000; stroke-width: 2; fill: none; }
+
+    /* Hero title */
+    .hero-title {
+      flex: 1; display: flex; align-items: center; justify-content: center;
+      font-size: 5rem; font-weight: 100; color: #fff;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+      pointer-events: none;
+    }
+
+    /* Main content */
+    main {
+      max-width: 800px; margin: 6rem auto 2rem; padding: 0 1rem;
+    }
+    .hero-image { width: 300px; border-radius: 8px; margin: 1.5rem auto; }
+    h1 { text-align: center; margin-bottom: 0.5rem; }
+    h2 { text-align: center; font-weight: 400; color: #555; margin-bottom: 1.5rem; }
+    p { margin: 1rem 0; text-align: justify; }
+
+    /* Social & footer wrapper */
+    .social-footer {
+      display: flex; flex-direction: column; align-items: center;
+      gap: 1rem; margin-top: 2rem;
+    }
+    .social-buttons {
+      display: flex; justify-content: center; gap: 1rem;
+    }
+    /* Brand colors for buttons */
+    .social-buttons a {
+      padding: 0.75rem 1.5rem; color: #fff; border-radius: 4px; font-weight: bold;
+    }
+    .social-buttons a.instagram { background-color: #E1306C; }
+    .social-buttons a.facebook  { background-color: #4267B2; }
+    .social-buttons a.linkedin  { background-color: #0077B5; }
+    .social-buttons a.twitter   { background-color: #1DA1F2; }
+    .social-buttons a.github    { background-color: #24292E; }
+
+    /* Footer centered under main content */
+    .footer-text { font-size: 0.9rem; color: #777; }

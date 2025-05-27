@@ -12,10 +12,11 @@
   <link rel="icon" href="images/favicon.png" type="image/png">
   <!-- Google Font Roboto -->
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
+  <!-- Main stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <header>
+  <header style="position: relative;">
     <nav class="nav">
       <a href="#" class="home-link">
         <img src="images/favicon.png" alt="Favicon" class="favicon-icon">
@@ -33,7 +34,10 @@
         </a>
       </div>
     </nav>
-    <div class="hero-title">Tomas Partman</div>
+    <!-- Hero title centered horizontally & vertically -->
+    <div class="hero-title" style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:100%; text-align:center;">
+      Tomas Partman
+    </div>
   </header>
 
   <main>
@@ -58,5 +62,7 @@
       <p class="footer-text">© 2025 Tomas Partman</p>
     </footer>
   </main>
+
 </body>
 </html>
+

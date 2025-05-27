@@ -66,3 +66,23 @@
 
     /* Footer centered under main content */
     .footer-text { font-size: 0.9rem; color: #777; }
+.social-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+  .social-buttons a {
+    flex: 1 1 calc(50% - 1rem);
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .social-buttons a {
+    flex: 1 1 100%;
+  }
+}

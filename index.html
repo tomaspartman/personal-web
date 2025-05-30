@@ -2,113 +2,93 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Tomas Partman</title>
   <meta name="description" content="Personal website of Tomas Partman showcasing photography, writing, and inspiration.">
   <meta property="og:title" content="Tomas Partman">
   <meta property="og:description" content="Discover photography, stories, and personal insights on Tomas Partman's site.">
   <meta property="og:image" content="images/hero-photo.jpg">
+
   <!-- Favicon -->
   <link rel="icon" href="images/favicon.png" type="image/png">
   <!-- Google Font Roboto -->
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700&display=swap" rel="stylesheet">
   <!-- Main stylesheet -->
   <link rel="stylesheet" href="css/style.css">
-  <!-- Dropdown styling -->
-  <style>
-    .nav-right { display: flex; gap: 1.5rem; align-items: center; }
-    .dropdown { position: relative; }
-    .dropbtn { cursor: pointer; color: #000; font-weight: 400; font-size: 0.95rem; background:none; border:none; }
-    .dropdown-content {
-      display: none;
-      position: absolute;
-      top: 100%; left: 0;
-      /* translucent grey to match navbar */
-      background: rgba(255, 255, 255, 0.4);
-      backdrop-filter: blur(5px);
-      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-      border-radius: 4px;
-      list-style: none;
-      margin: 0;
-      padding: 0.5rem 0;
-      min-width: 160px;
-      z-index: 1001;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-      border-radius: 4px;
-      list-style: none;
-      margin: 0;
-      padding: 0.5rem 0;
-      min-width: 160px;
-      z-index: 1001;
-    }
-    .dropdown.open .dropdown-content { display: block; }
-    .dropdown-content li { margin:0; }
-    .dropdown-content li a {
-      display: block;
-      padding: 0.5rem 1rem;
-      color: #000;
-      text-decoration: none;
-    }
-    .dropdown-content li a:hover { background: #f0f0f0; }
-  </style>
 </head>
 <body>
-  <header style="position: relative;">
+  <header>
     <nav class="nav">
-      <a href="#" class="home-link">
-        <img src="images/favicon.png" alt="Home" class="favicon-icon">
+      <a href="index.html" class="home-link">
+        <img src="images/favicon.png" alt="Favicon" class="favicon-icon">
         <span>Home</span>
       </a>
       <div class="nav-right">
+        <!-- About dropdown -->
         <div class="dropdown">
-          <button class="dropbtn">About <svg width="8" height="8" viewBox="0 0 8 8" style="vertical-align:middle;"><path d="M1 2l3 3 3-3" stroke="#000" stroke-width="1" fill="none"/></svg></button>
-          <ul class="dropdown-content">
-            <li><a href="#about-me">About Me</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
+          <button class="dropbtn">
+            About
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 8">
+              <line x1="1" y1="2" x2="4" y2="5" stroke="#000" stroke-width="1"/>
+              <line x1="7" y1="2" x2="4" y2="5" stroke="#000" stroke-width="1"/>
+            </svg>
+          </button>
+          <div class="dropdown-content">
+            <a href="about.html">About Me</a>
+            <a href="skills.html">Skills</a>
+            <a href="contact.html">Contact</a>
+          </div>
         </div>
         <a href="books.html">Books</a>
-        <a href="#blog">Travel Blog</a>
-        <div class="search-icon">
-          <a href="#" aria-label="Search">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-          </a>
-        </div>
+        <a href="blog.html">Travel Blog</a>
+        <a href="#" class="search-icon" aria-label="Search">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <circle cx="11" cy="11" r="8" />
+            <line x1="21" y1="21" x2="16.65" y2="16.65" />
+          </svg>
+        </a>
       </div>
     </nav>
-    <div class="hero-title" style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:100%; text-align:center; font-family: 'Roboto', sans-serif; font-weight:100; letter-spacing:-0.02em;">
-      Tomas Partman
-    </div>
+    <div class="hero-title">Tomas Partman</div>
   </header>
 
   <main>
     <img src="images/hero-photo.jpg" alt="Tomas Partman" class="hero-image">
+
     <h1>Welcome to My Creative Space!</h1>
     <h2>Discover My World Through Lens and Pen</h2>
-    <!-- Content... -->
-    <footer class="social-footer">
-      <div class="social-buttons">
-        <a href="https://www.instagram.com/tomaspartman/" class="instagram" target="_blank" rel="noopener noreferrer">INSTAGRAM</a>
-        <a href="https://www.facebook.com/tomas.o.partman/" class="facebook" target="_blank" rel="noopener noreferrer">FACEBOOK</a>
-        <a href="https://www.linkedin.com/in/tomaspartman/" class="linkedin" target="_blank" rel="noopener noreferrer">LINKEDIN</a>
-        <a href="https://x.com/PartmanTomas" class="twitter" target="_blank" rel="noopener noreferrer">TWITTER</a>
-        <a href="https://github.com/tomaspartman" class="github" target="_blank" rel="noopener noreferrer">GITHUB</a>
-      </div>
-      <p class="footer-text">© 2025 Tomas Partman</p>
-    </footer>
+
+    <p>Hello and welcome to my personal webpage! This is the little corner of the internet where I share my passion for photography, writing, and the simple joys of everyday life. Through this platform, I aim to connect with like-minded souls, share experiences, and perhaps inspire a few along the way.</p>
+
+    <p>Here, you'll find a collection of my favorite photographs, each telling a story of its own. From the golden hues of a sunset to the candid smiles of everyday people, every image here is a snippet of the world through my eyes.</p>
+
+    <p>Alongside, I love penning down my thoughts and experiences which often intertwine with the visuals I capture. Each narrative here complements the imagery, painting a fuller picture of the moments I hold dear.</p>
+
+    <p>Feel free to navigate through the pages, explore my photo galleries, read through my blog posts, and dive into the little creative universe I’ve built here. I hope you find something that resonates with you, and perhaps leaves you with a little spark of inspiration.</p>
+
+    <p>I'm thrilled to have you here and I can't wait to share my journey with you. So take your time, explore, and enjoy the ride!</p>
   </main>
 
+  <footer class="social-footer">
+    <div class="social-buttons">
+      <a href="https://www.instagram.com/tomaspartman/" class="instagram" target="_blank" rel="noopener noreferrer">INSTAGRAM</a>
+      <a href="https://www.facebook.com/tomas.o.partman/" class="facebook" target="_blank" rel="noopener noreferrer">FACEBOOK</a>
+      <a href="https://www.linkedin.com/in/tomaspartman/" class="linkedin" target="_blank" rel="noopener noreferrer">LINKEDIN</a>
+      <a href="https://x.com/PartmanTomas" class="twitter" target="_blank" rel="noopener noreferrer">TWITTER</a>
+      <a href="https://github.com/tomaspartman" class="github" target="_blank" rel="noopener noreferrer">GITHUB</a>
+    </div>
+    <p class="footer-text">© 2025 Tomas Partman</p>
+  </footer>
+
   <script>
-    document.querySelectorAll('.dropdown').forEach(drop => {
-      drop.querySelector('.dropbtn').addEventListener('click', e => {
-        e.preventDefault(); drop.classList.toggle('open');
-      });
-    });
-    document.addEventListener('click', e => {
-      document.querySelectorAll('.dropdown').forEach(drop => {
-        if (!drop.contains(e.target)) drop.classList.remove('open');
-      });
+    // Toggle About dropdown
+    document.addEventListener('click', function(e) {
+      const dd = document.querySelector('.dropdown');
+      if (e.target.closest('.dropbtn')) {
+        dd.classList.toggle('open');
+      } else if (!e.target.closest('.dropdown')) {
+        dd.classList.remove('open');
+      }
     });
   </script>
 </body>

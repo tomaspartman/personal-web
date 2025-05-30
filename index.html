@@ -17,41 +17,40 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <header>
-    <nav class="nav">
-      <a href="index.html" class="home-link">
-        <img src="images/favicon.png" alt="Favicon" class="favicon-icon">
-        <span>Home</span>
-      </a>
-      <div class="nav-right">
-        <!-- About dropdown -->
-        <div class="dropdown">
-          <button class="dropbtn">
-            About
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 8">
-              <line x1="1" y1="2" x2="4" y2="5" stroke="#000" stroke-width="1"/>
-              <line x1="7" y1="2" x2="4" y2="5" stroke="#000" stroke-width="1"/>
-            </svg>
-          </button>
-          <div class="dropdown-content">
-            <a href="about.html">About Me</a>
-            <a href="skills.html">Skills</a>
-            <a href="contact.html">Contact</a>
-          </div>
-        </div>
-        <a href="books.html">Books</a>
-        <a href="blog.html">Travel Blog</a>
-        <a href="#" class="search-icon" aria-label="Search">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-            <circle cx="11" cy="11" r="8" />
-            <line x1="21" y1="21" x2="16.65" y2="16.65" />
+<header>
+  <nav class="nav">
+    <a href="index.html" class="home-link">
+      <img src="images/favicon.png" alt="Favicon" class="favicon-icon">
+      <span>Home</span>
+    </a>
+    <div class="nav-right">
+      <!-- About dropdown -->
+      <div class="dropdown">
+        <button class="dropbtn" type="button">
+          About
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 8" aria-hidden="true">
+            <line x1="1" y1="2" x2="4" y2="5" stroke="#000" stroke-width="1"/>
+            <line x1="7" y1="2" x2="4" y2="5" stroke="#000" stroke-width="1"/>
           </svg>
-        </a>
+        </button>
+        <ul class="dropdown-content">
+          <li><a href="about.html">About Me</a></li>
+          <li><a href="skills.html">Skills</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
       </div>
-    </nav>
-    <div class="hero-title">Tomas Partman</div>
-  </header>
-
+      <a href="books.html">Books</a>
+      <a href="blog.html">Travel Blog</a>
+      <button class="search-icon" aria-label="Search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="11" cy="11" r="8" />
+          <line x1="21" y1="21" x2="16.65" y2="16.65" />
+        </svg>
+      </button>
+    </div>
+  </nav>
+  <div class="hero-title">Tomas Partman</div>
+</header>
   <main>
     <img src="images/hero-photo.jpg" alt="Tomas Partman" class="hero-image">
 

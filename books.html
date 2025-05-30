@@ -9,20 +9,27 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <header class="nav">
+ <header>
+  <nav class="nav">
     <a href="index.html" class="home-link">
-      <img src="images/favicon.png" alt="Home" class="favicon-icon">
+      <img src="images/favicon.png" alt="Favicon" class="favicon-icon">
       <span>Home</span>
     </a>
     <div class="nav-right">
-      <a href="index.html">About</a>
+      <!-- no dropdown here, just plain links -->
+      <a href="about.html">About</a>
       <a href="books.html" class="active">Books</a>
-      <a href="#">Travel Blog</a>
-      <div class="search-icon"><a href="#" aria-label="Search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-      </a></div>
+      <a href="blog.html">Travel Blog</a>
+      <a href="#" class="search-icon" aria-label="Search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <circle cx="11" cy="11" r="8" />
+          <line x1="21" y1="21" x2="16.65" y2="16.65" />
+        </svg>
+      </a>
     </div>
-  </header>
+  </nav>
+  <div class="hero-title">Books</div>
+</header>
   <main>
     <!-- First book: image left, text right -->
     <section class="book-item">

@@ -1,88 +1,112 @@
-    /* Reset & basic styles */
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Roboto', sans-serif; color: #333; line-height: 1.6; }
-    a { text-decoration: none; color: inherit; }
-    img { display: block; max-width: 100%; }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tomas Partman</title>
+  <meta name="description" content="Personal website of Tomas Partman showcasing photography, writing, and inspiration.">
+  <meta property="og:title" content="Tomas Partman">
+  <meta property="og:description" content="Discover photography, stories, and personal insights on Tomas Partman's site.">
+  <meta property="og:image" content="images/hero-photo.jpg">
+  <!-- Favicon -->
+  <link rel="icon" href="images/favicon.png" type="image/png">
+  <!-- Google Font Roboto -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700&display=swap" rel="stylesheet">
+  <!-- Main stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
 
-    /* Header & navigation */
-    header {
-      position: relative;
-      background: url('../images/header-bg.jpg') center/cover no-repeat;
-      height: 60vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
+  <!-- Dropdown styling -->
+  <style>
+    .nav-right { list-style:none; display:flex; gap:1.5rem; align-items:center; margin:0; padding:0; }
+    .nav-right li { position: relative; }
+    .nav-right .dropbtn { cursor: pointer; }
+    .nav-right .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 100%; left: 0;
+      background: rgba(255,255,255,0.9);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      border-radius: 4px;
+      list-style: none;
+      margin: 0;
+      padding: 0.5rem 0;
+      min-width: 160px;
     }
-    .nav {
-      position: fixed;
-      top: 0; left: 0; width: 100%;
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 0.5rem 2rem;
-      background-color: rgba(255,255,255,0.4);
-      backdrop-filter: blur(5px);
-      z-index: 1000;
+    .nav-right .dropdown.open .dropdown-content { display: block; }
+    .nav-right .dropdown-content li a {
+      display: block;
+      padding: 0.5rem 1rem;
+      color: #000;
     }
-    .home-link { display: flex; align-items: center; gap: 0.5rem; }
-    .favicon-icon { width: 24px; height: 24px; }
-    .nav-right { display: flex; gap: 1.5rem; align-items: center; }
-    .nav-right a { display: flex; align-items: center; color: #000; font-weight: 400; font-size: 0.95rem; }
-    .search-icon { display: flex; align-items: center; justify-content: center; }
-    .search-icon svg { width: 16px; height: 16px; stroke: #000; stroke-width: 2; fill: none; }
+    .nav-right .dropdown-content li a:hover {
+      background: #f0f0f0;
+    }
+  </style>
+</head>
+<body>
+  <header style="position: relative;">
+    <nav class="nav">
+      <a href="#" class="home-link">
+        <img src="images/favicon.png" alt="Favicon" class="favicon-icon">
+        <span>Home</span>
+      </a>
+      <ul class="nav-right">
+        <li class="dropdown">
+          <a href="#" class="dropbtn">About ▼</a>
+          <ul class="dropdown-content">
+            <li><a href="#about-me">About Me</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </li>
+        <li><a href="#books">Books</a></li>
+        <li><a href="#blog">Travel Blog</a></li>
+        <li class="search-icon">
+          <a href="#" aria-label="Search">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <div class="hero-title" style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:100%; text-align:center;">
+      Tomas Partman
+    </div>
+  </header>
 
-    /* Hero title */
-    .hero-title {
-      flex: 1; display: flex; align-items: center; justify-content: center;
-      font-size: 5rem; font-weight: 100; color: #fff;
-      text-shadow: 0 2px 8px rgba(0,0,0,0.6);
-      pointer-events: none;
-    }
+  <main>
+    <img src="images/hero-photo.jpg" alt="Tomas Partman" class="hero-image">
+    <h1>Welcome to My Creative Space!</h1>
+    <h2>Discover My World Through Lens and Pen</h2>
 
-    /* Main content */
-    main {
-      max-width: 800px; margin: 6rem auto 2rem; padding: 0 1rem;
-    }
-    .hero-image { width: 300px; border-radius: 8px; margin: 1.5rem auto; }
-    h1 { text-align: center; margin-bottom: 0.5rem; }
-    h2 { text-align: center; font-weight: 400; color: #555; margin-bottom: 1.5rem; }
-    p { margin: 1rem 0; text-align: justify; }
+    <!-- Content... -->
 
-    /* Social & footer wrapper */
-    .social-footer {
-      display: flex; flex-direction: column; align-items: center;
-      gap: 1rem; margin-top: 2rem;
-    }
-    .social-buttons {
-      display: flex; justify-content: center; gap: 1rem;
-    }
-    /* Brand colors for buttons */
-    .social-buttons a {
-      padding: 0.75rem 1.5rem; color: #fff; border-radius: 4px; font-weight: bold;
-    }
-    .social-buttons a.instagram { background-color: #E1306C; }
-    .social-buttons a.facebook  { background-color: #4267B2; }
-    .social-buttons a.linkedin  { background-color: #0077B5; }
-    .social-buttons a.twitter   { background-color: #1DA1F2; }
-    .social-buttons a.github    { background-color: #24292E; }
+    <footer class="social-footer">
+      <div class="social-buttons">
+        <a href="https://www.instagram.com/tomaspartman/" class="instagram" target="_blank" rel="noopener noreferrer">INSTAGRAM</a>
+        <a href="https://www.facebook.com/tomas.o.partman/" class="facebook" target="_blank" rel="noopener noreferrer">FACEBOOK</a>
+        <a href="https://www.linkedin.com/in/tomaspartman/" class="linkedin" target="_blank" rel="noopener noreferrer">LINKEDIN</a>
+        <a href="https://x.com/PartmanTomas" class="twitter" target="_blank" rel="noopener noreferrer">TWITTER</a>
+        <a href="https://github.com/tomaspartman" class="github" target="_blank" rel="noopener noreferrer">GITHUB</a>
+      </div>
+      <p class="footer-text">© 2025 Tomas Partman</p>
+    </footer>
+  </main>
 
-    /* Footer centered under main content */
-    .footer-text { font-size: 0.9rem; color: #777; }
-.social-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  flex-wrap: wrap;
-}
-
-@media (max-width: 768px) {
-  .social-buttons a {
-    flex: 1 1 calc(50% - 1rem);
-    text-align: center;
-    margin-bottom: 1rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .social-buttons a {
-    flex: 1 1 100%;
-  }
-}
+  <script>
+    // Dropdown toggle
+    document.querySelectorAll('.dropdown').forEach(drop => {
+      const btn = drop.querySelector('.dropbtn');
+      btn.addEventListener('click', e => {
+        e.preventDefault();
+        drop.classList.toggle('open');
+      });
+    });
+    // Close dropdown when clicking outside
+    document.addEventListener('click', e => {
+      document.querySelectorAll('.dropdown').forEach(drop => {
+        if (!drop.contains(e.target)) drop.classList.remove('open');
+      });
+    });
+  </script>
+</body>
+</html>

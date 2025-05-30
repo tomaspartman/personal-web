@@ -22,17 +22,26 @@
         <img src="images/favicon.png" alt="Favicon" class="favicon-icon">
         <span>Home</span>
       </a>
-      <div class="nav-right">
-        <a href="#about">About</a>
-        <a href="#books">Books</a>
-        <a href="#blog">Travel Blog</a>
-        <a href="#" class="search-icon" aria-label="Search">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-            <circle cx="11" cy="11" r="8" />
-            <line x1="21" y1="21" x2="16.65" y2="16.65" />
-          </svg>
-        </a>
-      </div>
+      <ul class="nav-right">
+        <li class="dropdown">
+          <a href="#" class="dropbtn">About ▼</a>
+          <ul class="dropdown-content">
+            <li><a href="#about-me">About Me</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </li>
+        <li><a href="#books">Books</a></li>
+        <li><a href="#blog">Travel Blog</a></li>
+        <li class="search-icon">
+          <a href="#" aria-label="Search">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <circle cx="11" cy="11" r="8" />
+              <line x1="21" y1="21" x2="16.65" y2="16.65" />
+            </svg>
+          </a>
+        </li>
+      </ul>
     </nav>
     <!-- Hero title centered horizontally & vertically -->
     <div class="hero-title" style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:100%; text-align:center;">
@@ -44,13 +53,7 @@
     <img src="images/hero-photo.jpg" alt="Tomas Partman" class="hero-image">
     <h1>Welcome to My Creative Space!</h1>
     <h2>Discover My World Through Lens and Pen</h2>
-
-    <p>Hello and welcome to my personal webpage! This is the little corner of the internet where I share my passion for photography, writing, and the simple joys of everyday life. Through this platform, I aim to connect with like-minded souls, share experiences, and perhaps inspire a few along the way.</p>
-    <p>Here, you'll find a collection of my favorite photographs, each telling a story of its own. From the golden hues of a sunset to the candid smiles of everyday people, every image here is a snippet of the world through my eyes.</p>
-    <p>Alongside, I love penning down my thoughts and experiences which often intertwine with the visuals I capture. Each narrative here complements the imagery, painting a fuller picture of the moments I hold dear.</p>
-    <p>Feel free to navigate through the pages, explore my photo galleries, read through my blog posts, and dive into the little creative universe I’ve built here. I hope you find something that resonates with you, and perhaps leaves you with a little spark of inspiration.</p>
-    <p>I'm thrilled to have you here and I can't wait to share my journey with you. So take your time, explore, and enjoy the ride!</p>
-
+    <!-- Content... -->
     <footer class="social-footer">
       <div class="social-buttons">
         <a href="https://www.instagram.com/tomaspartman/" class="instagram" target="_blank" rel="noopener noreferrer">INSTAGRAM</a>
@@ -63,6 +66,22 @@
     </footer>
   </main>
 
+  <script>
+    // Dropdown toggle
+    document.querySelectorAll('.dropdown').forEach(drop => {
+      const btn = drop.querySelector('.dropbtn');
+      btn.addEventListener('click', e => {
+        e.preventDefault();
+        drop.classList.toggle('open');
+      });
+    });
+    // Close dropdown when clicking outside
+    document.addEventListener('click', e => {
+      document.querySelectorAll('.dropdown').forEach(drop => {
+        if (!drop.contains(e.target)) drop.classList.remove('open');
+      });
+    });
+  </script>
 </body>
 </html>
 

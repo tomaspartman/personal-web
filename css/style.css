@@ -105,16 +105,17 @@ header {
   stroke-width: 1;
   fill: none;
 }
-/* Dark, fixed-width dropdown panel with ellipsis */
+/* Translucent grey dropdown matching header */
 .dropdown-content {
   display: none;
   position: absolute;
   top: 100%;
   left: 0;
-  background: rgba(0,0,0,0.9);
+  background: rgba(255,255,255,0.4);
+  backdrop-filter: blur(5px);
   min-width: 180px;
   max-width: 240px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
   border-radius: 4px;
   overflow: hidden;
   z-index: 1001;
@@ -125,17 +126,17 @@ header {
 .dropdown-content li a {
   display: block;
   padding: 0.75rem 1rem;
-  color: #fff;
+  color: #000;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   font-size: 0.95rem;
 }
 .dropdown-content li + li a {
-  border-top: 1px solid rgba(255,255,255,0.1);
+  border-top: 1px solid rgba(0,0,0,0.1);
 }
 .dropdown-content li a:hover {
-  background: rgba(255,255,255,0.1);
+  background: rgba(255,255,255,0.6);
 }
 .dropdown.open .dropdown-content {
   display: block;
@@ -208,4 +209,43 @@ p {
 .social-buttons a.facebook  { background-color: #4267B2; }
 .social-buttons a.linkedin  { background-color: #0077B5; }
 .social-buttons a.twitter   { background-color: #1DA1F2; }
-.social-buttons a.github    { background-color:
+.social-buttons a.github    { background-color: #24292E; }
+
+.footer-text {
+  font-size: 0.9rem;
+  color: #777;
+  text-align: center;
+}
+
+/* Responsive social buttons */
+@media (max-width: 768px) {
+  .social-buttons a {
+    flex: 1 1 calc(50% - 1rem);
+    margin-bottom: 1rem;
+  }
+}
+@media (max-width: 480px) {
+  .social-buttons a {
+    flex: 1 1 100%;
+  }
+}
+
+/* Mobile & tablet tweaks */
+@media (max-width: 768px) {
+  .nav-right a,
+  .dropbtn {
+    font-size: 0.85rem;
+  }
+  .hero-title {
+    font-size: 4rem;
+  }
+}
+@media (max-width: 480px) {
+  .nav-right a,
+  .dropbtn {
+    font-size: 0.8rem;
+  }
+  .hero-title {
+    font-size: 3rem;
+  }
+}

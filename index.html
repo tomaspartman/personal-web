@@ -14,13 +14,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700&display=swap" rel="stylesheet">
   <!-- Main stylesheet -->
   <link rel="stylesheet" href="css/style.css">
-
   <!-- Dropdown styling -->
   <style>
-    .nav-right { list-style:none; display:flex; gap:1.5rem; align-items:center; margin:0; padding:0; }
-    .nav-right li { position: relative; }
-    .nav-right .dropbtn { cursor: pointer; }
-    .nav-right .dropdown-content {
+    .nav-right { display: flex; gap: 1.5rem; align-items: center; }
+    .dropdown { position: relative; }
+    .dropbtn { cursor: pointer; color: #000; font-weight: 400; font-size: 0.95rem; background:none; border:none; }
+    .dropdown-content {
       display: none;
       position: absolute;
       top: 100%; left: 0;
@@ -31,42 +30,43 @@
       margin: 0;
       padding: 0.5rem 0;
       min-width: 160px;
+      z-index: 1001;
     }
-    .nav-right .dropdown.open .dropdown-content { display: block; }
-    .nav-right .dropdown-content li a {
+    .dropdown.open .dropdown-content { display: block; }
+    .dropdown-content li { margin:0; }
+    .dropdown-content li a {
       display: block;
       padding: 0.5rem 1rem;
       color: #000;
+      text-decoration: none;
     }
-    .nav-right .dropdown-content li a:hover {
-      background: #f0f0f0;
-    }
+    .dropdown-content li a:hover { background: #f0f0f0; }
   </style>
 </head>
 <body>
   <header style="position: relative;">
     <nav class="nav">
       <a href="#" class="home-link">
-        <img src="images/favicon.png" alt="Favicon" class="favicon-icon">
+        <img src="images/favicon.png" alt="Home" class="favicon-icon">
         <span>Home</span>
       </a>
       <div class="nav-right">
         <div class="dropdown">
-          <a href="#" class="dropbtn">About ▼</a>
+          <button class="dropbtn">About ▼</button>
           <ul class="dropdown-content">
-            <li><a href="#about-me">About Me</a></div>
+            <li><a href="#about-me">About Me</a></li>
             <li><a href="#skills">Skills</a></li>
             <li><a href="#contact">Contact</a></li>
-          </div>
-        </li>
+          </ul>
+        </div>
         <a href="#books">Books</a>
-        <li><a href="#blog">Travel Blog</a></li>
-        <li class="search-icon">
+        <a href="#blog">Travel Blog</a>
+        <div class="search-icon">
           <a href="#" aria-label="Search">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
           </a>
-        </li>
-      </ul>
+        </div>
+      </div>
     </nav>
     <div class="hero-title" style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:100%; text-align:center;">
       Tomas Partman
@@ -77,9 +77,7 @@
     <img src="images/hero-photo.jpg" alt="Tomas Partman" class="hero-image">
     <h1>Welcome to My Creative Space!</h1>
     <h2>Discover My World Through Lens and Pen</h2>
-
     <!-- Content... -->
-
     <footer class="social-footer">
       <div class="social-buttons">
         <a href="https://www.instagram.com/tomaspartman/" class="instagram" target="_blank" rel="noopener noreferrer">INSTAGRAM</a>
@@ -93,15 +91,11 @@
   </main>
 
   <script>
-    // Dropdown toggle
     document.querySelectorAll('.dropdown').forEach(drop => {
-      const btn = drop.querySelector('.dropbtn');
-      btn.addEventListener('click', e => {
-        e.preventDefault();
-        drop.classList.toggle('open');
+      drop.querySelector('.dropbtn').addEventListener('click', e => {
+        e.preventDefault(); drop.classList.toggle('open');
       });
     });
-    // Close dropdown when clicking outside
     document.addEventListener('click', e => {
       document.querySelectorAll('.dropdown').forEach(drop => {
         if (!drop.contains(e.target)) drop.classList.remove('open');

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Books - Tomas Partman</title>
+  <link rel="icon" href="images/favicon.png" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="nav">
+    <a href="index.html" class="home-link">
+      <img src="images/favicon.png" alt="Home" class="favicon-icon">
+      <span>Home</span>
+    </a>
+    <div class="nav-right">
+      <a href="index.html">About</a>
+      <a href="books.html" class="active">Books</a>
+      <a href="#">Travel Blog</a>
+      <div class="search-icon"><a href="#" aria-label="Search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </a></div>
+    </div>
+  </header>
+  <main>
+    <!-- First book: image left, text right -->
+    <section class="book-item">
+      <img src="images/book1-cover.jpg" alt="Book One Cover">
+      <div class="book-info">
+        <h2>Book Title One</h2>
+        <p>Description of the first book. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      </div>
+    </section>
+    <!-- Second book: text left, image right -->
+    <section class="book-item reverse">
+      <div class="book-info">
+        <h2>Book Title Two</h2>
+        <p>Description of the second book. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      </div>
+      <img src="images/book2-cover.jpg" alt="Book Two Cover">
+    </section>
+    <!-- Add more books as needed -->
+  </main>
+</body>
+</html>

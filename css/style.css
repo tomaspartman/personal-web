@@ -249,3 +249,59 @@ p {
     font-size: 3rem;
   }
 }
+/* ----------- Book‐item Layout ------------ */
+.book-item {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+/* Image wrapper (fixed width & “frame” feel) */
+.book-item .book-image {
+  flex: 0 0 200px;       /* fixed 200px wide frame for cover */
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.book-item .book-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Text wrapper */
+.book-item .book-text {
+  flex: 1;               /* occupy remaining horizontal space */
+}
+.book-item .book-text h3 {
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+  font-size: 1.25rem;
+}
+.book-item .book-text p {
+  line-height: 1.5;
+  color: #444;
+}
+
+/* “reverse” flips image to the right, text on the left */
+.book-item.reverse {
+  flex-direction: row-reverse;
+}
+
+/* Salt‐and‐pepper responsive tweak: stack on narrow screens */
+@media (max-width: 600px) {
+  .book-item {
+    flex-direction: column;
+    text-align: center;
+  }
+  .book-item.reverse {
+    flex-direction: column; /* same stacking for reversed */
+  }
+  .book-item .book-image {
+    margin: 0 auto 1rem;   /* center the cover */
+  }
+  .book-item .book-text {
+    width: 100%;
+  }
+}

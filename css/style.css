@@ -141,15 +141,34 @@ header {
 .dropdown.open .dropdown-content {
   display: block;
 }
+header {
+  position: relative;
+  background: url('../images/header-bg.jpg') center/cover no-repeat;
+  height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
 
+/* Pridáme overlay nad obrázok */
+header::before {
+  content: "";
+  position: absolute;
+  top: 0; 
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.3); /* čierny s 30 % krytím */
+  z-index: 0;
+}
 .hero-title {
   position: absolute;
-  top: 50%;               /* posunie text o 10 % nižšie */
+  top: 50%;              
   left: 50%;
   transform: translate(-50%, -50%);
   font-size: 5rem;
   font-weight: 100;
-  color: #000000;
+  color: #fff;
   text-shadow: 0 2px 8px rgba(0,0,0,0.6);
   pointer-events: none;
   width: 100%;

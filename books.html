@@ -2,52 +2,124 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Books - Tomas Partman</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Books — Tomas Partman</title>
+  <meta name="description" content="A list of books by or recommended by Tomas Partman.">
+  <meta property="og:title" content="Books — Tomas Partman">
+  <meta property="og:description" content="Discover books and descriptions by Tomas Partman.">
+  <meta property="og:image" content="images/book1-cover.jpg">
+
+  <!-- Favicon -->
   <link rel="icon" href="images/favicon.png" type="image/png">
+  <!-- Google Font Roboto -->
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700&display=swap" rel="stylesheet">
+  <!-- Main stylesheet -->
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
- <header>
-  <nav class="nav">
-    <a href="index.html" class="home-link">
-      <img src="images/favicon.png" alt="Favicon" class="favicon-icon">
-      <span>Home</span>
-    </a>
-    <div class="nav-right">
-      <!-- no dropdown here, just plain links -->
-      <a href="about.html">About</a>
-      <a href="books.html" class="active">Books</a>
-      <a href="blog.html">Travel Blog</a>
-      <a href="#" class="search-icon" aria-label="Search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-          <circle cx="11" cy="11" r="8" />
-          <line x1="21" y1="21" x2="16.65" y2="16.65" />
-        </svg>
+  <header>
+    <nav class="nav">
+      <a href="index.html" class="home-link">
+        <img src="images/favicon.png" alt="Favicon" class="favicon-icon">
+        <span>Home</span>
       </a>
-    </div>
-  </nav>
-  <div class="hero-title">Books</div>
-</header>
+      <div class="nav-right">
+        <div class="dropdown">
+          <button class="dropbtn" type="button">
+            About
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 8" aria-hidden="true">
+              <line x1="1" y1="2" x2="4" y2="5" stroke="#000" stroke-width="1"/>
+              <line x1="7" y1="2" x2="4" y2="5" stroke="#000" stroke-width="1"/>
+            </svg>
+          </button>
+          <ul class="dropdown-content">
+            <li><a href="about.html#introduction">Introduction</a></li>
+            <li><a href="about.html#academic">Academic Background</a></li>
+            <li><a href="about.html#professional">Professional Interests &amp; Expertise</a></li>
+            <li><a href="about.html#hobbies">My Hobbies &amp; Interests</a></li>
+            <li><a href="about.html#skills">Key Skills &amp; Strengths</a></li>
+          </ul>
+        </div>
+        <a href="books.html" class="active">Books</a>
+        <a href="blog.html">Travel Blog</a>
+        <button class="search-icon" aria-label="Search">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="11" cy="11" r="8" />
+            <line x1="21" y1="21" x2="16.65" y2="16.65" />
+          </svg>
+        </button>
+      </div>
+    </nav>
+    <div class="hero-title">Books</div>
+  </header>
+
   <main>
-    <!-- First book: image left, text right -->
+    <!-- Book #1: image left, text right -->
     <section class="book-item">
-      <img src="images/book1-cover.jpg" alt="Book One Cover">
-      <div class="book-info">
-        <h2>Book Title One</h2>
-        <p>Description of the first book. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      <div class="book-image">
+        <img src="images/book1-cover.jpg" alt="Book 1 Cover">
+      </div>
+      <div class="book-text">
+        <h3>Book Title One</h3>
+        <p>
+          This is a brief description of <strong>Book Title One</strong>. Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+          Phasellus vehicula, justo nec consectetur efficitur, dui magna aliquet justo, eu sagittis purus lectus sit amet nunc.
+        </p>
       </div>
     </section>
-    <!-- Second book: text left, image right -->
+
+    <!-- Book #2: image right, text left -->
     <section class="book-item reverse">
-      <div class="book-info">
-        <h2>Book Title Two</h2>
-        <p>Description of the second book. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      <div class="book-image">
+        <img src="images/book2-cover.jpg" alt="Book 2 Cover">
       </div>
-      <img src="images/book2-cover.jpg" alt="Book Two Cover">
+      <div class="book-text">
+        <h3>Book Title Two</h3>
+        <p>
+          Here is some text describing <strong>Book Title Two</strong>. Integer non magna ullamcorper, vulputate sapien at, laoreet mauris. 
+          Donec feugiat mattis libero, non interdum lorem venenatis non. Sed euismod pellentesque lectus, nec vestibulum purus.
+        </p>
+      </div>
     </section>
-    <!-- Add more books as needed -->
+
+    <!-- Book #3: image left, text right -->
+    <section class="book-item">
+      <div class="book-image">
+        <img src="images/book3-cover.jpg" alt="Book 3 Cover">
+      </div>
+      <div class="book-text">
+        <h3>Book Title Three</h3>
+        <p>
+          Description for <strong>Book Title Three</strong> goes here. Curabitur condimentum quis erat ac mollis. Suspendisse venenatis 
+          luctus purus non cursus. Aliquam erat volutpat. Nulla facilisi. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices.
+        </p>
+      </div>
+    </section>
+
+    <!-- Add more <section class="book-item"> as needed, using .reverse to flip left/right -->
   </main>
+
+  <footer class="social-footer">
+    <div class="social-buttons">
+      <a href="https://www.instagram.com/tomaspartman/" class="instagram" target="_blank" rel="noopener noreferrer">INSTAGRAM</a>
+      <a href="https://www.facebook.com/tomas.o.partman/" class="facebook" target="_blank" rel="noopener noreferrer">FACEBOOK</a>
+      <a href="https://www.linkedin.com/in/tomaspartman/" class="linkedin" target="_blank" rel="noopener noreferrer">LINKEDIN</a>
+      <a href="https://x.com/PartmanTomas" class="twitter" target="_blank" rel="noopener noreferrer">TWITTER</a>
+      <a href="https://github.com/tomaspartman" class="github" target="_blank" rel="noopener noreferrer">GITHUB</a>
+    </div>
+    <p class="footer-text">© 2025 Tomas Partman</p>
+  </footer>
+
+  <script>
+    // Toggle About dropdown
+    document.addEventListener('click', function(e) {
+      const dropdown = document.querySelector('.dropdown');
+      if (e.target.closest('.dropbtn')) {
+        dropdown.classList.toggle('open');
+      } else if (!e.target.closest('.dropdown')) {
+        dropdown.classList.remove('open');
+      }
+    });
+  </script>
 </body>
 </html>

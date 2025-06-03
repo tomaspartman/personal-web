@@ -144,7 +144,7 @@ header {
 
 .hero-title {
   position: absolute;
-  top: 60%;               /* posunie text o 10 % nižšie */
+  top: 50%;               /* posunie text o 10 % nižšie */
   left: 50%;
   transform: translate(-50%, -50%);
   font-size: 5rem;

@@ -142,20 +142,20 @@ header {
   display: block;
 }
 
-/* Hero title (centered) */
 .hero-title {
   position: absolute;
-  top: 50%;
+  top: 60%;               /* posunie text o 10 % nižšie */
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 100%;
-  text-align: center;
   font-size: 5rem;
   font-weight: 100;
   color: #fff;
   text-shadow: 0 2px 8px rgba(0,0,0,0.6);
   pointer-events: none;
+  width: 100%;
+  text-align: center;
 }
+
 
 /* Main content */
 main {

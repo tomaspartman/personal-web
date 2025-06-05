@@ -9,18 +9,499 @@
   <meta property="og:description" content="Discover photography, stories, and personal insights on Tomas Partman's site.">
   <meta property="og:image" content="images/hero-photo.jpg">
 
-  <!-- Favicon -->
-  <link rel="icon" href="images/favicon.png" type="image/png">
-  <!-- Google Font Roboto -->
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700&display=swap" rel="stylesheet">
-  <!-- Main stylesheet -->
-  <link rel="stylesheet" href="css/style.css">
+  <!-- Google Font Roboto + Inter for modern touch -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
+  <style>
+    /* Reset & basic styles */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Roboto', sans-serif;
+      color: #333;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    
+    a {
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.3s ease;
+    }
+    
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    /* Enhanced Header & navigation */
+    header {
+      position: relative;
+      background: linear-gradient(135deg, rgba(0,0,0,0.4), rgba(0,0,0,0.2)), url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') center/cover no-repeat;
+      height: 60vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      animation: heroFadeIn 1.5s ease-out;
+    }
+
+    @keyframes heroFadeIn {
+      from { opacity: 0; transform: scale(1.05); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    /* Modern glassmorphism navigation */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      z-index: 1000;
+      transition: all 0.3s ease;
+    }
+
+    .nav.scrolled {
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(20px);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+
+    .home-link {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 500;
+      transition: transform 0.3s ease;
+    }
+
+    .home-link:hover {
+      transform: translateY(-2px);
+    }
+
+    .favicon-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      transition: transform 0.3s ease;
+      background: #fff;
+      padding: 4px;
+    }
+
+    .home-link:hover .favicon-icon {
+      transform: rotate(360deg);
+    }
+
+    .nav-right {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .nav-right a, .dropbtn {
+      display: flex;
+      align-items: center;
+      color: #fff;
+      font-weight: 400;
+      font-size: 0.95rem;
+      padding: 0.5rem 1rem;
+      border-radius: 25px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .nav.scrolled .nav-right a,
+    .nav.scrolled .dropbtn {
+      color: #333;
+    }
+
+    .nav-right a:hover, .dropbtn:hover {
+      background: rgba(255,255,255,0.2);
+      transform: translateY(-2px);
+    }
+
+    .nav-right a.active {
+      background: rgba(255,255,255,0.3);
+      font-weight: 600;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    /* Enhanced search button */
+    .search-icon {
+      background: rgba(255,255,255,0.2);
+      border: none;
+      padding: 0.75rem;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      transition: all 0.3s ease;
+    }
+
+    .search-icon:hover {
+      background: rgba(255,255,255,0.3);
+      transform: rotate(90deg) scale(1.1);
+    }
+
+    .search-icon svg {
+      width: 18px;
+      height: 18px;
+      stroke: #fff;
+      stroke-width: 2;
+      fill: none;
+    }
+
+    .nav.scrolled .search-icon svg {
+      stroke: #333;
+    }
+
+    /* Enhanced dropdown */
+    .dropdown {
+      position: relative;
+    }
+
+    .dropbtn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      gap: 0.5rem;
+    }
+
+    .dropbtn svg {
+      width: 12px;
+      height: 12px;
+      transition: transform 0.3s ease;
+    }
+
+    .dropdown.open .dropbtn svg {
+      transform: rotate(180deg);
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: calc(100% + 10px);
+      left: 0;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(20px);
+      min-width: 220px;
+      border-radius: 15px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+      overflow: hidden;
+      z-index: 1001;
+      opacity: 0;
+      transform: translateY(-10px);
+      transition: all 0.3s ease;
+    }
+
+    .dropdown.open .dropdown-content {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .dropdown-content li {
+      list-style: none;
+    }
+
+    .dropdown-content li a {
+      display: block;
+      padding: 1rem 1.5rem;
+      color: #333;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-size: 0.9rem;
+      border-radius: 0;
+      transition: all 0.3s ease;
+    }
+
+    .dropdown-content li a:hover {
+      background: rgba(59, 130, 246, 0.1);
+      color: #3b82f6;
+      transform: translateX(5px);
+    }
+
+    /* Animated hero title */
+    .hero-title {
+      position: absolute;
+      top: 55%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 5rem;
+      font-weight: 100;
+      color: #fff;
+      text-shadow: 0 4px 20px rgba(0,0,0,0.8);
+      pointer-events: none;
+      width: 100%;
+      text-align: center;
+      animation: titleSlideUp 1s ease-out 0.5s both;
+    }
+
+    @keyframes titleSlideUp {
+      from { opacity: 0; transform: translate(-50%, -30%) scale(0.9); }
+      to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    }
+
+    /* Enhanced main content */
+    main {
+      max-width: 800px;
+      margin: 6rem auto 2rem;
+      padding: 0 1rem;
+      animation: contentFadeIn 1s ease-out 1s both;
+    }
+
+    @keyframes contentFadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-image {
+      width: 300px;
+      border-radius: 50%;
+      margin: 1.5rem auto;
+      transition: all 0.5s ease;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      border: 4px solid rgba(255,255,255,0.8);
+    }
+
+    .hero-image:hover {
+      transform: scale(1.05) rotate(5deg);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+      font-size: 2.5rem;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    h2 {
+      text-align: center;
+      font-weight: 400;
+      color: #666;
+      margin-bottom: 2rem;
+      font-size: 1.3rem;
+    }
+
+    p {
+      margin: 1.5rem 0;
+      text-align: justify;
+      font-size: 1.1rem;
+      line-height: 1.7;
+      opacity: 0;
+      animation: paragraphFadeIn 0.8s ease-out forwards;
+    }
+
+    p:nth-child(4) { animation-delay: 0.2s; }
+    p:nth-child(5) { animation-delay: 0.4s; }
+    p:nth-child(6) { animation-delay: 0.6s; }
+    p:nth-child(7) { animation-delay: 0.8s; }
+    p:nth-child(8) { animation-delay: 1s; }
+
+    @keyframes paragraphFadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Enhanced social footer */
+    .social-footer {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+      margin-top: 4rem;
+      padding: 3rem 0;
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      border-radius: 30px 30px 0 0;
+    }
+
+    .social-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .social-buttons a {
+      padding: 1rem 2rem;
+      color: #fff;
+      border-radius: 50px;
+      font-weight: 600;
+      text-align: center;
+      transition: all 0.3s ease;
+      transform: translateY(0);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .social-buttons a::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .social-buttons a:hover::before {
+      left: 100%;
+    }
+
+    .social-buttons a:hover {
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    }
+
+    .social-buttons a.instagram { 
+      background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%); 
+    }
+    .social-buttons a.facebook  { 
+      background: linear-gradient(45deg, #3b5998, #4267B2); 
+    }
+    .social-buttons a.linkedin  { 
+      background: linear-gradient(45deg, #0077B5, #00a0dc); 
+    }
+    .social-buttons a.twitter   { 
+      background: linear-gradient(45deg, #1DA1F2, #0d8bd9); 
+    }
+    .social-buttons a.github    { 
+      background: linear-gradient(45deg, #24292E, #40464f); 
+    }
+
+    .footer-text {
+      font-size: 0.9rem;
+      color: #777;
+      text-align: center;
+      font-weight: 300;
+    }
+
+    /* Scroll indicator */
+    .scroll-indicator {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #667eea, #764ba2);
+      z-index: 9999;
+      transition: width 0.3s ease;
+    }
+
+    /* Mobile responsiveness */
+    @media (max-width: 768px) {
+      .nav {
+        padding: 0.75rem 1rem;
+      }
+      
+      .nav-right {
+        gap: 1rem;
+      }
+      
+      .nav-right a, .dropbtn {
+        font-size: 0.85rem;
+        padding: 0.4rem 0.8rem;
+      }
+      
+      .hero-title {
+        font-size: 4rem;
+      }
+      
+      .hero-image {
+        width: 250px;
+      }
+      
+      h1 {
+        font-size: 2rem;
+      }
+      
+      h2 {
+        font-size: 1.1rem;
+      }
+      
+      p {
+        font-size: 1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .nav-right a, .dropbtn {
+        font-size: 0.8rem;
+        padding: 0.3rem 0.6rem;
+      }
+      
+      .hero-title {
+        font-size: 3rem;
+      }
+      
+      .hero-image {
+        width: 200px;
+      }
+      
+      .social-buttons a {
+        flex: 1 1 calc(50% - 0.5rem);
+        margin-bottom: 1rem;
+        padding: 0.75rem 1rem;
+      }
+    }
+
+    /* Floating action button for scroll to top */
+    .scroll-to-top {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      border: none;
+      border-radius: 50%;
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      opacity: 0;
+      transform: scale(0);
+      transition: all 0.3s ease;
+      z-index: 1000;
+    }
+
+    .scroll-to-top.visible {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .scroll-to-top:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+    }
+  </style>
 </head>
 <body>
+  <!-- Scroll progress indicator -->
+  <div class="scroll-indicator" id="scrollIndicator"></div>
+
   <header>
-    <nav class="nav">
+    <nav class="nav" id="navbar">
       <a href="index.html" class="home-link">
-        <img src="images/favicon.png" alt="Favicon" class="favicon-icon">
+        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="Favicon" class="favicon-icon">
         <span>Home</span>
       </a>
       <div class="nav-right">
@@ -28,17 +509,17 @@
           <button class="dropbtn" type="button">
             About
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 8" aria-hidden="true">
-              <line x1="1" y1="2" x2="4" y2="5" stroke="#000" stroke-width="1"/>
-              <line x1="7" y1="2" x2="4" y2="5" stroke="#000" stroke-width="1"/>
+              <line x1="1" y1="2" x2="4" y2="5" stroke="currentColor" stroke-width="1"/>
+              <line x1="7" y1="2" x2="4" y2="5" stroke="currentColor" stroke-width="1"/>
             </svg>
           </button>
-        <ul class="dropdown-content">
-  <li><a href="about.html#introduction">Introduction</a></li>
-  <li><a href="about.html#academic">Academic Background</a></li>
-  <li><a href="about.html#professional">Professional Interests &amp; Expertise</a></li>
-  <li><a href="about.html#hobbies">My Hobbies &amp; Interests</a></li>
-  <li><a href="about.html#skills">Key Skills &amp; Strengths</a></li>
-</ul>
+          <ul class="dropdown-content">
+            <li><a href="about.html#introduction">Introduction</a></li>
+            <li><a href="about.html#academic">Academic Background</a></li>
+            <li><a href="about.html#professional">Professional Interests & Expertise</a></li>
+            <li><a href="about.html#hobbies">My Hobbies & Interests</a></li>
+            <li><a href="about.html#skills">Key Skills & Strengths</a></li>
+          </ul>
         </div>
         <a href="books.html">Books</a>
         <a href="blog.html">Travel Blog</a>
@@ -54,15 +535,19 @@
   </header>
 
   <main>
-    <img src="images/hero-photo.jpg" alt="Tomas Partman" class="hero-image">
+    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Tomas Partman" class="hero-image">
 
     <h1>Welcome to My Creative Space!</h1>
     <h2>Discover My World Through Lens and Pen</h2>
 
     <p>Hello and welcome to my personal webpage! This is the little corner of the internet where I share my passion for photography, writing, and the simple joys of everyday life. Through this platform, I aim to connect with like-minded souls, share experiences, and perhaps inspire a few along the way.</p>
+    
     <p>Here, you'll find a collection of my favorite photographs, each telling a story of its own. From the golden hues of a sunset to the candid smiles of everyday people, every image here is a snippet of the world through my eyes.</p>
+    
     <p>Alongside, I love penning down my thoughts and experiences which often intertwine with the visuals I capture. Each narrative here complements the imagery, painting a fuller picture of the moments I hold dear.</p>
-    <p>Feel free to navigate through the pages, explore my photo galleries, read through my blog posts, and dive into the little creative universe I’ve built here. I hope you find something that resonates with you, and perhaps leaves you with a little spark of inspiration.</p>
+    
+    <p>Feel free to navigate through the pages, explore my photo galleries, read through my blog posts, and dive into the little creative universe I've built here. I hope you find something that resonates with you, and perhaps leaves you with a little spark of inspiration.</p>
+    
     <p>I'm thrilled to have you here and I can't wait to share my journey with you. So take your time, explore, and enjoy the ride!</p>
   </main>
 
@@ -77,8 +562,15 @@
     <p class="footer-text">© 2025 Tomas Partman</p>
   </footer>
 
+  <!-- Scroll to top button -->
+  <button class="scroll-to-top" id="scrollToTop" aria-label="Scroll to top">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <polyline points="18,15 12,9 6,15"></polyline>
+    </svg>
+  </button>
+
   <script>
-    // Toggle About dropdown
+    // Enhanced dropdown functionality
     document.addEventListener('click', function(e) {
       const dropdown = document.querySelector('.dropdown');
       if (e.target.closest('.dropbtn')) {
@@ -86,6 +578,79 @@
       } else if (!e.target.closest('.dropdown')) {
         dropdown.classList.remove('open');
       }
+    });
+
+    // Navbar scroll effect
+    const navbar = document.getElementById('navbar');
+    const scrollIndicator = document.getElementById('scrollIndicator');
+    const scrollToTopBtn = document.getElementById('scrollToTop');
+
+    window.addEventListener('scroll', function() {
+      const scrolled = window.pageYOffset;
+      const rate = scrolled * -0.5;
+      
+      // Navbar background change
+      if (scrolled > 100) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+
+      // Scroll indicator
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled_percentage = (winScroll / height) * 100;
+      scrollIndicator.style.width = scrolled_percentage + '%';
+
+      // Scroll to top button
+      if (scrolled > 300) {
+        scrollToTopBtn.classList.add('visible');
+      } else {
+        scrollToTopBtn.classList.remove('visible');
+      }
+    });
+
+    // Scroll to top functionality
+    scrollToTopBtn.addEventListener('click', function() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+
+    // Enhanced search button animation
+    const searchBtn = document.querySelector('.search-icon');
+    searchBtn.addEventListener('click', function() {
+      // Placeholder for search functionality
+      alert('Search functionality would be implemented here!');
+    });
+
+    // Parallax effect for hero title
+    window.addEventListener('scroll', function() {
+      const scrolled = window.pageYOffset;
+      const heroTitle = document.querySelector('.hero-title');
+      if (heroTitle) {
+        heroTitle.style.transform = `translate(-50%, -50%) translateY(${scrolled * 0.5}px)`;
+        heroTitle.style.opacity = 1 - scrolled / 500;
+      }
+    });
+
+    // Add loading animation
+    window.addEventListener('load', function() {
+      document.body.style.opacity = '1';
     });
   </script>
 </body>

@@ -533,7 +533,25 @@
           </ul>
         </div>
         <a href="books.html">Books</a>
-        <a href="blog.html">Travel Blog</a>
+                <div class="dropdown">
+          <button class="dropbtn" type="button">
+            Travel Blog
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 8" aria-hidden="true">
+              <line x1="1" y1="2" x2="4" y2="5" stroke="currentColor" stroke-width="1"/>
+              <line x1="7" y1="2" x2="4" y2="5" stroke="currentColor" stroke-width="1"/>
+            </svg>
+          </button>
+          <ul class="dropdown-content">
+            <li><a href="blog.html#uzbekistan">Uzbekistan</a></li>
+            <li><a href="blog.html#kazakhstan">Kazakhstan</a></li>
+            <li><a href="blog.html#kyrgyzstan">Kyrgyzstan</a></li>
+            <li><a href="blog.html#ecuador">Ecuador</a></li>
+            <li><a href="blog.html#china-shanghai">China Shanghai</a></li>
+            <li><a href="blog.html#shanghai-food">Shanghai Food</a></li>
+            <li><a href="blog.html#new-zealand">New Zealand</a></li>
+            <li><a href="blog.html#romania">Romania</a></li>
+          </ul>
+        </div>
         <button class="search-icon" aria-label="Search">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
             <circle cx="11" cy="11" r="8" />
@@ -583,12 +601,13 @@
   <script>
     // Enhanced dropdown functionality
     document.addEventListener('click', function(e) {
-      const dropdown = document.querySelector('.dropdown');
-      if (e.target.closest('.dropbtn')) {
-        dropdown.classList.toggle('open');
-      } else if (!e.target.closest('.dropdown')) {
-        dropdown.classList.remove('open');
-      }
+        document.querySelectorAll('.dropdown').forEach(function(dropdown) {
+        if (e.target.closest('.dropbtn') && dropdown.contains(e.target)) {
+          dropdown.classList.toggle('open');
+        } else if (!dropdown.contains(e.target)) {
+          dropdown.classList.remove('open');
+        }
+      });
     });
 
     // Navbar scroll effect

@@ -11,14 +11,521 @@
 
   <!-- Favicon -->
   <link rel="icon" href="images/favicon.png" type="image/png">
-  <!-- Google Font Roboto -->
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700&display=swap" rel="stylesheet">
-  <!-- Main stylesheet -->
-  <link rel="stylesheet" href="css/style.css">
+  <!-- Google Font Roboto + Inter for modern touch -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
+  <style>
+    /* Reset & basic styles */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Roboto', sans-serif;
+      color: #333;
+      line-height: 1.6;
+      overflow-x: hidden;
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      min-height: 100vh;
+    }
+    
+    a {
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.3s ease;
+    }
+    
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    /* Enhanced Header & navigation */
+    header {
+      position: relative;
+      background: linear-gradient(135deg, rgba(102, 126, 234, 0.9), rgba(118, 75, 162, 0.9)), url('images/books-bg.jpg') center/cover no-repeat;
+      height: 50vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      animation: heroFadeIn 1.5s ease-out;
+    }
+
+    @keyframes heroFadeIn {
+      from { opacity: 0; transform: scale(1.05); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    /* Modern glassmorphism navigation */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      z-index: 1000;
+      transition: all 0.3s ease;
+    }
+
+    .nav.scrolled {
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(20px);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+
+    .home-link {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 500;
+      transition: transform 0.3s ease;
+    }
+
+    .home-link:hover {
+      transform: translateY(-2px);
+    }
+
+    .favicon-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      transition: transform 0.3s ease;
+      background: #fff;
+      padding: 4px;
+    }
+
+    .home-link:hover .favicon-icon {
+      transform: rotate(360deg);
+    }
+
+    .nav-right {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .nav-right a, .dropbtn {
+      display: flex;
+      align-items: center;
+      color: #fff;
+      font-weight: 400;
+      font-size: 0.95rem;
+      padding: 0.5rem 1rem;
+      border-radius: 25px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .nav.scrolled .nav-right a,
+    .nav.scrolled .dropbtn {
+      color: #333;
+    }
+
+    .nav-right a:hover, .dropbtn:hover {
+      background: rgba(255,255,255,0.2);
+      transform: translateY(-2px);
+    }
+
+    .nav-right a.active {
+      background: rgba(255,255,255,0.3);
+      font-weight: 600;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    /* Enhanced search button */
+    .search-icon {
+      background: rgba(255,255,255,0.2);
+      border: none;
+      padding: 0.75rem;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      transition: all 0.3s ease;
+    }
+
+    .search-icon:hover {
+      background: rgba(255,255,255,0.3);
+      transform: rotate(90deg) scale(1.1);
+    }
+
+    .search-icon svg {
+      width: 18px;
+      height: 18px;
+      stroke: #fff;
+      stroke-width: 2;
+      fill: none;
+    }
+
+    .nav.scrolled .search-icon svg {
+      stroke: #333;
+    }
+
+    /* Enhanced dropdown */
+    .dropdown {
+      position: relative;
+    }
+
+    .dropbtn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      gap: 0.5rem;
+    }
+
+    .dropbtn svg {
+      width: 12px;
+      height: 12px;
+      transition: transform 0.3s ease;
+    }
+
+    .dropdown.open .dropbtn svg {
+      transform: rotate(180deg);
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: calc(100% + 10px);
+      left: 0;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(20px);
+      min-width: 220px;
+      border-radius: 15px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+      overflow: hidden;
+      z-index: 1001;
+      opacity: 0;
+      transform: translateY(-10px);
+      transition: all 0.3s ease;
+    }
+
+    .dropdown.open .dropdown-content {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .dropdown-content li {
+      list-style: none;
+    }
+
+    .dropdown-content li a {
+      display: block;
+      padding: 1rem 1.5rem;
+      color: #333;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-size: 0.9rem;
+      border-radius: 0;
+      transition: all 0.3s ease;
+    }
+
+    .dropdown-content li a:hover {
+      background: rgba(59, 130, 246, 0.1);
+      color: #3b82f6;
+      transform: translateX(5px);
+    }
+
+    /* Animated hero title */
+    .hero-title {
+      position: absolute;
+      top: 55%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 4rem;
+      font-weight: 100;
+      color: #fff;
+      text-shadow: 0 4px 20px rgba(0,0,0,0.8);
+      pointer-events: none;
+      width: 100%;
+      text-align: center;
+      animation: titleSlideUp 1s ease-out 0.5s both;
+    }
+
+    @keyframes titleSlideUp {
+      from { opacity: 0; transform: translate(-50%, -30%) scale(0.9); }
+      to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    }
+
+    /* Scroll indicator */
+    .scroll-indicator {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #667eea, #764ba2);
+      z-index: 9999;
+      transition: width 0.3s ease;
+    }
+
+    /* Enhanced main content */
+    main {
+      max-width: 1200px;
+      margin: 4rem auto 2rem;
+      padding: 0 2rem;
+      animation: contentFadeIn 1s ease-out 1s both;
+    }
+
+    @keyframes contentFadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Modern book item styling */
+    .book-item {
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: 3rem;
+      margin-bottom: 4rem;
+      background: rgba(255,255,255,0.9);
+      backdrop-filter: blur(20px);
+      padding: 2.5rem;
+      border-radius: 25px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+      transition: all 0.5s ease;
+      opacity: 0;
+      transform: translateY(50px);
+      animation: bookItemFadeIn 0.8s ease-out forwards;
+    }
+
+    .book-item:nth-child(1) { animation-delay: 0.2s; }
+    .book-item:nth-child(2) { animation-delay: 0.4s; }
+    .book-item:nth-child(3) { animation-delay: 0.6s; }
+
+    @keyframes bookItemFadeIn {
+      from { opacity: 0; transform: translateY(50px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .book-item:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+    }
+
+    .book-item.reverse {
+      grid-template-columns: 1fr 300px;
+    }
+
+    .book-image {
+      position: relative;
+      overflow: hidden;
+      border-radius: 20px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+      transition: all 0.5s ease;
+    }
+
+    .book-image:hover {
+      transform: scale(1.05) rotate(2deg);
+      box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+    }
+
+    .book-image img {
+      width: 100%;
+      height: auto;
+      transition: all 0.5s ease;
+      border-radius: 20px;
+    }
+
+    .book-image:hover img {
+      transform: scale(1.1);
+    }
+
+    .book-text {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 1rem 0;
+    }
+
+    .book-text h3 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.2;
+    }
+
+    .book-text p {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      color: #555;
+      text-align: justify;
+      opacity: 0;
+      animation: textFadeIn 0.8s ease-out 0.5s forwards;
+    }
+
+    @keyframes textFadeIn {
+      from { opacity: 0; transform: translateX(30px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    .book-text strong {
+      color: #667eea;
+      font-weight: 600;
+    }
+
+    /* Enhanced social footer */
+    .social-footer {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+      margin-top: 4rem;
+      padding: 3rem 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(240,240,240,0.9) 100%);
+      backdrop-filter: blur(20px);
+      border-radius: 30px 30px 0 0;
+    }
+
+    .footer-text {
+      font-size: 0.9rem;
+      color: #777;
+      text-align: center;
+      font-weight: 300;
+    }
+
+    /* Floating action button for scroll to top */
+    .scroll-to-top {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      border: none;
+      border-radius: 50%;
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      opacity: 0;
+      transform: scale(0);
+      transition: all 0.3s ease;
+      z-index: 1000;
+    }
+
+    .scroll-to-top.visible {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .scroll-to-top:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+    }
+
+    /* Mobile responsiveness */
+    @media (max-width: 768px) {
+      .nav {
+        padding: 0.75rem 1rem;
+      }
+      
+      .nav-right {
+        gap: 1rem;
+      }
+      
+      .nav-right a, .dropbtn {
+        font-size: 0.85rem;
+        padding: 0.4rem 0.8rem;
+      }
+      
+      .hero-title {
+        font-size: 3rem;
+      }
+      
+      main {
+        padding: 0 1rem;
+        margin-top: 2rem;
+      }
+
+      .book-item {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        padding: 2rem;
+        margin-bottom: 3rem;
+      }
+
+      .book-item.reverse {
+        grid-template-columns: 1fr;
+      }
+
+      .book-image {
+        justify-self: center;
+        max-width: 250px;
+      }
+
+      .book-text h3 {
+        font-size: 1.8rem;
+        text-align: center;
+      }
+
+      .book-text p {
+        font-size: 1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .nav-right a, .dropbtn {
+        font-size: 0.8rem;
+        padding: 0.3rem 0.6rem;
+      }
+      
+      .hero-title {
+        font-size: 2.5rem;
+      }
+
+      .book-item {
+        padding: 1.5rem;
+      }
+
+      .book-text h3 {
+        font-size: 1.5rem;
+      }
+    }
+
+    /* Reading progress indicator */
+    .reading-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 3px;
+      background: linear-gradient(90deg, #667eea, #764ba2);
+      z-index: 9999;
+      transition: width 0.25s ease;
+    }
+
+    /* Loading animation */
+    body {
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    body.loaded {
+      opacity: 1;
+    }
+  </style>
 </head>
 <body>
+  <!-- Scroll progress indicator -->
+  <div class="scroll-indicator" id="scrollIndicator"></div>
+
   <header>
-    <nav class="nav">
+    <nav class="nav" id="navbar">
       <a href="index.html" class="home-link">
         <img src="images/favicon.png" alt="Favicon" class="favicon-icon">
         <span>Home</span>
@@ -28,8 +535,8 @@
           <button class="dropbtn" type="button">
             About
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 8" aria-hidden="true">
-              <line x1="1" y1="2" x2="4" y2="5" stroke="#000" stroke-width="1"/>
-              <line x1="7" y1="2" x2="4" y2="5" stroke="#000" stroke-width="1"/>
+              <line x1="1" y1="2" x2="4" y2="5" stroke="currentColor" stroke-width="1"/>
+              <line x1="7" y1="2" x2="4" y2="5" stroke="currentColor" stroke-width="1"/>
             </svg>
           </button>
           <ul class="dropdown-content">
@@ -98,8 +605,15 @@
     <p class="footer-text">© 2025 Tomas Partman</p>
   </footer>
 
+  <!-- Scroll to top button -->
+  <button class="scroll-to-top" id="scrollToTop" aria-label="Scroll to top">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <polyline points="18,15 12,9 6,15"></polyline>
+    </svg>
+  </button>
+
   <script>
-    // Toggle About dropdown
+    // Enhanced dropdown functionality
     document.addEventListener('click', function(e) {
       const dropdown = document.querySelector('.dropdown');
       if (e.target.closest('.dropbtn')) {
@@ -107,6 +621,109 @@
       } else if (!e.target.closest('.dropdown')) {
         dropdown.classList.remove('open');
       }
+    });
+
+    // Navbar scroll effect
+    const navbar = document.getElementById('navbar');
+    const scrollIndicator = document.getElementById('scrollIndicator');
+    const scrollToTopBtn = document.getElementById('scrollToTop');
+
+    window.addEventListener('scroll', function() {
+      const scrolled = window.pageYOffset;
+      
+      // Navbar background change
+      if (scrolled > 100) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+
+      // Scroll indicator
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled_percentage = (winScroll / height) * 100;
+      scrollIndicator.style.width = scrolled_percentage + '%';
+
+      // Scroll to top button
+      if (scrolled > 300) {
+        scrollToTopBtn.classList.add('visible');
+      } else {
+        scrollToTopBtn.classList.remove('visible');
+      }
+    });
+
+    // Scroll to top functionality
+    scrollToTopBtn.addEventListener('click', function() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+
+    // Enhanced search button animation
+    const searchBtn = document.querySelector('.search-icon');
+    searchBtn.addEventListener('click', function() {
+      // Placeholder for search functionality
+      alert('Search functionality would be implemented here!');
+    });
+
+    // Parallax effect for hero title
+    window.addEventListener('scroll', function() {
+      const scrolled = window.pageYOffset;
+      const heroTitle = document.querySelector('.hero-title');
+      if (heroTitle) {
+        heroTitle.style.transform = `translate(-50%, -50%) translateY(${scrolled * 0.3}px)`;
+        heroTitle.style.opacity = Math.max(0, 1 - scrolled / 400);
+      }
+    });
+
+    // Book hover effects
+    document.querySelectorAll('.book-item').forEach(item => {
+      item.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateY(-10px) scale(1.02)';
+      });
+      
+      item.addEventListener('mouseleave', function() {
+        this.style.transform = 'translateY(0) scale(1)';
+      });
+    });
+
+    // Add loading animation
+    window.addEventListener('load', function() {
+      document.body.classList.add('loaded');
+    });
+
+    // Intersection Observer for book animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver(function(entries) {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, observerOptions);
+
+    // Observe all book items
+    document.querySelectorAll('.book-item').forEach(item => {
+      observer.observe(item);
     });
   </script>
 </body>

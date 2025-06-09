@@ -1,20 +1,19 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Books — Tomas Partman</title>
-  <meta name="description" content="A list of books by or recommended by Tomas Partman.">
-  <meta property="og:title" content="Books — Tomas Partman">
-  <meta property="og:description" content="Discover books and descriptions by Tomas Partman.">
-  <meta property="og:image" content="images/book1-cover.jpg">
-
-  <!-- Favicon -->
-  <link rel="icon" href="images/favicon.png" type="image/png">
-  <!-- Google Font Roboto + Inter for modern touch -->
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-  
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Books — Tomas Partman</title>
+<meta content="A list of books by or recommended by Tomas Partman." name="description"/>
+<meta content="Books — Tomas Partman" property="og:title"/>
+<meta content="Discover books and descriptions by Tomas Partman." property="og:description"/>
+<meta content="images/book1-cover.jpg" property="og:image"/>
+<!-- Favicon -->
+<link href="images/favicon.png" rel="icon" type="image/png"/>
+<!-- Google Font Roboto + Inter for modern touch -->
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<style>
     /* Reset & basic styles */
     *, *::before, *::after {
       margin: 0;
@@ -45,7 +44,7 @@
     /* Enhanced Header & navigation */
     header {
       position: relative;
-      background: linear-gradient(135deg, rgba(102, 126, 234, 0.9), rgba(118, 75, 162, 0.9)), url('images/header-bg.jpg') center/cover no-repeat;
+      background: linear-gradient(135deg, rgba(102, 126, 234, 0.9), rgba(118, 75, 162, 0.9)), url('images/books-bg.jpg') center/cover no-repeat;
       height: 50vh;
       display: flex;
       flex-direction: column;
@@ -286,7 +285,7 @@
     /* Modern book item styling */
     .book-item {
       display: grid;
-      grid-template-columns: 280px 1fr;
+      grid-template-columns: 300px 1fr;
       gap: 3rem;
       margin-bottom: 4rem;
       background: rgba(255,255,255,0.9);
@@ -315,7 +314,7 @@
     }
 
     .book-item.reverse {
-      grid-template-columns: 1fr 280px;
+      grid-template-columns: 1fr 300px;
     }
 
     .book-image {
@@ -324,8 +323,6 @@
       border-radius: 20px;
       box-shadow: 0 15px 35px rgba(0,0,0,0.2);
       transition: all 0.5s ease;
-      width: 280px;
-      height: 400px;
     }
 
     .book-image:hover {
@@ -335,8 +332,7 @@
 
     .book-image img {
       width: 100%;
-      height: 100%;
-      object-fit: cover;
+      height: auto;
       transition: all 0.5s ease;
       border-radius: 20px;
     }
@@ -468,8 +464,7 @@
 
       .book-image {
         justify-self: center;
-        width: 250px;
-        height: 350px;
+        max-width: 250px;
       }
 
       .book-text h3 {
@@ -499,11 +494,6 @@
       .book-text h3 {
         font-size: 1.5rem;
       }
-
-      .book-image {
-        width: 200px;
-        height: 280px;
-      }
     }
 
     /* Reading progress indicator */
@@ -530,98 +520,82 @@
   </style>
 </head>
 <body>
-  <!-- Scroll progress indicator -->
-  <div class="scroll-indicator" id="scrollIndicator"></div>
-
-  <header>
-    <nav class="nav" id="navbar">
-      <a href="index.html" class="home-link">
-        <img src="images/favicon.png" alt="Favicon" class="favicon-icon">
-        <span>Home</span>
-      </a>
-      <div class="nav-right">
-        <div class="dropdown">
-          <button class="dropbtn" type="button">
+<!-- Scroll progress indicator -->
+<div class="scroll-indicator" id="scrollIndicator"></div>
+<header>
+<nav class="nav" id="navbar">
+<a class="home-link" href="index.html">
+<img alt="Favicon" class="favicon-icon" src="images/favicon.png"/>
+<span>Home</span>
+</a>
+<div class="nav-right">
+<div class="dropdown">
+<button class="dropbtn" type="button">
             About
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 8" aria-hidden="true">
-              <line x1="1" y1="2" x2="4" y2="5" stroke="currentColor" stroke-width="1"/>
-              <line x1="7" y1="2" x2="4" y2="5" stroke="currentColor" stroke-width="1"/>
-            </svg>
-          </button>
-          <ul class="dropdown-content">
-            <li><a href="about.html#introduction">Introduction</a></li>
-            <li><a href="about.html#academic">Academic Background</a></li>
-            <li><a href="about.html#professional">Professional Interests &amp; Expertise</a></li>
-            <li><a href="about.html#hobbies">My Hobbies &amp; Interests</a></li>
-            <li><a href="about.html#skills">Key Skills &amp; Strengths</a></li>
-          </ul>
-        </div>
-        <a href="books.html" class="active">Books</a>
-        <a href="blog.html">Travel Blog</a>
-        <button class="search-icon" aria-label="Search">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
-            <circle cx="11" cy="11" r="8" />
-            <line x1="21" y1="21" x2="16.65" y2="16.65" />
-          </svg>
-        </button>
-      </div>
-    </nav>
-    <div class="hero-title">Books</div>
-  </header>
-
-  <main>
-    <!-- Book #1: The Lord of the Rings - image left, text right -->
-    <section class="book-item">
-      <div class="book-image">
-        <img src="images/BookCover1.png" alt="The Lord of the Rings Book Set Cover">
-      </div>
-      <div class="book-text">
-        <h3>The Lord of the Rings</h3>
-        <p>
+            <svg aria-hidden="true" viewbox="0 0 8 8" xmlns="http://www.w3.org/2000/svg">
+<line stroke="currentColor" stroke-width="1" x1="1" x2="4" y1="2" y2="5"></line>
+<line stroke="currentColor" stroke-width="1" x1="7" x2="4" y1="2" y2="5"></line>
+</svg>
+</button>
+<ul class="dropdown-content">
+<li><a href="about.html#introduction">Introduction</a></li>
+<li><a href="about.html#academic">Academic Background</a></li>
+<li><a href="about.html#professional">Professional Interests &amp; Expertise</a></li>
+<li><a href="about.html#hobbies">My Hobbies &amp; Interests</a></li>
+<li><a href="about.html#skills">Key Skills &amp; Strengths</a></li>
+</ul>
+</div>
+<a class="active" href="books.html">Books</a>
+<a href="blog.html">Travel Blog</a>
+<button aria-label="Search" class="search-icon">
+<svg aria-hidden="true" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<circle cx="11" cy="11" r="8"></circle>
+<line x1="21" x2="16.65" y1="21" y2="16.65"></line>
+</svg>
+</button>
+</div>
+</nav>
+<div class="hero-title">Books</div>
+</header>
+<main>
+<!-- Book #1: The Lord of the Rings - image left, text right -->
+<section class="book-item"><div class="book-image">
+<img alt="The Lord of the Rings Book Set Cover" src="images/BookCover1.png" style="width: 300px; height: auto; object-fit: cover;"/>
+</div><div class="book-text">
+<h3>The Lord of the Rings</h3>
+<p>
           J.R.R. Tolkien's masterpiece continues to captivate readers decades after its publication. This epic fantasy trilogy follows the journey of Frodo Baggins and the Fellowship as they embark on a quest to destroy the One Ring and save Middle-earth from the Dark Lord Sauron. The richly detailed world-building, complex characters, and timeless themes of friendship, courage, and sacrifice make this an essential read for anyone who loves epic storytelling and imaginative literature.
         </p>
-      </div>
-    </section>
-
-    <!-- Book #2: Sapiens - image right, text left -->
-    <section class="book-item reverse">
-      <div class="book-image">
-        <img src="images/BookCover2.png" alt="Sapiens: A Brief History of Humankind Cover">
-      </div>
-      <div class="book-text">
-        <h3>Sapiens: A Brief History of Humankind</h3>
-        <p>
+</div></section>
+<!-- Book #2: Sapiens - image right, text left -->
+<section class="book-item reverse"><div class="book-text">
+<h3>Sapiens: A Brief History of Humankind</h3>
+<p>
           Yuval Noah Harari's groundbreaking work traces the evolution of Homo sapiens from insignificant primates to the dominant species on Earth. Through engaging storytelling and thought-provoking analysis, Harari explores how cognitive, agricultural, and scientific revolutions shaped human civilization. This book challenges our understanding of progress, happiness, and what it means to be human in the modern world. A must-read for anyone curious about our species' remarkable journey and future.
         </p>
-      </div>
-    </section>
-
-    <!-- Book #3: Atomic Habits - image left, text right -->
-    <section class="book-item">
-      <div class="book-image">
-        <img src="images/BookCover3.png" alt="Atomic Habits Book Cover">
-      </div>
-      <div class="book-text">
-        <h3>Atomic Habits</h3>
-        <p>
+</div><div class="book-image">
+<img alt="Sapiens: A Brief History of Humankind Cover" src="images/BookCover2.png" style="width: 300px; height: auto; object-fit: cover;"/>
+</div></section>
+<!-- Book #3: Atomic Habits - image left, text right -->
+<section class="book-item"><div class="book-image">
+<img alt="Atomic Habits Book Cover" src="images/BookCover3.png" style="width: 300px; height: auto; object-fit: cover;"/>
+</div><div class="book-text">
+<h3>Atomic Habits</h3>
+<p>
           James Clear's practical guide to building good habits and breaking bad ones has transformed millions of lives. Based on scientific research and real-world examples, <strong>Atomic Habits</strong> reveals how tiny changes can lead to remarkable results. Clear's four-step framework makes habit formation accessible and sustainable, showing that you don't need radical change to achieve extraordinary outcomes. Whether you're looking to improve your health, productivity, or relationships, this book provides the tools to make lasting positive changes.
         </p>
-      </div>
-    </section>
-  </main>
-
-  <footer class="social-footer">
-    <p class="footer-text">© 2025 Tomas Partman</p>
-  </footer>
-
-  <!-- Scroll to top button -->
-  <button class="scroll-to-top" id="scrollToTop" aria-label="Scroll to top">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-      <polyline points="18,15 12,9 6,15"></polyline>
-    </svg>
-  </button>
-
-  <script>
+</div></section>
+</main>
+<footer class="social-footer">
+<p class="footer-text">© 2025 Tomas Partman</p>
+</footer>
+<!-- Scroll to top button -->
+<button aria-label="Scroll to top" class="scroll-to-top" id="scrollToTop">
+<svg fill="none" height="20" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="20">
+<polyline points="18,15 12,9 6,15"></polyline>
+</svg>
+</button>
+<script>
     // Enhanced dropdown functionality
     document.addEventListener('click', function(e) {
       const dropdown = document.querySelector('.dropdown');

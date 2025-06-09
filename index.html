@@ -320,27 +320,27 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Enhanced social footer */
+    /* Enhanced but narrower social footer */
     .social-footer {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 2rem;
-      margin-top: 4rem;
-      padding: 3rem 0;
+      gap: 1rem; /* Reduced from 2rem */
+      margin-top: 2rem; /* Reduced from 4rem */
+      padding: 1.5rem 0; /* Reduced from 3rem */
       background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-      border-radius: 30px 30px 0 0;
+      border-radius: 20px 20px 0 0; /* Reduced radius for sleeker look */
     }
 
     .social-buttons {
       display: flex;
       justify-content: center;
-      gap: 1rem;
+      gap: 0.75rem; /* Slightly reduced gap */
       flex-wrap: wrap;
     }
 
     .social-buttons a {
-      padding: 1rem 2rem;
+      padding: 0.75rem 1.5rem; /* Reduced padding */
       color: #fff;
       border-radius: 50px;
       font-weight: 600;
@@ -350,6 +350,7 @@
       box-shadow: 0 4px 15px rgba(0,0,0,0.2);
       position: relative;
       overflow: hidden;
+      font-size: 0.9rem; /* Slightly smaller font */
     }
 
     .social-buttons a::before {
@@ -368,8 +369,8 @@
     }
 
     .social-buttons a:hover {
-      transform: translateY(-5px) scale(1.05);
-      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+      transform: translateY(-3px) scale(1.03); /* Reduced hover effect */
+      box-shadow: 0 6px 20px rgba(0,0,0,0.25); /* Reduced shadow */
     }
 
     .social-buttons a.instagram { 
@@ -389,10 +390,11 @@
     }
 
     .footer-text {
-      font-size: 0.9rem;
+      font-size: 0.85rem; /* Slightly smaller */
       color: #777;
       text-align: center;
       font-weight: 300;
+      margin-top: 0.5rem; /* Added small margin for better spacing */
     }
 
     /* Scroll indicator */
@@ -441,6 +443,11 @@
       p {
         font-size: 1rem;
       }
+
+      /* Mobile footer adjustments */
+      .social-footer {
+        padding: 1rem 0; /* Even more compact on mobile */
+      }
     }
 
     @media (max-width: 480px) {
@@ -459,8 +466,12 @@
       
       .social-buttons a {
         flex: 1 1 calc(50% - 0.5rem);
-        margin-bottom: 1rem;
-        padding: 0.75rem 1rem;
+        margin-bottom: 0.5rem; /* Reduced margin */
+        padding: 0.6rem 0.8rem; /* Smaller padding */
+      }
+
+      .social-footer {
+        gap: 0.75rem; /* Tighter spacing on mobile */
       }
     }
 

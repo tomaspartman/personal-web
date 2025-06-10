@@ -36,8 +36,18 @@
     main h2 { font-size: 2.5rem; margin-bottom: 1.5rem; }
     main p { font-size: 1.1rem; line-height: 1.8; margin-bottom: 1.5rem; }
     main img { max-width: 100%; border-radius: 10px; margin: 2rem 0; }
-    .map-container { margin: 2rem 0; border-radius: 15px; overflow: hidden; box-shadow: 0 8px 30px rgba(0,0,0,0.1); }
-    #map { width: 100%; height: 400px; }
+      .map-container {
+        margin: 2rem 0;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+        text-align: center;
+    }
+    .map-container img {
+        max-width: 100%;
+        display: block;
+        margin: 0 auto;
+    }
     footer { text-align: center; padding: 2rem; color: #777; }
 </style>
 </head>
@@ -86,7 +96,7 @@
     </p>
     
     <div class="map-container">
-        <div id="map"></div>
+         <img src="images/HuangheRD.png" alt="Huanghe Road">
     </div>
 </main>
 
@@ -108,132 +118,6 @@
     window.addEventListener('scroll', () => {
         document.getElementById('navbar').classList.toggle('scrolled', window.pageYOffset > 100);
     });
-    // Initialize Google Map
-    function initMap() {
-        // Coordinates for Huanghe Road, Shanghai
-        const huangheRoad = { lat: 31.2304, lng: 121.4737 };
-        
-        const map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 15,
-            center: huangheRoad,
-            styles: [
-                {
-                    "featureType": "all",
-                    "elementType": "geometry.fill",
-                    "stylers": [{"weight": "2.00"}]
-                },
-                {
-                    "featureType": "all",
-                    "elementType": "geometry.stroke",
-                    "stylers": [{"color": "#9c9c9c"}]
-                },
-                {
-                    "featureType": "all",
-                    "elementType": "labels.text",
-                    "stylers": [{"visibility": "on"}]
-                },
-                {
-                    "featureType": "landscape",
-                    "elementType": "all",
-                    "stylers": [{"color": "#f2f2f2"}]
-                },
-                {
-                    "featureType": "landscape",
-                    "elementType": "geometry.fill",
-                    "stylers": [{"color": "#ffffff"}]
-                },
-                {
-                    "featureType": "landscape.man_made",
-                    "elementType": "geometry.fill",
-                    "stylers": [{"color": "#ffffff"}]
-                },
-                {
-                    "featureType": "poi",
-                    "elementType": "all",
-                    "stylers": [{"visibility": "off"}]
-                },
-                {
-                    "featureType": "road",
-                    "elementType": "all",
-                    "stylers": [{"saturation": -100}, {"lightness": 45}]
-                },
-                {
-                    "featureType": "road",
-                    "elementType": "geometry.fill",
-                    "stylers": [{"color": "#eeeeee"}]
-                },
-                {
-                    "featureType": "road",
-                    "elementType": "labels.text.fill",
-                    "stylers": [{"color": "#7b7b7b"}]
-                },
-                {
-                    "featureType": "road",
-                    "elementType": "labels.text.stroke",
-                    "stylers": [{"color": "#ffffff"}]
-                },
-                {
-                    "featureType": "road.highway",
-                    "elementType": "all",
-                    "stylers": [{"visibility": "simplified"}]
-                },
-                {
-                    "featureType": "road.arterial",
-                    "elementType": "labels.icon",
-                    "stylers": [{"visibility": "off"}]
-                },
-                {
-                    "featureType": "transit",
-                    "elementType": "all",
-                    "stylers": [{"visibility": "off"}]
-                },
-                {
-                    "featureType": "water",
-                    "elementType": "all",
-                    "stylers": [{"color": "#46bcec"}, {"visibility": "on"}]
-                },
-                {
-                    "featureType": "water",
-                    "elementType": "geometry.fill",
-                    "stylers": [{"color": "#c8d7d4"}]
-                },
-                {
-                    "featureType": "water",
-                    "elementType": "labels.text.fill",
-                    "stylers": [{"color": "#070707"}]
-                },
-                {
-                    "featureType": "water",
-                    "elementType": "labels.text.stroke",
-                    "stylers": [{"color": "#ffffff"}]
-                }
-            ]
-        });
-
-        // Add marker at Huanghe Road
-        const marker = new google.maps.Marker({
-            position: huangheRoad,
-            map: map,
-            title: 'Huanghe Road, Shanghai',
-            animation: google.maps.Animation.DROP
-        });
-
-        // Add info window
-        const infoWindow = new google.maps.InfoWindow({
-            content: '<div style="padding: 10px;"><h3 style="margin: 0 0 8px 0; color: #333;">Huanghe Road</h3><p style="margin: 0; color: #666;">Great food area in Shanghai!</p></div>'
-        });
-
-        marker.addListener('click', () => {
-            infoWindow.open(map, marker);
-        });
-    }
-
-    // Load Google Maps API
-    window.initMap = initMap;
 </script>
-
-<!-- Google Maps API -->
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"></script>
-
 </body>
 </html>

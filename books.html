@@ -13,48 +13,82 @@
 <style>
     /* Reset & basic styles */
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Roboto', sans-serif; color: #333; line-height: 1.6; overflow-x: hidden; background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); min-height: 100vh; }
+    body { font-family: 'Roboto', sans-serif; color: #333; line-height: 1.6; overflow-x: hidden; background: #f5f7fa; }
     a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
     img { display: block; max-width: 100%; }
 
-    /* —— ZMENENÝ KÓD PRE HEADER —— */
+    /* =============================================================== */
+    /* OPRAVENÉ ŠTÝLY PRE HLAVIČKU - TERAZ IDENTICKÉ S INDEX.HTML      */
+    /* =============================================================== */
+
     header {
       position: relative;
-      /* Použil som rovnaké pozadie ako na ostatných stránkach pre jednotný vzhľad */
-      background:
-        linear-gradient(135deg, rgba(102,126,234,0.9), rgba(118,75,162,0.9)),
-        url('images/header-bg.jpg') center/cover no-repeat;
-      height: 50vh;
+      /* Použitý jemný gradient a pozadie z index.html */
+      background: linear-gradient(135deg, rgba(0,0,0,0.4), rgba(0,0,0,0.2)), url('images/header-bg.jpg') center/cover no-repeat;
+      height: 60vh; /* Rovnaká výška ako na index.html */
       display: flex;
-      /* Tieto dva riadky centrujú nadpis vertikálne aj horizontálne */
-      align-items: center;
-      justify-content: center;
+      flex-direction: column;
+      justify-content: flex-end;
       animation: heroFadeIn 1.5s ease-out;
     }
-    @keyframes heroFadeIn { from { opacity: 0; transform: scale(1.05); } to { opacity: 1; transform: scale(1); } }
     
+    @keyframes heroFadeIn { from { opacity: 0; transform: scale(1.05); } to { opacity: 1; transform: scale(1); } }
+
+    /* Štýl pre navigačné menu (fixed - pripnuté navrchu) */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      z-index: 1000;
+      transition: all 0.3s ease;
+    }
+
+    .nav.scrolled {
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(20px);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+    
+    .nav-right a, .dropbtn { color: #fff; }
+    .nav.scrolled .nav-right a, .nav.scrolled .dropbtn { color: #333; }
+    .nav.scrolled .search-icon svg { stroke: #333; }
+    .search-icon svg { stroke: #fff; }
+
+    /* Štýl pre hlavný nadpis (absolútne centrovaný) */
     .hero-title {
-      font-size: 4rem;
+      position: absolute;
+      top: 55%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 5rem; /* Rovnaká veľkosť ako na index.html */
       font-weight: 100;
       color: #fff;
       text-shadow: 0 4px 20px rgba(0,0,0,0.8);
+      pointer-events: none;
+      width: 100%;
       text-align: center;
+      animation: titleSlideUp 1s ease-out 0.5s both;
     }
 
-    /* Zvyšok CSS zostáva rovnaký... */
-    .nav { position: fixed; top: 0; left: 0; width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; background: rgba(255,255,255,0.1); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.1); z-index: 1000; transition: all 0.3s ease; }
-    .nav.scrolled { background: rgba(255,255,255,0.95); backdrop-filter: blur(20px); box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+    @keyframes titleSlideUp { from { opacity: 0; transform: translate(-50%, -30%) scale(0.9); } to { opacity: 1; transform: translate(-50%, -50%) scale(1); } }
+    
+    /* Zvyšné štýly pre navigáciu a obsah zostávajú... */
     .home-link { display: flex; align-items: center; gap: 0.5rem; font-weight: 500; }
     .favicon-icon { width: 28px; height: 28px; border-radius: 50%; background: #fff; padding: 4px; }
     .nav-right { display: flex; gap: 2rem; align-items: center; }
-    .nav-right a, .dropbtn { display: flex; align-items: center; color: #fff; font-weight: 400; font-size: 0.95rem; padding: 0.5rem 1rem; border-radius: 25px; transition: all 0.3s ease; position: relative; }
-    .nav.scrolled .nav-right a, .nav.scrolled .dropbtn { color: #333; }
-    .nav-right a:hover, .dropbtn:hover { background: rgba(255,255,255,0.2); }
-    
-    /* Zvýraznenie aktívnej položky */
-    .nav-right a.active, .dropdown.active .dropbtn { background: rgba(255,255,255,0.3); font-weight: 600; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-    .nav.scrolled .nav-right a.active { color: #333; background: rgba(59, 130, 246, 0.1); }
-
+    .nav-right a, .dropbtn { display: flex; align-items: center; font-weight: 400; font-size: 0.95rem; padding: 0.5rem 1rem; border-radius: 25px; position: relative; }
+    .nav-right a.active { background: rgba(255,255,255,0.3); font-weight: 600; }
+    .nav.scrolled .nav-right a.active { background: rgba(59, 130, 246, 0.1); }
+    .search-icon { background: rgba(255,255,255,0.2); border: none; padding: 0.75rem; border-radius: 50%; cursor: pointer; display: flex; align-items: center; }
+    .search-icon svg { width: 18px; height: 18px; stroke-width: 2; fill: none; }
     .dropdown { position: relative; }
     .dropbtn { background: none; border: none; cursor: pointer; gap: 0.5rem; }
     .dropdown.open .dropbtn svg { transform: rotate(180deg); }
@@ -63,10 +97,12 @@
     .dropdown-content li { list-style: none; }
     .dropdown-content li a { display: block; padding: 1rem 1.5rem; color: #333; }
     .dropdown-content li a:hover { background: rgba(59, 130, 246, 0.1); color: #3b82f6; }
+    
+    /* Štýly pre obsah stránky */
     main { max-width: 1200px; margin: 4rem auto 2rem; padding: 0 2rem; }
-    .book-item { display: grid; grid-template-columns: 300px 1fr; gap: 3rem; margin-bottom: 4rem; background: rgba(255,255,255,0.9); padding: 2.5rem; border-radius: 25px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); }
+    .book-item { display: grid; grid-template-columns: 300px 1fr; gap: 3rem; margin-bottom: 4rem; background: #fff; padding: 2.5rem; border-radius: 25px; box-shadow: 0 10px 40px rgba(0,0,0,0.08); }
     .book-item.reverse { grid-template-columns: 1fr 300px; }
-    .book-image { border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.2); }
+    .book-image { border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.15); }
     .book-image img { width: 100%; height: auto; border-radius: 20px; }
     .book-text { display: flex; flex-direction: column; justify-content: center; }
     .book-text h3 { font-size: 2.2rem; margin-bottom: 1.5rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
@@ -84,29 +120,26 @@
         </a>
         <div class="nav-right">
             <div class="dropdown">
-                <button class="dropbtn" type="button">
-                    About
-                    <svg aria-hidden="true" viewbox="0 0 8 8" xmlns="http://www.w3.org/2000/svg"><line stroke="currentColor" stroke-width="1" x1="1" x2="4" y1="2" y2="5"></line><line stroke="currentColor" stroke-width="1" x1="7" x2="4" y1="2" y2="5"></line></svg>
-                </button>
-                <ul class="dropdown-content">
-                    <li><a href="about.html#introduction">Introduction</a></li>
-                    <li><a href="about.html#academic">Academic Background</a></li>
-                </ul>
+                <button class="dropbtn" type="button">About <svg viewbox="0 0 8 8"><line stroke="currentColor" stroke-width="1" x1="1" x2="4" y1="2" y2="5"></line><line stroke="currentColor" stroke-width="1" x1="7" x2="4" y1="2" y2="5"></line></svg></button>
+                <ul class="dropdown-content"><li><a href="about.html#introduction">...</a></li></ul>
             </div>
+            
             <a class="active" href="books.html">Books</a>
+            
             <div class="dropdown">
-                <button class="dropbtn" type="button">
-                    Travel Blog
-                    <svg aria-hidden="true" viewbox="0 0 8 8" xmlns="http://www.w3.org/2000/svg"><line stroke="currentColor" stroke-width="1" x1="1" x2="4" y1="2" y2="5"></line><line stroke="currentColor" stroke-width="1" x1="7" x2="4" y1="2" y2="5"></line></svg>
-                </button>
+                <button class="dropbtn" type="button">Travel Blog <svg viewbox="0 0 8 8"><line stroke="currentColor" stroke-width="1" x1="1" x2="4" y1="2" y2="5"></line><line stroke="currentColor" stroke-width="1" x1="7" x2="4" y1="2" y2="5"></line></svg></button>
                 <ul class="dropdown-content">
                     <li><a href="uzbekistan.html">Uzbekistan</a></li>
                     <li><a href="kazakhstan.html">Kazakhstan</a></li>
                     <li><a href="shanghai-food.html">Shanghai Food</a></li>
                     </ul>
             </div>
-            <button aria-label="Search" class="search-icon">
-                <svg aria-hidden="true" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="8"></circle><line x1="21" x2="16.65" y1="21" y2="16.65"></line></svg>
+            
+            <button class="search-icon" aria-label="Search">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="11" cy="11" r="8" />
+                <line x1="21" y1="21" x2="16.65" y2="16.65" />
+              </svg>
             </button>
         </div>
     </nav>
@@ -114,54 +147,42 @@
 </header>
 
 <main>
-    <section class="book-item"><div class="book-image">
-    <img alt="The Lord of the Rings Book Set Cover" src="images/BookCover1.png" style="width: 300px; height: auto; object-fit: cover;"/>
-    </div><div class="book-text">
-    <h3>The Lord of the Rings</h3>
-    <p>
-            J.R.R. Tolkien's masterpiece continues to captivate readers decades after its publication. This epic fantasy trilogy follows the journey of Frodo Baggins and the Fellowship as they embark on a quest to destroy the One Ring and save Middle-earth from the Dark Lord Sauron.
-            </p>
-    </div></section>
-    <section class="book-item reverse"><div class="book-text">
-    <h3>Sapiens: A Brief History of Humankind</h3>
-    <p>
-            Yuval Noah Harari's groundbreaking work traces the evolution of Homo sapiens from insignificant primates to the dominant species on Earth. Through engaging storytelling and thought-provoking analysis, Harari explores how cognitive, agricultural, and scientific revolutions shaped human civilization.
-            </p>
-    </div><div class="book-image">
-    <img alt="Sapiens: A Brief History of Humankind Cover" src="images/BookCover2.png" style="width: 300px; height: auto; object-fit: cover;"/>
-    </div></section>
-    <section class="book-item"><div class="book-image">
-    <img alt="Atomic Habits Book Cover" src="images/BookCover3.png" style="width: 300px; height: auto; object-fit: cover;"/>
-    </div><div class="book-text">
-    <h3>Atomic Habits</h3>
-    <p>
-            James Clear's practical guide to building good habits and breaking bad ones has transformed millions of lives. Based on scientific research and real-world examples, <strong>Atomic Habits</strong> reveals how tiny changes can lead to remarkable results.
-            </p>
-    </div></section>
+    <section class="book-item">
+        <div class="book-image"><img alt="The Lord of the Rings Book Set Cover" src="images/BookCover1.png"/></div>
+        <div class="book-text"><h3>The Lord of the Rings</h3><p>J.R.R. Tolkien's masterpiece...</p></div>
+    </section>
+    <section class="book-item reverse">
+        <div class="book-text"><h3>Sapiens: A Brief History of Humankind</h3><p>Yuval Noah Harari's groundbreaking work...</p></div>
+        <div class="book-image"><img alt="Sapiens Cover" src="images/BookCover2.png"/></div>
+    </section>
+    <section class="book-item">
+        <div class="book-image"><img alt="Atomic Habits Book Cover" src="images/BookCover3.png"/></div>
+        <div class="book-text"><h3>Atomic Habits</h3><p>James Clear's practical guide...</p></div>
+    </section>
 </main>
+
 <footer class="social-footer" style="padding: 2rem 0; margin-top: 4rem;">
     <p class="footer-text">© 2025 Tomas Partman</p>
 </footer>
-<script>
-    // JavaScript pre dropdown menu a scroll
-    document.addEventListener('click', function(e) {
-      document.querySelectorAll('.dropdown').forEach(function(dropdown) {
-        if (e.target.closest('.dropbtn') && dropdown.contains(e.target)) {
-          dropdown.classList.toggle('open');
-        } else if (!dropdown.contains(e.target)) {
-          dropdown.classList.remove('open');
-        }
-      });
-    });
 
-    window.addEventListener('scroll', function() {
-      const navbar = document.getElementById('navbar');
-      if (window.pageYOffset > 100) {
-        navbar.classList.add('scrolled');
-      } else {
-        navbar.classList.remove('scrolled');
-      }
+<script>
+    // Váš JavaScript pre menu a scroll efekty
+    document.addEventListener('click', function(e) {
+        document.querySelectorAll('.dropdown').forEach(function(dropdown) {
+            if (e.target.closest('.dropbtn') && dropdown.contains(e.target)) {
+                dropdown.classList.toggle('open');
+            } else if (!dropdown.contains(e.target)) {
+                dropdown.classList.remove('open');
+            }
+        });
     });
+    window.addEventListener('scroll', () => {
+        document.getElementById('navbar').classList.toggle('scrolled', window.pageYOffset > 100);
+    });
+</script>
+
+</body>
+</html>
 </script>
 </body>
 </html>

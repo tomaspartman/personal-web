@@ -6,8 +6,6 @@
 <title>Books — Tomas Partman</title>
 <meta content="A list of books by or recommended by Tomas Partman." name="description"/>
 <meta content="Books — Tomas Partman" property="og:title"/>
-<meta content="Discover books and descriptions by Tomas Partman." property="og:description"/>
-<meta content="images/book1-cover.jpg" property="og:image"/>
 <link href="images/favicon.png" rel="icon" type="image/png"/>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
 <style>
@@ -18,14 +16,14 @@
     img { display: block; max-width: 100%; }
 
     /* =============================================================== */
-    /* OPRAVENÉ ŠTÝLY PRE HLAVIČKU - TERAZ IDENTICKÉ S INDEX.HTML      */
+    /* FINÁLNE OPRAVENÉ ŠTÝLY PRE HLAVIČKU                            */
     /* =============================================================== */
 
     header {
       position: relative;
-      /* Použitý jemný gradient a pozadie z index.html */
-      background: linear-gradient(135deg, rgba(0,0,0,0.4), rgba(0,0,0,0.2)), url('images/header-bg.jpg') center/cover no-repeat;
-      height: 60vh; /* Rovnaká výška ako na index.html */
+      /* VRÁTENÝ FIALOVÝ FILTER s jemnejšou priehľadnosťou pre lepší vzhľad */
+      background: linear-gradient(135deg, rgba(102,126,234,0.8), rgba(118,75,162,0.8)), url('images/header-bg.jpg') center/cover no-repeat;
+      height: 60vh;
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
@@ -34,53 +32,21 @@
     
     @keyframes heroFadeIn { from { opacity: 0; transform: scale(1.05); } to { opacity: 1; transform: scale(1); } }
 
-    /* Štýl pre navigačné menu (fixed - pripnuté navrchu) */
     .nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 2rem;
-      background: rgba(255,255,255,0.1);
-      backdrop-filter: blur(20px);
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-      z-index: 1000;
-      transition: all 0.3s ease;
+      position: fixed; top: 0; left: 0; width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; background: rgba(255,255,255,0.1); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.1); z-index: 1000; transition: all 0.3s ease;
     }
-
-    .nav.scrolled {
-      background: rgba(255,255,255,0.95);
-      backdrop-filter: blur(20px);
-      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-    }
+    .nav.scrolled { background: rgba(255,255,255,0.95); backdrop-filter: blur(20px); box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
     
     .nav-right a, .dropbtn { color: #fff; }
     .nav.scrolled .nav-right a, .nav.scrolled .dropbtn { color: #333; }
     .nav.scrolled .search-icon svg { stroke: #333; }
     .search-icon svg { stroke: #fff; }
 
-    /* Štýl pre hlavný nadpis (absolútne centrovaný) */
     .hero-title {
-      position: absolute;
-      top: 55%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-size: 5rem; /* Rovnaká veľkosť ako na index.html */
-      font-weight: 100;
-      color: #fff;
-      text-shadow: 0 4px 20px rgba(0,0,0,0.8);
-      pointer-events: none;
-      width: 100%;
-      text-align: center;
-      animation: titleSlideUp 1s ease-out 0.5s both;
+      position: absolute; top: 55%; left: 50%; transform: translate(-50%, -50%); font-size: 5rem; font-weight: 100; color: #fff; text-shadow: 0 4px 20px rgba(0,0,0,0.8); pointer-events: none; width: 100%; text-align: center; animation: titleSlideUp 1s ease-out 0.5s both;
     }
-
     @keyframes titleSlideUp { from { opacity: 0; transform: translate(-50%, -30%) scale(0.9); } to { opacity: 1; transform: translate(-50%, -50%) scale(1); } }
     
-    /* Zvyšné štýly pre navigáciu a obsah zostávajú... */
     .home-link { display: flex; align-items: center; gap: 0.5rem; font-weight: 500; }
     .favicon-icon { width: 28px; height: 28px; border-radius: 50%; background: #fff; padding: 4px; }
     .nav-right { display: flex; gap: 2rem; align-items: center; }
@@ -89,14 +55,25 @@
     .nav.scrolled .nav-right a.active { background: rgba(59, 130, 246, 0.1); }
     .search-icon { background: rgba(255,255,255,0.2); border: none; padding: 0.75rem; border-radius: 50%; cursor: pointer; display: flex; align-items: center; }
     .search-icon svg { width: 18px; height: 18px; stroke-width: 2; fill: none; }
+    
     .dropdown { position: relative; }
     .dropbtn { background: none; border: none; cursor: pointer; gap: 0.5rem; }
-    .dropdown.open .dropbtn svg { transform: rotate(180deg); }
     .dropdown-content { display: none; position: absolute; top: calc(100% + 10px); left: 0; background: rgba(255,255,255,0.95); backdrop-filter: blur(20px); min-width: 220px; border-radius: 15px; box-shadow: 0 10px 40px rgba(0,0,0,0.15); z-index: 1001; }
     .dropdown.open .dropdown-content { display: block; }
     .dropdown-content li { list-style: none; }
     .dropdown-content li a { display: block; padding: 1rem 1.5rem; color: #333; }
     .dropdown-content li a:hover { background: rgba(59, 130, 246, 0.1); color: #3b82f6; }
+
+    /* DOPLNENÝ A OPRAVENÝ KÓD PRE ŠÍPKY */
+    .dropbtn svg {
+      width: 12px;
+      height: 12px;
+      transition: transform 0.3s ease;
+      stroke-width: 1.5; /* Mierne hrubšia pre lepšiu viditeľnosť */
+    }
+    .dropdown.open .dropbtn svg {
+      transform: rotate(180deg);
+    }
     
     /* Štýly pre obsah stránky */
     main { max-width: 1200px; margin: 4rem auto 2rem; padding: 0 2rem; }
@@ -120,26 +97,40 @@
         </a>
         <div class="nav-right">
             <div class="dropdown">
-                <button class="dropbtn" type="button">About <svg viewbox="0 0 8 8"><line stroke="currentColor" stroke-width="1" x1="1" x2="4" y1="2" y2="5"></line><line stroke="currentColor" stroke-width="1" x1="7" x2="4" y1="2" y2="5"></line></svg></button>
-                <ul class="dropdown-content"><li><a href="about.html#introduction">...</a></li></ul>
+                <button class="dropbtn" type="button">
+                    About
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 8" aria-hidden="true"><line x1="1" y1="2" x2="4" y2="5" stroke="currentColor"/><line x1="7" y1="2" x2="4" y2="5" stroke="currentColor"/></svg>
+                </button>
+                <ul class="dropdown-content">
+                    <li><a href="about.html#introduction">Introduction</a></li>
+                    <li><a href="about.html#academic">Academic Background</a></li>
+                    <li><a href="about.html#professional">Professional Interests &amp; Expertise</a></li>
+                    <li><a href="about.html#hobbies">My Hobbies &amp; Interests</a></li>
+                    <li><a href="about.html#skills">Key Skills &amp; Strengths</a></li>
+                </ul>
             </div>
             
             <a class="active" href="books.html">Books</a>
             
             <div class="dropdown">
-                <button class="dropbtn" type="button">Travel Blog <svg viewbox="0 0 8 8"><line stroke="currentColor" stroke-width="1" x1="1" x2="4" y1="2" y2="5"></line><line stroke="currentColor" stroke-width="1" x1="7" x2="4" y1="2" y2="5"></line></svg></button>
+                <button class="dropbtn" type="button">
+                    Travel Blog
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 8" aria-hidden="true"><line x1="1" y1="2" x2="4" y2="5" stroke="currentColor"/><line x1="7" y1="2" x2="4" y2="5" stroke="currentColor"/></svg>
+                </button>
                 <ul class="dropdown-content">
                     <li><a href="uzbekistan.html">Uzbekistan</a></li>
                     <li><a href="kazakhstan.html">Kazakhstan</a></li>
+                    <li><a href="kyrgyzstan.html">Kyrgyzstan</a></li>
+                    <li><a href="ecuador.html">Ecuador</a></li>
+                    <li><a href="china-shanghai.html">China Shanghai</a></li>
                     <li><a href="shanghai-food.html">Shanghai Food</a></li>
-                    </ul>
+                    <li><a href="new-zealand.html">New Zealand</a></li>
+                    <li><a href="romania.html">Romania</a></li>
+                </ul>
             </div>
             
             <button class="search-icon" aria-label="Search">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
-                <circle cx="11" cy="11" r="8" />
-                <line x1="21" y1="21" x2="16.65" y2="16.65" />
-              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" /></svg>
             </button>
         </div>
     </nav>
@@ -147,18 +138,9 @@
 </header>
 
 <main>
-    <section class="book-item">
-        <div class="book-image"><img alt="The Lord of the Rings Book Set Cover" src="images/BookCover1.png"/></div>
-        <div class="book-text"><h3>The Lord of the Rings</h3><p>J.R.R. Tolkien's masterpiece...</p></div>
-    </section>
-    <section class="book-item reverse">
-        <div class="book-text"><h3>Sapiens: A Brief History of Humankind</h3><p>Yuval Noah Harari's groundbreaking work...</p></div>
-        <div class="book-image"><img alt="Sapiens Cover" src="images/BookCover2.png"/></div>
-    </section>
-    <section class="book-item">
-        <div class="book-image"><img alt="Atomic Habits Book Cover" src="images/BookCover3.png"/></div>
-        <div class="book-text"><h3>Atomic Habits</h3><p>James Clear's practical guide...</p></div>
-    </section>
+    <section class="book-item"><div class="book-image"><img alt="The Lord of the Rings Book Set Cover" src="images/BookCover1.png"/></div><div class="book-text"><h3>The Lord of the Rings</h3><p>J.R.R. Tolkien's masterpiece...</p></div></section>
+    <section class="book-item reverse"><div class="book-text"><h3>Sapiens: A Brief History of Humankind</h3><p>Yuval Noah Harari's groundbreaking work...</p></div><div class="book-image"><img alt="Sapiens Cover" src="images/BookCover2.png"/></div></section>
+    <section class="book-item"><div class="book-image"><img alt="Atomic Habits Book Cover" src="images/BookCover3.png"/></div><div class="book-text"><h3>Atomic Habits</h3><p>James Clear's practical guide...</p></div></section>
 </main>
 
 <footer class="social-footer" style="padding: 2rem 0; margin-top: 4rem;">
@@ -166,7 +148,6 @@
 </footer>
 
 <script>
-    // Váš JavaScript pre menu a scroll efekty
     document.addEventListener('click', function(e) {
         document.querySelectorAll('.dropdown').forEach(function(dropdown) {
             if (e.target.closest('.dropbtn') && dropdown.contains(e.target)) {

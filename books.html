@@ -15,13 +15,8 @@
     a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
     img { display: block; max-width: 100%; }
 
-    /* =============================================================== */
-    /* FINÁLNE OPRAVENÉ ŠTÝLY PRE HLAVIČKU                            */
-    /* =============================================================== */
-
     header {
       position: relative;
-      /* VRÁTENÝ FIALOVÝ FILTER s jemnejšou priehľadnosťou pre lepší vzhľad */
       background: linear-gradient(135deg, rgba(102,126,234,0.8), rgba(118,75,162,0.8)), url('images/header-bg.jpg') center/cover no-repeat;
       height: 60vh;
       display: flex;
@@ -64,18 +59,9 @@
     .dropdown-content li a { display: block; padding: 1rem 1.5rem; color: #333; }
     .dropdown-content li a:hover { background: rgba(59, 130, 246, 0.1); color: #3b82f6; }
 
-    /* DOPLNENÝ A OPRAVENÝ KÓD PRE ŠÍPKY */
-    .dropbtn svg {
-      width: 12px;
-      height: 12px;
-      transition: transform 0.3s ease;
-      stroke-width: 1.5; /* Mierne hrubšia pre lepšiu viditeľnosť */
-    }
-    .dropdown.open .dropbtn svg {
-      transform: rotate(180deg);
-    }
+    .dropbtn svg { width: 12px; height: 12px; transition: transform 0.3s ease; stroke-width: 1.5; }
+    .dropdown.open .dropbtn svg { transform: rotate(180deg); }
     
-    /* Štýly pre obsah stránky */
     main { max-width: 1200px; margin: 4rem auto 2rem; padding: 0 2rem; }
     .book-item { display: grid; grid-template-columns: 300px 1fr; gap: 3rem; margin-bottom: 4rem; background: #fff; padding: 2.5rem; border-radius: 25px; box-shadow: 0 10px 40px rgba(0,0,0,0.08); }
     .book-item.reverse { grid-template-columns: 1fr 300px; }
@@ -84,6 +70,7 @@
     .book-text { display: flex; flex-direction: column; justify-content: center; }
     .book-text h3 { font-size: 2.2rem; margin-bottom: 1.5rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
     .book-text p { font-size: 1.1rem; line-height: 1.7; color: #555; text-align: justify; }
+    .book-text strong { color: #667eea; font-weight: 600; }
     footer { text-align: center; padding: 2rem; font-size: 0.9rem; color: #777; }
 </style>
 </head>
@@ -97,50 +84,60 @@
         </a>
         <div class="nav-right">
             <div class="dropdown">
-                <button class="dropbtn" type="button">
-                    About
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 8" aria-hidden="true"><line x1="1" y1="2" x2="4" y2="5" stroke="currentColor"/><line x1="7" y1="2" x2="4" y2="5" stroke="currentColor"/></svg>
-                </button>
+                <button class="dropbtn" type="button">About<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 8" aria-hidden="true"><line x1="1" y1="2" x2="4" y2="5" stroke="currentColor"/><line x1="7" y1="2" x2="4" y2="5" stroke="currentColor"/></svg></button>
                 <ul class="dropdown-content">
-                    <li><a href="about.html#introduction">Introduction</a></li>
-                    <li><a href="about.html#academic">Academic Background</a></li>
-                    <li><a href="about.html#professional">Professional Interests &amp; Expertise</a></li>
-                    <li><a href="about.html#hobbies">My Hobbies &amp; Interests</a></li>
-                    <li><a href="about.html#skills">Key Skills &amp; Strengths</a></li>
+                    <li><a href="about.html#introduction">Introduction</a></li><li><a href="about.html#academic">Academic Background</a></li><li><a href="about.html#professional">Professional Interests &amp; Expertise</a></li><li><a href="about.html#hobbies">My Hobbies &amp; Interests</a></li><li><a href="about.html#skills">Key Skills &amp; Strengths</a></li>
                 </ul>
             </div>
-            
             <a class="active" href="books.html">Books</a>
-            
             <div class="dropdown">
-                <button class="dropbtn" type="button">
-                    Travel Blog
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 8" aria-hidden="true"><line x1="1" y1="2" x2="4" y2="5" stroke="currentColor"/><line x1="7" y1="2" x2="4" y2="5" stroke="currentColor"/></svg>
-                </button>
+                <button class="dropbtn" type="button">Travel Blog<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 8" aria-hidden="true"><line x1="1" y1="2" x2="4" y2="5" stroke="currentColor"/><line x1="7" y1="2" x2="4" y2="5" stroke="currentColor"/></svg></button>
                 <ul class="dropdown-content">
-                    <li><a href="uzbekistan.html">Uzbekistan</a></li>
-                    <li><a href="kazakhstan.html">Kazakhstan</a></li>
-                    <li><a href="kyrgyzstan.html">Kyrgyzstan</a></li>
-                    <li><a href="ecuador.html">Ecuador</a></li>
-                    <li><a href="china-shanghai.html">China Shanghai</a></li>
-                    <li><a href="shanghai-food.html">Shanghai Food</a></li>
-                    <li><a href="new-zealand.html">New Zealand</a></li>
-                    <li><a href="romania.html">Romania</a></li>
+                    <li><a href="uzbekistan.html">Uzbekistan</a></li><li><a href="kazakhstan.html">Kazakhstan</a></li><li><a href="kyrgyzstan.html">Kyrgyzstan</a></li><li><a href="ecuador.html">Ecuador</a></li><li><a href="china-shanghai.html">China Shanghai</a></li><li><a href="shanghai-food.html">Shanghai Food</a></li><li><a href="new-zealand.html">New Zealand</a></li><li><a href="romania.html">Romania</a></li>
                 </ul>
             </div>
-            
-            <button class="search-icon" aria-label="Search">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" /></svg>
-            </button>
+            <button class="search-icon" aria-label="Search"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" /></svg></button>
         </div>
     </nav>
     <div class="hero-title">Books</div>
 </header>
 
 <main>
-    <section class="book-item"><div class="book-image"><img alt="The Lord of the Rings Book Set Cover" src="images/BookCover1.png"/></div><div class="book-text"><h3>The Lord of the Rings</h3><p>J.R.R. Tolkien's masterpiece...</p></div></section>
-    <section class="book-item reverse"><div class="book-text"><h3>Sapiens: A Brief History of Humankind</h3><p>Yuval Noah Harari's groundbreaking work...</p></div><div class="book-image"><img alt="Sapiens Cover" src="images/BookCover2.png"/></div></section>
-    <section class="book-item"><div class="book-image"><img alt="Atomic Habits Book Cover" src="images/BookCover3.png"/></div><div class="book-text"><h3>Atomic Habits</h3><p>James Clear's practical guide...</p></div></section>
+    <section class="book-item">
+        <div class="book-image">
+            <img alt="The Lord of the Rings Book Set Cover" src="images/BookCover1.png"/>
+        </div>
+        <div class="book-text">
+            <h3>The Lord of the Rings</h3>
+            <p>
+              J.R.R. Tolkien's masterpiece continues to captivate readers decades after its publication. This epic fantasy trilogy follows the journey of Frodo Baggins and the Fellowship as they embark on a quest to destroy the One Ring and save Middle-earth from the Dark Lord Sauron. The richly detailed world-building, complex characters, and timeless themes of friendship, courage, and sacrifice make this an essential read for anyone who loves epic storytelling and imaginative literature.
+            </p>
+        </div>
+    </section>
+    
+    <section class="book-item reverse">
+        <div class="book-text">
+            <h3>Sapiens: A Brief History of Humankind</h3>
+            <p>
+              Yuval Noah Harari's groundbreaking work traces the evolution of Homo sapiens from insignificant primates to the dominant species on Earth. Through engaging storytelling and thought-provoking analysis, Harari explores how cognitive, agricultural, and scientific revolutions shaped human civilization. This book challenges our understanding of progress, happiness, and what it means to be human in the modern world. A must-read for anyone curious about our species' remarkable journey and future.
+            </p>
+        </div>
+        <div class="book-image">
+            <img alt="Sapiens: A Brief History of Humankind Cover" src="images/BookCover2.png"/>
+        </div>
+    </section>
+    
+    <section class="book-item">
+        <div class="book-image">
+            <img alt="Atomic Habits Book Cover" src="images/BookCover3.png"/>
+        </div>
+        <div class="book-text">
+            <h3>Atomic Habits</h3>
+            <p>
+              James Clear's practical guide to building good habits and breaking bad ones has transformed millions of lives. Based on scientific research and real-world examples, <strong>Atomic Habits</strong> reveals how tiny changes can lead to remarkable results. Clear's four-step framework makes habit formation accessible and sustainable, showing that you don't need radical change to achieve extraordinary outcomes. Whether you're looking to improve your health, productivity, or relationships, this book provides the tools to make lasting positive changes.
+            </p>
+        </div>
+    </section>
 </main>
 
 <footer class="social-footer" style="padding: 2rem 0; margin-top: 4rem;">
@@ -163,6 +160,7 @@
 </script>
 
 </body>
+</html>
 </html>
 </script>
 </body>

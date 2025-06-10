@@ -6,72 +6,395 @@
 <title>Books — Tomas Partman</title>
 <meta content="A list of books by or recommended by Tomas Partman." name="description"/>
 <meta content="Books — Tomas Partman" property="og:title"/>
-<link href="images/favicon.png" rel="icon" type="image/png"/>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
 <style>
     /* Reset & basic styles */
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Roboto', sans-serif; color: #333; line-height: 1.6; overflow-x: hidden; background: #f5f7fa; }
-    a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
-    img { display: block; max-width: 100%; }
-
-    header {
-      position: relative;
-      background: linear-gradient(135deg, rgba(102,126,234,0.8), rgba(118,75,162,0.8)), url('images/header-bg.jpg') center/cover no-repeat;
-      height: 60vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      animation: heroFadeIn 1.5s ease-out;
+    *, *::before, *::after { 
+        margin: 0; 
+        padding: 0; 
+        box-sizing: border-box; 
     }
     
-    @keyframes heroFadeIn { from { opacity: 0; transform: scale(1.05); } to { opacity: 1; transform: scale(1); } }
-
-    .nav {
-      position: fixed; top: 0; left: 0; width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; background: rgba(255,255,255,0.1); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.1); z-index: 1000; transition: all 0.3s ease;
+    html {
+        font-size: 16px; /* Base font size for rem calculations */
+        scroll-behavior: smooth;
     }
-    .nav.scrolled { background: rgba(255,255,255,0.95); backdrop-filter: blur(20px); box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+    
+    body { 
+        font-family: 'Roboto', sans-serif; 
+        color: #333; 
+        line-height: 1.6; 
+        overflow-x: hidden; 
+        background: #f5f7fa;
+        min-height: 100vh;
+    }
+    
+    a { 
+        text-decoration: none; 
+        color: inherit; 
+        transition: all 0.3s ease; 
+    }
+    
+    img { 
+        display: block; 
+        max-width: 100%; 
+        height: auto;
+    }
+
+    /* Header with improved responsiveness */
+    header {
+        position: relative;
+        background: linear-gradient(135deg, rgba(102,126,234,0.8), rgba(118,75,162,0.8));
+        min-height: clamp(40vh, 60vh, 70vh);
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        animation: heroFadeIn 1.5s ease-out;
+    }
+    
+    @keyframes heroFadeIn { 
+        from { opacity: 0; transform: scale(1.05); } 
+        to { opacity: 1; transform: scale(1); } 
+    }
+
+    /* Improved Navigation */
+    .nav {
+        position: fixed; 
+        top: 0; 
+        left: 0; 
+        width: 100%; 
+        display: flex; 
+        justify-content: space-between; 
+        align-items: center; 
+        padding: clamp(0.5rem, 2vw, 1rem) clamp(1rem, 4vw, 2rem); 
+        background: rgba(255,255,255,0.1); 
+        backdrop-filter: blur(20px); 
+        border-bottom: 1px solid rgba(255,255,255,0.1); 
+        z-index: 1000; 
+        transition: all 0.3s ease;
+        min-height: 60px;
+    }
+    
+    .nav.scrolled { 
+        background: rgba(255,255,255,0.95); 
+        backdrop-filter: blur(20px); 
+        box-shadow: 0 4px 20px rgba(0,0,0,0.1); 
+    }
     
     .nav-right a, .dropbtn { color: #fff; }
     .nav.scrolled .nav-right a, .nav.scrolled .dropbtn { color: #333; }
     .nav.scrolled .search-icon svg { stroke: #333; }
     .search-icon svg { stroke: #fff; }
 
+    /* Responsive hero title */
     .hero-title {
-      position: absolute; top: 55%; left: 50%; transform: translate(-50%, -50%); font-size: 5rem; font-weight: 100; color: #fff; text-shadow: 0 4px 20px rgba(0,0,0,0.8); pointer-events: none; width: 100%; text-align: center; animation: titleSlideUp 1s ease-out 0.5s both;
+        position: absolute; 
+        top: 55%; 
+        left: 50%; 
+        transform: translate(-50%, -50%); 
+        font-size: clamp(2.5rem, 8vw, 5rem); 
+        font-weight: 100; 
+        color: #fff; 
+        text-shadow: 0 4px 20px rgba(0,0,0,0.8); 
+        pointer-events: none; 
+        width: 100%; 
+        text-align: center; 
+        animation: titleSlideUp 1s ease-out 0.5s both;
+        padding: 0 1rem;
     }
-    @keyframes titleSlideUp { from { opacity: 0; transform: translate(-50%, -30%) scale(0.9); } to { opacity: 1; transform: translate(-50%, -50%) scale(1); } }
     
-    .home-link { display: flex; align-items: center; gap: 0.5rem; font-weight: 500; }
-    .favicon-icon { width: 28px; height: 28px; border-radius: 50%; background: #fff; padding: 4px; }
-    .nav-right { display: flex; gap: 2rem; align-items: center; }
-    .nav-right a, .dropbtn { display: flex; align-items: center; font-weight: 400; font-size: 0.95rem; padding: 0.5rem 1rem; border-radius: 25px; position: relative; }
-    .nav-right a.active { background: rgba(255,255,255,0.3); font-weight: 600; }
-    .nav.scrolled .nav-right a.active { background: rgba(59, 130, 246, 0.1); }
-    .search-icon { background: rgba(255,255,255,0.2); border: none; padding: 0.75rem; border-radius: 50%; cursor: pointer; display: flex; align-items: center; }
-    .search-icon svg { width: 18px; height: 18px; stroke-width: 2; fill: none; }
+    @keyframes titleSlideUp { 
+        from { opacity: 0; transform: translate(-50%, -30%) scale(0.9); } 
+        to { opacity: 1; transform: translate(-50%, -50%) scale(1); } 
+    }
     
+    .home-link { 
+        display: flex; 
+        align-items: center; 
+        gap: 0.5rem; 
+        font-weight: 500; 
+        font-size: clamp(0.9rem, 2vw, 1rem);
+    }
+    
+    .favicon-icon { 
+        width: clamp(24px, 4vw, 28px); 
+        height: clamp(24px, 4vw, 28px); 
+        border-radius: 50%; 
+        background: #fff; 
+        padding: 4px; 
+        flex-shrink: 0;
+    }
+    
+    .nav-right { 
+        display: flex; 
+        gap: clamp(0.5rem, 2vw, 2rem); 
+        align-items: center; 
+    }
+    
+    .nav-right a, .dropbtn { 
+        display: flex; 
+        align-items: center; 
+        font-weight: 400; 
+        font-size: clamp(0.8rem, 1.5vw, 0.95rem); 
+        padding: 0.5rem clamp(0.5rem, 1.5vw, 1rem); 
+        border-radius: 25px; 
+        position: relative;
+        white-space: nowrap;
+    }
+    
+    .nav-right a.active { 
+        background: rgba(255,255,255,0.3); 
+        font-weight: 600; 
+    }
+    
+    .nav.scrolled .nav-right a.active { 
+        background: rgba(59, 130, 246, 0.1); 
+    }
+    
+    .search-icon { 
+        background: rgba(255,255,255,0.2); 
+        border: none; 
+        padding: clamp(0.5rem, 1.5vw, 0.75rem); 
+        border-radius: 50%; 
+        cursor: pointer; 
+        display: flex; 
+        align-items: center;
+        flex-shrink: 0;
+    }
+    
+    .search-icon svg { 
+        width: clamp(16px, 3vw, 18px); 
+        height: clamp(16px, 3vw, 18px); 
+        stroke-width: 2; 
+        fill: none; 
+    }
+    
+    /* Dropdown improvements */
     .dropdown { position: relative; }
-    .dropbtn { background: none; border: none; cursor: pointer; gap: 0.5rem; }
-    .dropdown-content { display: none; position: absolute; top: calc(100% + 10px); left: 0; background: rgba(255,255,255,0.95); backdrop-filter: blur(20px); min-width: 220px; border-radius: 15px; box-shadow: 0 10px 40px rgba(0,0,0,0.15); z-index: 1001; }
+    .dropbtn { 
+        background: none; 
+        border: none; 
+        cursor: pointer; 
+        gap: 0.5rem; 
+    }
+    
+    .dropdown-content { 
+        display: none; 
+        position: absolute; 
+        top: calc(100% + 10px); 
+        left: 0; 
+        background: rgba(255,255,255,0.95); 
+        backdrop-filter: blur(20px); 
+        min-width: clamp(180px, 30vw, 220px); 
+        border-radius: 15px; 
+        box-shadow: 0 10px 40px rgba(0,0,0,0.15); 
+        z-index: 1001;
+        max-height: 80vh;
+        overflow-y: auto;
+    }
+    
     .dropdown.open .dropdown-content { display: block; }
     .dropdown-content li { list-style: none; }
-    .dropdown-content li a { display: block; padding: 1rem 1.5rem; color: #333; }
-    .dropdown-content li a:hover { background: rgba(59, 130, 246, 0.1); color: #3b82f6; }
+    .dropdown-content li a { 
+        display: block; 
+        padding: 1rem 1.5rem; 
+        color: #333; 
+        font-size: clamp(0.8rem, 1.2vw, 0.9rem);
+    }
+    .dropdown-content li a:hover { 
+        background: rgba(59, 130, 246, 0.1); 
+        color: #3b82f6; 
+    }
 
-    .dropbtn svg { width: 12px; height: 12px; transition: transform 0.3s ease; stroke-width: 1.5; }
+    .dropbtn svg { 
+        width: 12px; 
+        height: 12px; 
+        transition: transform 0.3s ease; 
+        stroke-width: 1.5; 
+        flex-shrink: 0;
+    }
     .dropdown.open .dropbtn svg { transform: rotate(180deg); }
     
-    main { max-width: 1200px; margin: 4rem auto 2rem; padding: 0 2rem; }
-    .book-item { display: grid; grid-template-columns: 300px 1fr; gap: 3rem; margin-bottom: 4rem; background: #fff; padding: 2.5rem; border-radius: 25px; box-shadow: 0 10px 40px rgba(0,0,0,0.08); }
-    .book-item.reverse { grid-template-columns: 1fr 300px; }
-    .book-image { border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.15); }
-    .book-image img { width: 100%; height: auto; border-radius: 20px; }
-    .book-text { display: flex; flex-direction: column; justify-content: center; }
-    .book-text h3 { font-size: 2.2rem; margin-bottom: 1.5rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-    .book-text p { font-size: 1.1rem; line-height: 1.7; color: #555; text-align: justify; }
-    .book-text strong { color: #667eea; font-weight: 600; }
-    footer { text-align: center; padding: 2rem; font-size: 0.9rem; color: #777; }
+    /* Main content with improved responsiveness */
+    main { 
+        max-width: 1200px; 
+        margin: clamp(2rem, 6vw, 4rem) auto 2rem; 
+        padding: 0 clamp(1rem, 4vw, 2rem); 
+    }
+    
+    /* Much improved book items */
+    .book-item { 
+        display: grid; 
+        grid-template-columns: 1fr; 
+        gap: clamp(1.5rem, 4vw, 3rem); 
+        margin-bottom: clamp(2rem, 6vw, 4rem); 
+        background: #fff; 
+        padding: clamp(1.5rem, 4vw, 2.5rem); 
+        border-radius: clamp(15px, 3vw, 25px); 
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .book-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+    }
+    
+    /* Desktop layout */
+    @media (min-width: 768px) {
+        .book-item { 
+            grid-template-columns: 300px 1fr; 
+        }
+        .book-item.reverse { 
+            grid-template-columns: 1fr 300px; 
+        }
+    }
+    
+    /* Large desktop layout */
+    @media (min-width: 1024px) {
+        .book-item { 
+            grid-template-columns: clamp(280px, 25vw, 350px) 1fr; 
+        }
+        .book-item.reverse { 
+            grid-template-columns: 1fr clamp(280px, 25vw, 350px); 
+        }
+    }
+    
+    .book-image { 
+        border-radius: clamp(15px, 3vw, 20px); 
+        box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        overflow: hidden;
+        aspect-ratio: 3/4;
+        align-self: start;
+    }
+    
+    .book-image img { 
+        width: 100%; 
+        height: 100%; 
+        object-fit: cover;
+        border-radius: clamp(15px, 3vw, 20px);
+        transition: transform 0.3s ease;
+    }
+    
+    .book-item:hover .book-image img {
+        transform: scale(1.05);
+    }
+    
+    .book-text { 
+        display: flex; 
+        flex-direction: column; 
+        justify-content: center;
+        gap: clamp(1rem, 3vw, 1.5rem);
+    }
+    
+    .book-text h3 { 
+        font-size: clamp(1.5rem, 4vw, 2.2rem); 
+        margin-bottom: 0;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+        -webkit-background-clip: text; 
+        -webkit-text-fill-color: transparent; 
+        background-clip: text;
+        line-height: 1.2;
+    }
+    
+    .book-text p { 
+        font-size: clamp(1rem, 2.2vw, 1.1rem); 
+        line-height: 1.7; 
+        color: #555; 
+        text-align: justify; 
+        margin: 0;
+    }
+    
+    .book-text strong { 
+        color: #667eea; 
+        font-weight: 600; 
+    }
+    
+    /* Footer improvements */
+    footer { 
+        text-align: center; 
+        padding: clamp(1rem, 3vw, 2rem); 
+        font-size: clamp(0.8rem, 1.5vw, 0.9rem); 
+        color: #777; 
+        margin-top: clamp(2rem, 6vw, 4rem);
+    }
+    
+    /* Mobile menu improvements */
+    @media (max-width: 768px) {
+        .nav-right {
+            gap: 0.5rem;
+        }
+        
+        .nav-right a span,
+        .dropbtn span {
+            display: none;
+        }
+        
+        .nav-right a::after {
+            content: attr(data-label);
+            font-size: 0.7rem;
+        }
+        
+        .dropdown-content {
+            right: 0;
+            left: auto;
+            min-width: 200px;
+        }
+        
+        .hero-title {
+            top: 50%;
+        }
+        
+        .book-text {
+            text-align: left;
+        }
+        
+        .book-text p {
+            text-align: left;
+        }
+    }
+    
+    /* High DPI and zoom improvements */
+    @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+        .book-image {
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+        }
+    }
+    
+    /* Accessibility improvements */
+    @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+        }
+    }
+    
+    /* Focus states for accessibility */
+    .nav-right a:focus,
+    .dropbtn:focus,
+    .search-icon:focus {
+        outline: 2px solid #667eea;
+        outline-offset: 2px;
+    }
+    
+    /* Print styles */
+    @media print {
+        .nav, .search-icon {
+            display: none;
+        }
+        
+        header {
+            height: auto;
+            min-height: 200px;
+        }
+        
+        .book-item {
+            break-inside: avoid;
+            margin-bottom: 2rem;
+        }
+    }
 </style>
 </head>
 <body>
@@ -79,24 +402,52 @@
 <header>
     <nav class="nav" id="navbar">
         <a class="home-link" href="index.html">
-            <img alt="Favicon" class="favicon-icon" src="images/favicon.png"/>
+            <img alt="Favicon" class="favicon-icon" src="https://via.placeholder.com/28x28/667eea/ffffff?text=T"/>
             <span>Home</span>
         </a>
         <div class="nav-right">
             <div class="dropdown">
-                <button class="dropbtn" type="button">About<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 8" aria-hidden="true"><line x1="1" y1="2" x2="4" y2="5" stroke="currentColor"/><line x1="7" y1="2" x2="4" y2="5" stroke="currentColor"/></svg></button>
+                <button class="dropbtn" type="button" aria-expanded="false" aria-haspopup="true">
+                    <span>About</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 8" aria-hidden="true">
+                        <line x1="1" y1="2" x2="4" y2="5" stroke="currentColor"/>
+                        <line x1="7" y1="2" x2="4" y2="5" stroke="currentColor"/>
+                    </svg>
+                </button>
                 <ul class="dropdown-content">
-                    <li><a href="about.html#introduction">Introduction</a></li><li><a href="about.html#academic">Academic Background</a></li><li><a href="about.html#professional">Professional Interests &amp; Expertise</a></li><li><a href="about.html#hobbies">My Hobbies &amp; Interests</a></li><li><a href="about.html#skills">Key Skills &amp; Strengths</a></li>
+                    <li><a href="about.html#introduction">Introduction</a></li>
+                    <li><a href="about.html#academic">Academic Background</a></li>
+                    <li><a href="about.html#professional">Professional Interests</a></li>
+                    <li><a href="about.html#hobbies">Hobbies & Interests</a></li>
+                    <li><a href="about.html#skills">Key Skills</a></li>
                 </ul>
             </div>
-            <a class="active" href="books.html">Books</a>
+            <a class="active" href="books.html" data-label="Books">Books</a>
             <div class="dropdown">
-                <button class="dropbtn" type="button">Travel Blog<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 8" aria-hidden="true"><line x1="1" y1="2" x2="4" y2="5" stroke="currentColor"/><line x1="7" y1="2" x2="4" y2="5" stroke="currentColor"/></svg></button>
+                <button class="dropbtn" type="button" aria-expanded="false" aria-haspopup="true">
+                    <span>Travel</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 8" aria-hidden="true">
+                        <line x1="1" y1="2" x2="4" y2="5" stroke="currentColor"/>
+                        <line x1="7" y1="2" x2="4" y2="5" stroke="currentColor"/>
+                    </svg>
+                </button>
                 <ul class="dropdown-content">
-                    <li><a href="uzbekistan.html">Uzbekistan</a></li><li><a href="kazakhstan.html">Kazakhstan</a></li><li><a href="kyrgyzstan.html">Kyrgyzstan</a></li><li><a href="ecuador.html">Ecuador</a></li><li><a href="china-shanghai.html">China Shanghai</a></li><li><a href="shanghai-food.html">Shanghai Food</a></li><li><a href="new-zealand.html">New Zealand</a></li><li><a href="romania.html">Romania</a></li>
+                    <li><a href="uzbekistan.html">Uzbekistan</a></li>
+                    <li><a href="kazakhstan.html">Kazakhstan</a></li>
+                    <li><a href="kyrgyzstan.html">Kyrgyzstan</a></li>
+                    <li><a href="ecuador.html">Ecuador</a></li>
+                    <li><a href="china-shanghai.html">Shanghai</a></li>
+                    <li><a href="shanghai-food.html">Shanghai Food</a></li>
+                    <li><a href="new-zealand.html">New Zealand</a></li>
+                    <li><a href="romania.html">Romania</a></li>
                 </ul>
             </div>
-            <button class="search-icon" aria-label="Search"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" /></svg></button>
+            <button class="search-icon" aria-label="Search">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+                    <circle cx="11" cy="11" r="8" />
+                    <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                </svg>
+            </button>
         </div>
     </nav>
     <div class="hero-title">Books</div>
@@ -105,7 +456,7 @@
 <main>
     <section class="book-item">
         <div class="book-image">
-            <img alt="The Lord of the Rings Book Set Cover" src="images/BookCover1.png"/>
+            <img alt="The Lord of the Rings Book Set Cover" src="https://via.placeholder.com/300x400/8B5CF6/ffffff?text=LOTR"/>
         </div>
         <div class="book-text">
             <h3>The Lord of the Rings</h3>
@@ -123,13 +474,13 @@
             </p>
         </div>
         <div class="book-image">
-            <img alt="Sapiens: A Brief History of Humankind Cover" src="images/BookCover2.png"/>
+            <img alt="Sapiens: A Brief History of Humankind Cover" src="https://via.placeholder.com/300x400/F59E0B/ffffff?text=Sapiens"/>
         </div>
     </section>
     
     <section class="book-item">
         <div class="book-image">
-            <img alt="Atomic Habits Book Cover" src="images/BookCover3.png"/>
+            <img alt="Atomic Habits Book Cover" src="https://via.placeholder.com/300x400/EF4444/ffffff?text=Atomic%20Habits"/>
         </div>
         <div class="book-text">
             <h3>Atomic Habits</h3>
@@ -140,28 +491,100 @@
     </section>
 </main>
 
-<footer class="social-footer" style="padding: 2rem 0; margin-top: 4rem;">
-    <p class="footer-text">© 2025 Tomas Partman</p>
+<footer>
+    <p>© 2025 Tomas Partman</p>
 </footer>
 
 <script>
+    // Improved dropdown functionality
     document.addEventListener('click', function(e) {
-        document.querySelectorAll('.dropdown').forEach(function(dropdown) {
-            if (e.target.closest('.dropbtn') && dropdown.contains(e.target)) {
+        const dropdowns = document.querySelectorAll('.dropdown');
+        
+        dropdowns.forEach(function(dropdown) {
+            const dropbtn = dropdown.querySelector('.dropbtn');
+            const isClickInsideDropdown = dropdown.contains(e.target);
+            const isClickOnButton = dropbtn && dropbtn.contains(e.target);
+            
+            if (isClickOnButton) {
+                e.preventDefault();
+                const isOpen = dropdown.classList.contains('open');
+                
+                // Close all other dropdowns
+                dropdowns.forEach(d => {
+                    if (d !== dropdown) {
+                        d.classList.remove('open');
+                        const btn = d.querySelector('.dropbtn');
+                        if (btn) btn.setAttribute('aria-expanded', 'false');
+                    }
+                });
+                
+                // Toggle current dropdown
                 dropdown.classList.toggle('open');
-            } else if (!dropdown.contains(e.target)) {
+                dropbtn.setAttribute('aria-expanded', !isOpen);
+            } else if (!isClickInsideDropdown) {
                 dropdown.classList.remove('open');
+                if (dropbtn) dropbtn.setAttribute('aria-expanded', 'false');
             }
         });
     });
-    window.addEventListener('scroll', () => {
-        document.getElementById('navbar').classList.toggle('scrolled', window.pageYOffset > 100);
+    
+    // Improved scroll behavior
+    let ticking = false;
+    
+    function updateNavbar() {
+        const navbar = document.getElementById('navbar');
+        const shouldBeScrolled = window.pageYOffset > 100;
+        
+        if (shouldBeScrolled !== navbar.classList.contains('scrolled')) {
+            navbar.classList.toggle('scrolled', shouldBeScrolled);
+        }
+        ticking = false;
+    }
+    
+    window.addEventListener('scroll', function() {
+        if (!ticking) {
+            requestAnimationFrame(updateNavbar);
+            ticking = true;
+        }
+    });
+    
+    // Keyboard navigation for dropdowns
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            document.querySelectorAll('.dropdown.open').forEach(dropdown => {
+                dropdown.classList.remove('open');
+                const btn = dropdown.querySelector('.dropbtn');
+                if (btn) {
+                    btn.setAttribute('aria-expanded', 'false');
+                    btn.focus();
+                }
+            });
+        }
+    });
+    
+    // Intersection Observer for animations
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, observerOptions);
+    
+    // Observe book items for scroll animations
+    document.querySelectorAll('.book-item').forEach((item, index) => {
+        item.style.opacity = '0';
+        item.style.transform = 'translateY(30px)';
+        item.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
+        observer.observe(item);
     });
 </script>
 
-</body>
-</html>
-</html>
-</script>
 </body>
 </html>

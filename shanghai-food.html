@@ -145,10 +145,39 @@
         font-weight: 600; 
     }
     
-    .nav.scrolled .nav-right a.active, .nav.scrolled .dropdown.active .dropbtn { 
-        background: rgba(59, 130, 246, 0.1); 
+       .nav.scrolled .nav-right a.active, .nav.scrolled .dropdown.active .dropbtn {
+        background: rgba(59, 130, 246, 0.1);
     }
     
+    /* Search button */
+    .search-icon {
+        background: rgba(255,255,255,0.2);
+        border: none;
+        padding: 0.75rem;
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        transition: all 0.3s ease;
+    }
+
+    .search-icon:hover {
+        background: rgba(255,255,255,0.3);
+        transform: rotate(90deg) scale(1.1);
+    }
+
+    .search-icon svg {
+        width: 18px;
+        height: 18px;
+        stroke: #fff;
+        stroke-width: 2;
+        fill: none;
+    }
+
+    .nav.scrolled .search-icon svg {
+        stroke: #333;
+    }
+
     /* Dropdown improvements */
     .dropdown { position: relative; }
     .dropbtn { 
@@ -494,7 +523,11 @@
             </svg>
           </button>
           <ul class="dropdown-content">
-            <li><a href="#">...</a></li>
+                       <li><a href="about.html#introduction">Introduction</a></li>
+            <li><a href="about.html#academic">Academic Background</a></li>
+            <li><a href="about.html#professional">Professional Interests &amp; Expertise</a></li>
+            <li><a href="about.html#hobbies">My Hobbies &amp; Interests</a></li>
+            <li><a href="about.html#skills">Key Skills &amp; Strengths</a></li>
           </ul>
         </div>
         <a href="books.html">Books</a>
@@ -508,7 +541,13 @@
           </button>
           <ul class="dropdown-content">
             <li><a href="uzbekistan.html">Uzbekistan</a></li>
+            <li><a href="kazakhstan.html">Kazakhstan</a></li>
+            <li><a href="kyrgyzstan.html">Kyrgyzstan</a></li>
+            <li><a href="ecuador.html">Ecuador</a></li>
+            <li><a href="china-shanghai.html">China Shanghai</a></li>
             <li><a href="shanghai-food.html" class="active">Shanghai Food</a></li>
+            <li><a href="new-zealand.html">New Zealand</a></li>
+            <li><a href="romania.html">Romania</a></li>
           </ul>
         </div>
       </div>
@@ -668,7 +707,41 @@
       </ol>
     </div>
   </div>
-     <footer>
+  <footer>
     <p>© 2025 Tomas Partman</p>
-</footer>                   
+  </footer>                   
 </section>
+
+<script>
+  // Enhanced dropdown functionality
+  document.addEventListener('click', function(e) {
+    document.querySelectorAll('.dropdown').forEach(function(dropdown) {
+      if (e.target.closest('.dropbtn') && dropdown.contains(e.target)) {
+        dropdown.classList.toggle('open');
+      } else if (!dropdown.contains(e.target)) {
+        dropdown.classList.remove('open');
+      }
+    });
+  });
+
+  // Navbar scroll effect
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', function() {
+    if (window.pageYOffset > 100) {
+      navbar.classList.add('scrolled');
+    } else {
+      navbar.classList.remove('scrolled');
+    }
+  });
+
+  // Enhanced search button animation
+  const searchBtn = document.querySelector('.search-icon');
+  if (searchBtn) {
+    searchBtn.addEventListener('click', function() {
+      alert('Search functionality would be implemented here!');
+    });
+  }
+</script>
+
+</body>
+</html>

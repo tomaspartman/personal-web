@@ -2,122 +2,289 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>Shanghai Food Guide — Tomas Partman</title>
-<meta content="A guide to the best food in Shanghai, by Tomas Partman." name="description"/>
-<meta property="og:title" content="Shanghai Food Guide"/>
-<link href="images/favicon.png" rel="icon" type="image/png"/>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="books_style.css"> <style>
-    /* Pre jednoduchosť ponechávam štýly tu, ale ideálne by mali byť v jednom externom .css súbore */
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Roboto', sans-serif; color: #333; line-height: 1.6; overflow-x: hidden; background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); }
-    a { text-decoration: none; color: inherit; }
-    header { position: relative; background: linear-gradient(135deg, rgba(102,126,234,0.9), rgba(118,75,162,0.9)), url('images/header-bg.jpg') center/cover no-repeat; height: 50vh; display: flex; align-items: center; justify-content: center; }
-    .hero-title { font-size: 4rem; font-weight: 100; color: #fff; text-shadow: 0 4px 20px rgba(0,0,0,0.8); text-align: center; }
-    .nav { position: fixed; top: 0; left: 0; width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; background: rgba(255,255,255,0.1); backdrop-filter: blur(20px); z-index: 1000; transition: all 0.3s ease; }
-    .nav.scrolled { background: rgba(255,255,255,0.95); box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
-    .home-link { display: flex; align-items: center; gap: 0.5rem; font-weight: 500; }
-    .favicon-icon { width: 28px; height: 28px; border-radius: 50%; background: #fff; padding: 4px; }
-    .nav-right { display: flex; gap: 2rem; align-items: center; }
-    .nav-right a, .dropbtn { display: flex; align-items: center; color: #fff; font-weight: 400; padding: 0.5rem 1rem; border-radius: 25px; transition: all 0.3s ease; }
-    .nav.scrolled .nav-right a, .nav.scrolled .dropbtn { color: #333; }
-    /* Zvýraznenie aktívnej položky menu */
-    .nav-right a.active, .dropdown.active .dropbtn { background: rgba(255,255,255,0.3); font-weight: 600; }
-    .nav.scrolled .nav-right a.active, .nav.scrolled .dropdown.active .dropbtn { color: #333; background: rgba(59, 130, 246, 0.1); }
-    .dropdown { position: relative; }
-    .dropbtn { background: none; border: none; cursor: pointer; gap: 0.5rem; }
-    .dropdown-content { display: none; position: absolute; top: calc(100% + 10px); left: 0; background: rgba(255,255,255,0.95); backdrop-filter: blur(20px); min-width: 220px; border-radius: 15px; box-shadow: 0 10px 40px rgba(0,0,0,0.15); z-index: 1001; }
-    .dropdown.open .dropdown-content { display: block; }
-    .dropdown-content li { list-style: none; }
-    .dropdown-content li a { display: block; padding: 1rem 1.5rem; color: #333; }
-    .dropdown-content li a:hover { background: rgba(59, 130, 246, 0.1); color: #3b82f6; }
-    main { max-width: 900px; margin: 4rem auto; padding: 2rem; background: #fff; border-radius: 15px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); }
-    main h2 { font-size: 2.5rem; margin-bottom: 1.5rem; }
-      main p { font-size: 1.1rem; line-height: 1.8; margin-bottom: 1.5rem; text-align: justify; }
-    main img { max-width: 100%; border-radius: 10px; margin: 2rem 0; }
-      .map-container {
-        margin: 2rem 0;
-        border-radius: 15px;
-        overflow: hidden;
-        box-shadow: 0 8px 30px rgba(0,0,0,0.1);
-        text-align: center;
-    }
-    .map-container img {
-        max-width: 100%;
-        display: block;
-        margin: 0 auto;
-    }
-    footer { text-align: center; padding: 2rem; color: #777; }
+<meta name="description" content="A guide to the best food in Shanghai, by Tomas Partman."/>
+<link rel="icon" type="image/png" href="images/favicon.png"/>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="books_style.css">
+<style>
+  /* --- General Reset & Base --- */
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+    line-height: 1.7;
+    overflow-x: hidden;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  }
+  a { text-decoration: none; color: inherit; }
+
+  /* --- Navigation Bar --- */
+  header {
+    position: relative;
+    background: linear-gradient(135deg, rgba(102,126,234,0.9), rgba(118,75,162,0.9)), url('images/header-bg.jpg') center/cover no-repeat;
+    height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(20px);
+    z-index: 1000;
+    transition: all 0.3s ease;
+  }
+  .nav.scrolled { background: rgba(255,255,255,0.95); box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+  .home-link { display: flex; align-items: center; gap: 0.5rem; font-weight: 500; }
+  .favicon-icon { width: 28px; height: 28px; border-radius: 50%; background: #fff; padding: 4px; }
+  .nav-right { display: flex; gap: 2rem; align-items: center; }
+  .nav-right a, .dropbtn { display: flex; align-items: center; color: #fff; font-weight: 400; padding: 0.5rem 1rem; border-radius: 25px; transition: all 0.3s ease; }
+  .nav.scrolled .nav-right a, .nav.scrolled .dropbtn { color: #333; }
+  .nav-right a.active, .dropdown.active .dropbtn { background: rgba(255,255,255,0.3); font-weight: 600; }
+  .nav.scrolled .nav-right a.active, .nav.scrolled .dropdown.active .dropbtn { color: #333; background: rgba(59,130,246,0.1); }
+  .dropdown { position: relative; }
+  .dropbtn { background: none; border: none; cursor: pointer; gap: 0.5rem; }
+  .dropdown-content { display: none; position: absolute; top: calc(100% + 10px); left: 0; background: rgba(255,255,255,0.95); backdrop-filter: blur(20px); min-width: 220px; border-radius: 15px; box-shadow: 0 10px 40px rgba(0,0,0,0.15); z-index: 1001; }
+  .dropdown.open .dropdown-content { display: block; }
+  .dropdown-content li { list-style: none; }
+  .dropdown-content li a { display: block; padding: 1rem 1.5rem; color: #333; }
+  .dropdown-content li a:hover { background: rgba(59,130,246,0.1); color: #3b82f6; }
+
+  /* --- Main Content --- */
+  main {
+    max-width: 900px;
+    margin: 4rem auto;
+    padding: 2rem;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+  }
+  main h2 { font-size: 2.5rem; margin-bottom: 1.5rem; text-align: center; }
+  main h3 { font-size: 1.75rem; margin: 2.5rem 0 1rem; }
+  main h4 { font-size: 1.25rem; margin: 1.5rem 0 1rem; color: #3b82f6; }
+  main p { font-size: 1.05rem; text-align: justify; margin-bottom: 1.25rem; }
+  main ul, main ol { margin: 1rem 0 1.5rem 1.5rem; }
+  main li { margin-bottom: 0.5rem; }
+  main img { max-width: 100%; border-radius: 10px; margin: 2rem 0; }
+  figure { margin: 2rem 0; }
+  figcaption { font-size: 0.9rem; color: #777; margin-top: 0.5rem; text-align: center; }
+
+  /* --- Utilities --- */
+  .map-container {
+    margin: 2rem 0;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+    text-align: center;
+  }
+  .map-container img { width: 100%; display: block; }
+  .highlight { font-weight: 600; }
 </style>
 </head>
 <body>
-
 <header>
-    <nav class="nav" id="navbar">
-        <a class="home-link" href="index.html">
-            <img alt="Favicon" class="favicon-icon" src="images/favicon.png"/>
-            <span>Home</span>
-        </a>
-        <div class="nav-right">
-            <div class="dropdown">
-                <button class="dropbtn" type="button">About <svg viewbox="0 0 8 8"><line stroke="currentColor" stroke-width="1" x1="1" x2="4" y1="2" y2="5"></line><line stroke="currentColor" stroke-width="1" x1="7" x2="4" y1="2" y2="5"></line></svg></button>
-                <ul class="dropdown-content"><li><a href="#">...</a></li></ul>
-            </div>
-            <a href="books.html">Books</a>
-            <div class="dropdown active">
-                <button class="dropbtn" type="button">Travel Blog <svg viewbox="0 0 8 8"><line stroke="currentColor" stroke-width="1" x1="1" x2="4" y1="2" y2="5"></line><line stroke="currentColor" stroke-width="1" x1="7" x2="4" y1="2" y2="5"></line></svg></button>
-                <ul class="dropdown-content">
-                    <li><a href="uzbekistan.html">Uzbekistan</a></li>
-                    <li><a href="shanghai-food.html">Shanghai Food</a></li>
-                    </ul>
-            </div>
-        </div>
-    </nav>
-    <div class="hero-title">Shanghai Food</div>
+  <nav class="nav" id="navbar">
+    <a href="index.html" class="home-link">
+      <img src="images/favicon.png" alt="Favicon" class="favicon-icon"/>
+      <span>Home</span>
+    </a>
+    <div class="nav-right">
+      <div class="dropdown">
+        <button type="button" class="dropbtn">About <svg viewBox="0 0 8 8"><line x1="1" y1="2" x2="4" y2="5" stroke="currentColor" stroke-width="1"></line><line x1="7" y1="2" x2="4" y2="5" stroke="currentColor" stroke-width="1"></line></svg></button>
+        <ul class="dropdown-content">
+          <li><a href="#">...</a></li>
+        </ul>
+      </div>
+      <a href="books.html">Books</a>
+      <div class="dropdown active">
+        <button type="button" class="dropbtn">Travel Blog <svg viewBox="0 0 8 8"><line x1="1" y1="2" x2="4" y2="5" stroke="currentColor" stroke-width="1"></line><line x1="7" y1="2" x2="4" y2="5" stroke="currentColor" stroke-width="1"></line></svg></button>
+        <ul class="dropdown-content">
+          <li><a href="uzbekistan.html">Uzbekistan</a></li>
+          <li><a href="shanghai-food.html" class="active">Shanghai Food</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <h1 class="hero-title">Shanghai Food</h1>
 </header>
 
 <main>
-    <h2 style="text-align:center;">What to eat at Shanghai’s food street - Huanghe road</h2>
+  <h2>What to eat on Shanghai’s Huanghe Road food street</h2>
+  <p>
+    On my way back from New Zealand, I had a layover in Shanghai and decided to make the most of it. Starving after a long flight, I hit the streets of this massive city, ready to hunt down some authentic local food. With so much to see and taste, it was the perfect excuse to dive into the chaos of Shanghai and fuel up for the adventure.
+  </p>
+  <p>
+    It was a real letdown to find out that a lot of the famous food streets in Shanghai had been shut down because the government started requiring food vendors to have official certificates. Sure, it’s probably a good move for food safety and hygiene, but for tourists like me hunting for a quick and authentic bite, it was a pain. To make things even worse, Google didn’t work at all in China, and GPS maps were completely useless. Even in apps where maps supposedly worked, the location was totally off, showing me somewhere I wasn’t even close to.
+  </p>
+  <p>
+    Luckily, as I wandered around early in the quiet morning with my backpack, I stumbled upon a street packed with food right next to People’s Square—a small gem called <span class="highlight">Huanghe Road</span>.
+  </p>
+  <p>
+    Huanghe Road might not be as lively as food streets in some other countries, but it’s a solid spot to sample some of Shanghai’s must-try dishes. It’s far from a hidden gem, though, as it’s home to two of the city’s most famous eats: <em>Xiao Long Bao</em> from Jia Jia Tang Bao and <em>Sheng Jian Bao</em> from Yang’s Dumpling.
+  </p>
+  <div class="map-container">
+    <img src="images/HuangheRD.png" alt="Map of Huanghe Road, Shanghai"/>
+  </div>
+
+  <!-- =================== JIA JIA TANG BAO =================== -->
+  <section id="jia-jia-tang-bao">
+    <h3>Jia Jia Tang Bao</h3>
     <p>
-        On my way back from New Zealand, I had a layover in Shanghai and decided to make the most of it. Starving after a long flight, I hit the streets of this massive city, ready to hunt down some authentic local food. With so much to see and taste, it was the perfect excuse to dive into the chaos of Shanghai and fuel up for the adventure.
+      Jia Jia Tang Bao is hands down a must‑visit spot in Shanghai, and the entire reason I found myself on this street in the first place. Their <strong>Xiao Long Bao</strong>—steamed soup dumplings—are nothing short of perfection. Each bite bursts with flavor, making it an experience no foodie should miss.
+    </p>
+
+    <h4>How to Order at Jia Jia Tang Bao</h4>
+    <p>
+      First, join the line outside the shop. If you arrive after 9&nbsp;a.m., it’ll be easy to spot along Huanghe Road since there’s usually a long queue by then. However, if you come early, you might walk right past it—Jia Jia Tang Bao is small and unassuming, blending in with the surrounding shops. I got there around 8&nbsp;a.m. and almost missed it entirely.
     </p>
     <p>
-        It was a real letdown to find out that a lot of the famous food streets in Shanghai had been shut down because the government started requiring food vendors to have official certificates. Sure, it’s probably a good move for food safety and hygiene, but for tourists like me hunting for a quick and authentic bite, it was a pain. To make things even worse, Google didn’t work at all in China, and GPS maps were completely useless. Even in apps where maps supposedly worked, the location was totally off, showing me somewhere I wasn’t even close to.
+      To find it, look for a simple white storefront with red Chinese lettering. Beside the door, you’ll see the restaurant’s menu, also written in red. Keep an eye out, and you’ll find it!
     </p>
     <p>
-        Luckily, as I wandered around early in the quiet morning with my backpack, I stumbled upon a street packed with food right next to People’s Square—a small gem called Huanghe Road.
+      But here’s the catch—the menu isn’t in English. So, if you’re like me and don’t speak Mandarin or read Chinese, don’t worry! Here’s a translated version of the menu to help you navigate your order.
+    </p>
+
+    <h4>English Menu Translation</h4>
+    <ul>
+      <li>純鮮肉湯包 – <em>Pure Pork Soup Dumpling</em> — 15&nbsp;Yuan</li>
+      <li>虾仁鮮肉湯包 – <em>Shrimp &amp; Pork Soup Dumpling</em> — 20&nbsp;Yuan</li>
+      <li>鸡丁鮮肉湯包 – <em>Chicken &amp; Pork Soup Dumpling</em> — 20&nbsp;Yuan</li>
+      <li>蛋黄鮮肉湯包 – <em>Pork Egg Yolk Soup Dumpling</em> — 23&nbsp;Yuan</li>
+      <li>蟹粉鮮肉湯包 – <em>Crab Meat Soup Dumpling</em> — 30&nbsp;Yuan</li>
+      <li>纯蚕仁汤 – <em>Pure Shrimp Soup</em> — 25&nbsp;Yuan</li>
+      <li>纯蟹粉汤 – <em>Pure Crab Soup</em> — 99&nbsp;Yuan</li>
+      <li>鸡鸭血汤 – <em>Duck Blood Soup</em> — 5&nbsp;Yuan</li>
+      <li>紫菜蛋花汤 – <em>Seaweed Soup</em> — 5&nbsp;Yuan</li>
+      <li>生姜丝 – <em>Ginger</em> — 2&nbsp;Yuan</li>
+    </ul>
+
+    <figure>
+      <img src="images/jiajia-storefront.jpg" alt="Storefront of Jia Jia Tang Bao" />
+      <figcaption>Storefront of Jia Jia Tang Bao</figcaption>
+    </figure>
+
+    <p>
+      On the top row of the menu, you’ll find the different varieties of <em>Xiao Long Bao</em> (XLB), while the bottom row lists soups, sauces, and drinks.
     </p>
     <p>
-        Huanghe Road might not be as lively as food streets in some other countries, but it’s a solid spot to sample some of Shanghai’s must-try dishes. It’s far from a hidden gem, though, as it’s home to two of the city’s most famous eats: Xiao Long Bao from Jia Jia Tang Bao and Sheng Jian Bao from Yang’s Dumpling.
+      If you’re a foodie like me, don’t miss the <span class="highlight">Pork Egg Yolk Dumpling (蛋黄鮮肉湯包)</span>—it’s absolutely worth it! Just thinking about it makes my mouth water. For an even better experience, add a side of fresh ginger (生姜丝) for just 2&nbsp;yuan. The ginger perfectly enhances the flavor of the XLBs, taking them to the next level.
     </p>
     <p>
-        Alright, let’s dive in—here’s what I discovered on Huanghe Road:
+      Once you’ve placed your order, grab a seat—or if it’s busy, the staff might help you find one. Be prepared to share your table with strangers, as communal dining is pretty common in Asia. Since everything is made fresh to order, your dumplings will be brought to your table in about 10–15&nbsp;minutes. Don’t worry—they’ll track you down!
     </p>
-    
-    <div class="map-container">
-         <img src="images/HuangheRD.png" alt="Huanghe Road">
+
+    <figure>
+      <img src="images/jiajia-dumplings.jpg" alt="Bowl of steaming soup dumplings" />
+      <figcaption>Jia Jia Tang Bao – freshly steamed Xiao Long Bao</figcaption>
+    </figure>
+
+    <h4>My Thoughts on Jia Jia Tang Bao</h4>
+    <p>
+      Jia Jia Tang Bao is an absolute must‑visit for any food lover in Shanghai. Their XLB ranks among the best I’ve ever had. What really sets them apart is the broth—it’s not overly oily like many other XLBs I’ve tried. Instead, it’s light and flavorful, making it easy to enjoy without feeling overwhelmed. If you’re in Shanghai and want to experience authentic local flavors, this is the place to start!
+    </p>
+  </section>
+
+  <!-- =================== YANG'S DUMPLINGS =================== -->
+  <section id="yangs-dumplings">
+    <h3>Yang’s Dumplings</h3>
+    <p>
+      Yang’s Dumpling is a must‑visit spot in Shanghai, famous for its <em>Sheng Jian Bao</em>, a lesser‑known but equally spectacular version of the city’s iconic soup dumpling. Similar in concept to Xiao Long Bao, Sheng Jian Bao features a dumpling filled with flavorful soup and tender pork, but with a twist—the skin is thicker and pan‑fried to a golden perfection instead of steamed.
+    </p>
+    <p>
+      With numerous outlets scattered across Shanghai, Yang’s Dumpling is easy to find. For those exploring the Huanghe Road area, there’s a convenient bonus—Yang’s outlet located just across the street from Jia Jia Tang Bao, making it the perfect one‑two punch for dumpling enthusiasts!
+    </p>
+
+    <h4>How to Order at Yang’s Dumpling</h4>
+    <ol>
+      <li><strong>Place Your Order at the Cashier</strong><br/>
+        Head to the counter and choose your meal. If you order non‑dumpling items like noodles or soup, you’ll receive a pink plastic plaque with a number on it and be directed to sit down. Your food will be delivered to your table.
+      </li>
+      <li><strong>Ordering Bao Items</strong><br/>
+        If you’re ordering Sheng Jian Bao or other dumplings, you’ll need to take your receipt and line up at the designated window outside. At the window, you can either have your dumplings served on a plate for dining in or request “ta pao” (takeaway), and they’ll pack them in a plastic container for you.
+      </li>
+    </ol>
+
+    <figure>
+      <img src="images/yangs-menu.jpg" alt="Yang's Dumpling menu board" />
+      <figcaption>Yang’s Dumpling – English‑friendly menu board</figcaption>
+    </figure>
+
+    <p class="highlight">Pro Tip:</p>
+    <p>
+      If you’re looking to branch out beyond dumplings, try the <em>Pork Wonton Soup</em> or the <em>Hot and Sour Soup</em>—both are fantastic options that pair perfectly with the signature Sheng Jian Bao.
+    </p>
+  </section>
+
+  <!-- =================== LISTS: RESTAURANTS & FOODS =================== -->
+  <section id="shanghai-cheap-eats">
+    <h3>More Affordable Eats in Shanghai</h3>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit,minmax(260px,1fr)); gap: 2rem;">
+      <div>
+        <h4>12 Affordable Restaurants in Shanghai</h4>
+        <ol>
+          <li>Jia Jia Tang Bao – Famous for their XLB. Budget‑friendly.</li>
+          <li>Yang’s Dumplings – Known for Sheng Jian Bao.</li>
+          <li>Chen’s Noodles (陈荣面馆) – Hearty bowls of Shanghai‑style noodles.</li>
+          <li>Da Cong You Bing – Crispy scallion pancakes—perfect snack.</li>
+          <li>Xiao Yang BBQ (小杨生煎烧烤) – Flavorful street‑style BBQ skewers.</li>
+          <li>Xian De Lai (鲜得来排骨年糕) – Classic <em>Pork Chop with Rice Cake</em>.</li>
+          <li>Cang Lang Ting Dumplings (沧浪亭汤包馆) – Variety of fillings & flavorful soups.</li>
+          <li>Hai Di Lao Express – Quick, budget hotpot fix.</li>
+          <li>A Niang Mian Guan (阿娘面馆) – Yellow croaker noodles specialty.</li>
+          <li>Qibao Old Street Snack Vendors – Stinky tofu, sweet rice cakes & more.</li>
+          <li>Dong Tai Xiang Snacks (东泰祥小吃) – Fried buns & sweet sesame pastries.</li>
+          <li>Wu Fang Zhai (五芳斋) – Sticky rice dumplings & other pocket‑friendly bites.</li>
+        </ol>
+      </div>
+      <div>
+        <h4>12 Iconic Foods You Must Taste in Shanghai</h4>
+        <ol>
+          <li><em>Xiao Long Bao</em> (Soup Dumplings)</li>
+          <li><em>Sheng Jian Bao</em> (Pan‑Fried Soup Dumplings)</li>
+          <li>Scallion Pancakes (<em>Cong You Bing</em>)</li>
+          <li>Red‑Braised Pork (<em>Hong Shao Rou</em>)</li>
+          <li>Crab Shell Pastry (<em>Xie Ke Huang</em>)</li>
+          <li>Shanghai Fried Noodles (<em>Chao Mian</em>)</li>
+          <li>Sticky Rice Dumplings (<em>Cifan Tuan</em>)</li>
+          <li>Stinky Tofu (<em>Chou Dou Fu</em>)</li>
+          <li>Hairy Crab (<em>Da Zha Xie</em>)</li>
+          <li>Sweet Fermented Rice Balls (<em>Jiu Niang Tang Yuan</em>)</li>
+          <li>Yellow Croaker Noodles (<em>Huang Yu Mian</em>)</li>
+          <li>Eight Treasures Rice (<em>Ba Bao Fan</em>)</li>
+        </ol>
+      </div>
     </div>
+  </section>
 </main>
 
-<footer class="social-footer">
-    <p class="footer-text">© 2025 Tomas Partman</p>
+<footer style="text-align:center; padding:2rem; color:#777;">
+  <p>© 2025 Tomas Partman</p>
 </footer>
 
 <script>
-    // Navigation and scroll effects
-    document.addEventListener('click', function(e) {
-        document.querySelectorAll('.dropdown').forEach(function(dropdown) {
-            if (e.target.closest('.dropbtn') && dropdown.contains(e.target)) {
-                dropdown.classList.toggle('open');
-            } else if (!dropdown.contains(e.target)) {
-                dropdown.classList.remove('open');
-            }
-        });
+  // Navigation and dropdown effects
+  document.addEventListener('click', function(e) {
+    document.querySelectorAll('.dropdown').forEach(function(dropdown) {
+      if (e.target.closest('.dropbtn') && dropdown.contains(e.target)) {
+        dropdown.classList.toggle('open');
+      } else if (!dropdown.contains(e.target)) {
+        dropdown.classList.remove('open');
+      }
     });
-    window.addEventListener('scroll', () => {
-        document.getElementById('navbar').classList.toggle('scrolled', window.pageYOffset > 100);
-    });
+  });
+  // Scroll effect for nav background
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.pageYOffset > 100);
+  });
 </script>
 </body>
 </html>

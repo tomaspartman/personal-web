@@ -352,6 +352,166 @@
         font-weight: 600; 
     }
     
+    /* Loading Spinner Styles */
+    .loading-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: clamp(3rem, 8vw, 6rem) clamp(1rem, 4vw, 2rem);
+        margin: clamp(2rem, 6vw, 4rem) 0;
+        background: #fff;
+        border-radius: clamp(20px, 4vw, 30px);
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        gap: clamp(1.5rem, 4vw, 2rem);
+    }
+    
+    .spinner {
+        width: clamp(60px, 8vw, 80px);
+        height: clamp(60px, 8vw, 80px);
+        border: 4px solid #f3f3f3;
+        border-top: 4px solid transparent;
+        border-radius: 50%;
+        position: relative;
+        background: conic-gradient(from 0deg, #667eea, #764ba2, #667eea);
+        animation: spin 2s linear infinite;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .spinner::before {
+        content: '';
+        position: absolute;
+        top: 4px;
+        left: 4px;
+        right: 4px;
+        bottom: 4px;
+        background: #fff;
+        border-radius: 50%;
+        z-index: 1;
+    }
+    
+    .spinner::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: clamp(20px, 3vw, 24px);
+        height: clamp(20px, 3vw, 24px);
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border-radius: 50%;
+        z-index: 2;
+        animation: pulse 1.5s ease-in-out infinite;
+    }
+    
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+    
+    @keyframes pulse {
+        0%, 100% { 
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
+        }
+        50% { 
+            transform: translate(-50%, -50%) scale(0.8);
+            opacity: 0.7;
+        }
+    }
+    
+    .loading-text {
+        font-size: clamp(1.2rem, 3vw, 1.5rem);
+        font-weight: 400;
+        color: #555;
+        text-align: center;
+        letter-spacing: 0.5px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        animation: fadeText 2s ease-in-out infinite;
+    }
+    
+    @keyframes fadeText {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.6; }
+    }
+    
+    /* Alternative spinner designs - you can uncomment to try different styles */
+    
+    /* Dots spinner */
+    /*
+    .spinner-dots {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+    }
+    
+    .dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        animation: dotBounce 1.4s infinite ease-in-out both;
+    }
+    
+    .dot:nth-child(1) { animation-delay: -0.32s; }
+    .dot:nth-child(2) { animation-delay: -0.16s; }
+    .dot:nth-child(3) { animation-delay: 0s; }
+    
+    @keyframes dotBounce {
+        0%, 80%, 100% {
+            transform: scale(0);
+        }
+        40% {
+            transform: scale(1);
+        }
+    }
+    */
+    
+    /* Book-specific spinner */
+    /*
+    .book-spinner {
+        width: 50px;
+        height: 60px;
+        position: relative;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border-radius: 4px;
+        transform-origin: bottom center;
+        animation: bookFlip 2s ease-in-out infinite;
+    }
+    
+    .book-spinner::before {
+        content: '';
+        position: absolute;
+        top: 5px;
+        left: 5px;
+        right: 5px;
+        height: 8px;
+        background: rgba(255, 255, 255, 0.3);
+        border-radius: 2px;
+    }
+    
+    .book-spinner::after {
+        content: '';
+        position: absolute;
+        top: 18px;
+        left: 5px;
+        right: 15px;
+        height: 4px;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 2px;
+    }
+    
+    @keyframes bookFlip {
+        0%, 100% { transform: rotateY(0deg); }
+        50% { transform: rotateY(90deg); }
+    }
+    */
+    
     /* Footer improvements */
     footer { 
         text-align: center; 
@@ -427,7 +587,7 @@
     
     /* Print styles */
     @media print {
-        .nav, .search-icon {
+        .nav, .search-icon, .loading-section {
             display: none;
         }
         
@@ -510,7 +670,7 @@
 <main>
     <section class="intro-section">
         <p>
-            This is a growing list of books I’ve read and found truly valuable, whether for personal growth, creativity, or understanding the world a little better. I’ll be updating it regularly as I discover more that are worth sharing.
+            This is a growing list of books I've read and found truly valuable, whether for personal growth, creativity, or understanding the world a little better. I'll be updating it regularly as I discover more that are worth sharing.
         </p>
     </section>
 
@@ -548,6 +708,12 @@
               James Clear's practical guide to building good habits and breaking bad ones has transformed millions of lives. Based on scientific research and real-world examples, <strong>Atomic Habits</strong> reveals how tiny changes can lead to remarkable results. Clear's four-step framework makes habit formation accessible and sustainable, showing that you don't need radical change to achieve extraordinary outcomes. Whether you're looking to improve your health, productivity, or relationships, this book provides the tools to make lasting positive changes.
             </p>
         </div>
+    </section>
+    
+    <!-- Loading Section -->
+    <section class="loading-section">
+        <div class="spinner"></div>
+        <div class="loading-text">Reading Next Book...</div>
     </section>
 </main>
 

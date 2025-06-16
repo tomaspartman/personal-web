@@ -34,7 +34,7 @@
     /* Header with improved responsiveness */
     header {
         position: relative;
-               background: linear-gradient(135deg, rgba(102,126,234,0.9), rgba(118,75,162,0.9)), url('images/header-bg.jpg') center/cover no-repeat;
+               background: linear-gradient(135deg, rgba(102,126,234,0.9), rgba(118,75,162,0.9)), url('/images/header-bg.jpg') center/cover no-repeat;
         min-height: clamp(40vh, 60vh, 70vh);
         display: flex;
         flex-direction: column;

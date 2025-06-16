@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Shanghai Food Guide — Tomas Partman</title>
+<meta name="description" content="A guide to the best food in Shanghai, by Tomas Partman."/>
+<link rel="icon" type="image/png" href="images/favicon.png"/>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+    /* Reset & basic styles */
+    *, *::before, *::after { 
+        margin: 0; 
+        padding: 0; 
+        box-sizing: border-box; 
+    }
+    
+    html {
+        font-size: 16px;
+        scroll-behavior: smooth;
+    }
+    
+    body { 
+        font-family: 'Roboto', sans-serif; 
+        color: #333; 
+        line-height: 1.7; 
+        overflow-x: hidden; 
+        background: #f5f7fa;
+        min-height: 100vh;
+    }
+    
+    a { 
+        text-decoration: none; 
+        color: inherit; 
+        transition: all 0.3s ease; 
+    }
+    
+    img { 
+        display: block; 
+        max-width: 100%; 
+        height: auto;
+    }
+
+    /* Header with improved responsiveness */
+    header {
+        position: relative;
+        background: linear-gradient(135deg, rgba(102,126,234,0.9), rgba(118,75,162,0.9)), url('images/header-bg.jpg') center/cover no-repeat;
+        min-height: clamp(40vh, 60vh, 70vh);
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        animation: heroFadeIn 1.5s ease-out;
+    }
+    
+    @keyframes heroFadeIn { 
+        from { opacity: 0; transform: scale(1.05); } 
+        to { opacity: 1; transform: scale(1); } 
+    }
+
+    /* Improved Navigation */
+    .nav {
+        position: fixed; 
+        top: 0; 
+        left: 0; 
+        width: 100%; 
+        display: flex; 
+        justify-content: space-between; 
+        align-items: center; 
+        padding: clamp(0.5rem, 2vw, 1rem) clamp(1rem, 4vw, 2rem); 
+        background: rgba(255,255,255,0.1); 
+        backdrop-filter: blur(20px); 
+        border-bottom: 1px solid rgba(255,255,255,0.1); 
+        z-index: 1000; 
+        transition: all 0.3s ease;
+        min-height: 60px;
+    }
+    
+    .nav.scrolled { 
+        background: rgba(255,255,255,0.95); 
+        backdrop-filter: blur(20px); 
+        box-shadow: 0 4px 20px rgba(0,0,0,0.1); 
+    }
+    
+    .nav-right a, .dropbtn { color: #fff; }
+    .nav.scrolled .nav-right a, .nav.scrolled .dropbtn { color: #333; }
+
+    /* Responsive hero title */
+    .hero-title {
+        position: absolute; 
+        top: 55%; 
+        left: 50%; 
+        transform: translate(-50%, -50%); 
+        font-size: clamp(2.5rem, 8vw, 5rem); 
+        font-weight: 100; 
+        color: #fff; 
+        text-shadow: 0 4px 20px rgba(0,0,0,0.8); 
+        pointer-events: none; 
+        width: 100%; 
+        text-align: center; 
+        animation: titleSlideUp 1s ease-out 0.5s both;
+        padding: 0 1rem;
+    }
+    
+    @keyframes titleSlideUp { 
+        from { opacity: 0; transform: translate(-50%, -30%) scale(0.9); } 
+        to { opacity: 1; transform: translate(-50%, -50%) scale(1); } 
+    }
+    
+    .home-link { 
+        display: flex; 
+        align-items: center; 
+        gap: 0.5rem; 
+        font-weight: 500; 
+        font-size: clamp(0.9rem, 2vw, 1rem);
+    }
+    
+    .favicon-icon { 
+        width: clamp(24px, 4vw, 28px); 
+        height: clamp(24px, 4vw, 28px); 
+        border-radius: 50%; 
+        background: #fff; 
+        padding: 4px; 
+        flex-shrink: 0;
+    }
+    
+    .nav-right { 
+        display: flex; 
+        gap: clamp(0.5rem, 2vw, 2rem); 
+        align-items: center; 
+    }
+    
+    .nav-right a, .dropbtn { 
+        display: flex; 
+        align-items: center; 
+        font-weight: 400; 
+        font-size: clamp(0.8rem, 1.5vw, 0.95rem); 
+        padding: 0.5rem clamp(0.5rem, 1.5vw, 1rem); 
+        border-radius: 25px; 
+        position: relative;
+        white-space: nowrap;
+    }
+    
+    .nav-right a.active, .dropdown.active .dropbtn { 
+        background: rgba(255,255,255,0.3); 
+        font-weight: 600; 
+    }
+    
+       .nav.scrolled .nav-right a.active, .nav.scrolled .dropdown.active .dropbtn {
+        background: rgba(59, 130, 246, 0.1);
+    }
+    
+    /* Search button */
+    .search-icon {
+        background: rgba(255,255,255,0.2);
+        border: none;
+        padding: 0.75rem;
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        transition: all 0.3s ease;
+    }
+
+    .search-icon:hover {
+        background: rgba(255,255,255,0.3);
+        transform: rotate(90deg) scale(1.1);
+    }
+
+    .search-icon svg {
+        width: 18px;
+        height: 18px;
+        stroke: #fff;
+        stroke-width: 2;
+        fill: none;
+    }
+
+    .nav.scrolled .search-icon svg {
+        stroke: #333;
+    }
+
+    /* Dropdown improvements */
+    .dropdown { position: relative; }
+    .dropbtn { 
+        background: none; 
+        border: none; 
+        cursor: pointer; 
+        gap: 0.5rem; 
+    }
+    
+    .dropdown-content { 
+        display: none; 
+        position: absolute; 
+        top: calc(100% + 10px); 
+        left: 0; 
+        background: rgba(255,255,255,0.95); 
+        backdrop-filter: blur(20px); 
+        min-width: clamp(180px, 30vw, 220px); 
+        border-radius: 15px; 
+        box-shadow: 0 10px 40px rgba(0,0,0,0.15); 
+        z-index: 1001;
+        max-height: 80vh;
+        overflow-y: auto;
+    }
+    
+    .dropdown.open .dropdown-content { display: block; }
+    .dropdown-content li { list-style: none; }
+    .dropdown-content li a { 
+        display: block; 
+        padding: 1rem 1.5rem; 
+        color: #333; 
+        font-size: clamp(0.8rem, 1.2vw, 0.9rem);
+    }
+    .dropdown-content li a:hover { 
+        background: rgba(59, 130, 246, 0.1); 
+        color: #3b82f6; 
+    }
+
+    .dropbtn svg { 
+        width: 12px; 
+        height: 12px; 
+        transition: transform 0.3s ease; 
+        stroke-width: 1.5; 
+        flex-shrink: 0;
+    }
+    .dropdown.open .dropbtn svg { transform: rotate(180deg); }
+    
+    /* Main content with improved responsiveness */
+    main { 
+        max-width: 1200px; 
+        margin: clamp(2rem, 6vw, 4rem) auto 2rem; 
+        padding: 0 clamp(1rem, 4vw, 2rem); 
+    }
+
+    /* Introduction section */
+    .intro-section {
+        background: #fff; 
+        padding: clamp(2rem, 5vw, 3rem); 
+        border-radius: clamp(15px, 3vw, 25px); 
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        margin-bottom: clamp(2rem, 6vw, 4rem);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .intro-section:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+    }
+
+    .intro-section h2 {
+        font-size: clamp(1.8rem, 5vw, 2.5rem);
+        margin-bottom: clamp(1rem, 3vw, 1.5rem);
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+        -webkit-background-clip: text; 
+        -webkit-text-fill-color: transparent; 
+        background-clip: text;
+        line-height: 1.2;
+        text-align: center;
+    }
+
+    .intro-section p {
+        font-size: clamp(1rem, 2.2vw, 1.1rem); 
+        line-height: 1.7; 
+        color: #555; 
+        text-align: justify; 
+        margin-bottom: 1.25rem;
+    }
+
+    /* Map container */
+    .map-container {
+        margin: clamp(2rem, 5vw, 3rem) 0;
+        border-radius: clamp(15px, 3vw, 20px);
+        overflow: hidden;
+        box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        text-align: center;
+        transition: transform 0.3s ease;
+    }
+
+    .map-container:hover {
+        transform: scale(1.02);
+    }
+
+    .map-container img { 
+        width: 100%; 
+        display: block; 
+        border-radius: clamp(15px, 3vw, 20px);
+    }
+
+    /* Restaurant sections */
+    .restaurant-section { 
+        background: #fff; 
+        padding: clamp(2rem, 5vw, 3rem); 
+        border-radius: clamp(15px, 3vw, 25px); 
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        margin-bottom: clamp(2rem, 6vw, 4rem);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .restaurant-section:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+    }
+    
+    .restaurant-section h3 { 
+        font-size: clamp(1.5rem, 4vw, 2.2rem); 
+        margin-bottom: clamp(1rem, 3vw, 1.5rem);
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+        -webkit-background-clip: text; 
+        -webkit-text-fill-color: transparent; 
+        background-clip: text;
+        line-height: 1.2;
+    }
+
+    .restaurant-section h4 {
+        font-size: clamp(1.2rem, 3vw, 1.5rem);
+        margin: clamp(1.5rem, 4vw, 2rem) 0 clamp(0.75rem, 2vw, 1rem);
+        color: #667eea;
+        font-weight: 600;
+    }
+    
+    .restaurant-section p { 
+        font-size: clamp(1rem, 2.2vw, 1.1rem); 
+        line-height: 1.7; 
+        color: #555; 
+        text-align: justify; 
+        margin-bottom: 1.25rem;
+    }
+
+    .restaurant-section ul, .restaurant-section ol {
+        margin: clamp(1rem, 3vw, 1.5rem) 0 clamp(1rem, 3vw, 1.5rem) clamp(1.5rem, 4vw, 2rem);
+    }
+
+    .restaurant-section li {
+        margin-bottom: 0.75rem;
+        font-size: clamp(1rem, 2.2vw, 1.1rem);
+        line-height: 1.6;
+        color: #555;
+    }
+
+    .restaurant-section strong { 
+        color: #667eea; 
+        font-weight: 600; 
+    }
+
+    .highlight {
+        font-weight: 600;
+        color: #667eea;
+        background: rgba(102, 126, 234, 0.1);
+        padding: 0.2em 0.4em;
+        border-radius: 4px;
+    }
+
+    /* Image gallery improvements */
+    .two-column-images {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: clamp(1rem, 3vw, 2rem);
+        margin: clamp(2rem, 5vw, 3rem) 0;
+    }
+
+    figure {
+        margin: clamp(1.5rem, 4vw, 2rem) 0;
+    }
+
+    figure img {
+        border-radius: clamp(15px, 3vw, 20px);
+        box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        transition: transform 0.3s ease;
+        width: 100%;
+        height: auto;
+    }
+
+    figure img:hover {
+        transform: scale(1.05);
+    }
+
+    figcaption {
+        font-size: clamp(0.85rem, 1.8vw, 0.95rem);
+        color: #777;
+        margin-top: clamp(0.5rem, 1.5vw, 0.75rem);
+        text-align: center;
+        font-style: italic;
+    }
+
+    /* Lists section improvements */
+    .lists-section {
+        background: #fff; 
+        padding: clamp(2rem, 5vw, 3rem); 
+        border-radius: clamp(15px, 3vw, 25px); 
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        margin-bottom: clamp(2rem, 6vw, 4rem);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .lists-section:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+    }
+
+    .lists-section h3 {
+        font-size: clamp(1.5rem, 4vw, 2.2rem); 
+        margin-bottom: clamp(1.5rem, 4vw, 2rem);
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+        -webkit-background-clip: text; 
+        -webkit-text-fill-color: transparent; 
+        background-clip: text;
+        line-height: 1.2;
+        text-align: center;
+    }
+
+    .lists-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: clamp(2rem, 5vw, 3rem);
+    }
+
+    .list-column h4 {
+        font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+        margin-bottom: clamp(1rem, 3vw, 1.5rem);
+        color: #667eea;
+        font-weight: 600;
+        border-bottom: 2px solid rgba(102, 126, 234, 0.2);
+        padding-bottom: 0.5rem;
+    }
+
+    .list-column ol {
+        margin-left: 0;
+        padding-left: clamp(1rem, 3vw, 1.5rem);
+    }
+
+    .list-column li {
+        margin-bottom: clamp(0.75rem, 2vw, 1rem);
+        font-size: clamp(0.95rem, 2vw, 1.05rem);
+        line-height: 1.6;
+        color: #555;
+        padding-left: 0.5rem;
+    }
+
+    .list-column em {
+        color: #667eea;
+        font-style: italic;
+        font-weight: 500;
+    }
+    
+    /* Footer improvements */
+    footer { 
+        text-align: center; 
+        padding: clamp(1rem, 3vw, 2rem); 
+        font-size: clamp(0.8rem, 1.5vw, 0.9rem); 
+        color: #777; 
+        margin-top: clamp(2rem, 6vw, 4rem);
+    }
+    
+    /* Mobile improvements */
+    @media (max-width: 768px) {
+        .nav-right {
+            gap: 0.5rem;
+        }
+        
+        .dropdown-content {
+            right: 0;
+            left: auto;
+            min-width: 200px;
+        }
+        
+        .hero-title {
+            top: 50%;
+        }
+
+        .two-column-images {
+            grid-template-columns: 1fr;
+        }
+
+        .lists-grid {
+            grid-template-columns: 1fr;
+        }
+        
+        .restaurant-section p,
+        .intro-section p {
+            text-align: left;
+        }
+    }
+    
+    /* Accessibility improvements */
+    @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+        }
+    }
+    
+    /* Focus states for accessibility */
+    .nav-right a:focus,
+    .dropbtn:focus {
+        outline: 2px solid #667eea;
+        outline-offset: 2px;
+    }
+</style>
+     <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZ2RYE52KN"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-ZZ2RYE52KN');
+  </script>
+</head>
+<body>
+
+<header>
+    <nav class="nav" id="navbar">
+      <a href="index.html" class="home-link">
+        <img src="images/favicon.png" alt="Favicon" class="favicon-icon">
+        <span>Home</span>
+      </a>
+      <div class="nav-right">
+        <div class="dropdown">
+          <button class="dropbtn" type="button">
+            About
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 8" aria-hidden="true">
+              <line x1="1" y1="2" x2="4" y2="5" stroke="currentColor" stroke-width="1"/>
+              <line x1="7" y1="2" x2="4" y2="5" stroke="currentColor" stroke-width="1"/>
+            </svg>
+          </button>
+          <ul class="dropdown-content">
+                       <li><a href="about.html#introduction">Introduction</a></li>
+            <li><a href="about.html#academic">Academic Background</a></li>
+            <li><a href="about.html#professional">Professional Interests &amp; Expertise</a></li>
+            <li><a href="about.html#hobbies">My Hobbies &amp; Interests</a></li>
+            <li><a href="about.html#skills">Key Skills &amp; Strengths</a></li>
+          </ul>
+        </div>
+        <a href="books.html">Books</a>
+        <div class="dropdown active">
+          <button class="dropbtn" type="button">
+            Travel Blog
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 8" aria-hidden="true">
+              <line x1="1" y1="2" x2="4" y2="5" stroke="currentColor" stroke-width="1"/>
+              <line x1="7" y1="2" x2="4" y2="5" stroke="currentColor" stroke-width="1"/>
+            </svg>
+          </button>
+          <ul class="dropdown-content">
+            <li><a href="uzbekistan.html">Uzbekistan</a></li>
+            <li><a href="kazakhstan.html">Kazakhstan</a></li>
+            <li><a href="kyrgyzstan.html">Kyrgyzstan</a></li>
+            <li><a href="ecuador.html">Ecuador</a></li>
+            <li><a href="china-shanghai.html">China Shanghai</a></li>
+            <li><a href="shanghai-food.html" class="active">Shanghai Food</a></li>
+            <li><a href="new-zealand.html">New Zealand</a></li>
+            <li><a href="romania.html">Romania</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="hero-title">Shanghai Food</div>
+</header>
+
+<main>
+    <section class="intro-section">
+        <h2>What to eat on Shanghai's Huanghe Road food street</h2>
+        <p>
+            On my way back from New Zealand, I had a layover in Shanghai and decided to make the most of it. Starving after a long flight, I hit the streets of this massive city, ready to hunt down some authentic local food. With so much to see and taste, it was the perfect excuse to dive into the chaos of Shanghai and fuel up for the adventure.
+        </p>
+        <p>
+            It was a real letdown to find out that a lot of the famous food streets in Shanghai had been shut down because the government started requiring food vendors to have official certificates. Sure, it's probably a good move for food safety and hygiene, but for tourists like me hunting for a quick and authentic bite, it was a pain. To make things even worse, Google didn't work at all in China, and GPS maps were completely useless. Even in apps where maps supposedly worked, the location was totally off, showing me somewhere I wasn't even close to.
+        </p>
+        <p>
+            Luckily, as I wandered around early in the quiet morning with my backpack, I stumbled upon a street packed with food right next to People's Square—a small gem called <span class="highlight">Huanghe Road</span>.
+        </p>
+        <p>
+            Huanghe Road might not be as lively as food streets in some other countries, but it's a solid spot to sample some of Shanghai's must-try dishes. It's far from a hidden gem, though, as it's home to two of the city's most famous eats: <em>Xiao Long Bao</em> from Jia Jia Tang Bao and <em>Sheng Jian Bao</em> from Yang's Dumpling.
+        </p>
+        <div class="map-container">
+            <img src="images/HuangheRD.png" alt="Map of Huanghe Road, Shanghai"/>
+        </div>
+    </section>
+
+    <section class="restaurant-section" id="jia-jia-tang-bao">
+        <h3>Jia Jia Tang Bao</h3>
+        <p>
+            Jia Jia Tang Bao is hands down a must‑visit spot in Shanghai, and the entire reason I found myself on this street in the first place. Their <strong>Xiao Long Bao</strong>—steamed soup dumplings—are nothing short of perfection. Each bite bursts with flavor, making it an experience no foodie should miss.
+        </p>
+
+        <h4>How to Order at Jia Jia Tang Bao</h4>
+        <p>
+            First, join the line outside the shop. If you arrive after 9&nbsp;a.m., it'll be easy to spot along Huanghe Road since there's usually a long queue by then. However, if you come early, you might walk right past it—Jia Jia Tang Bao is small and unassuming, blending in with the surrounding shops. I got there around 8&nbsp;a.m. and almost missed it entirely.
+        </p>
+        <p>
+            To find it, look for a simple white storefront with red Chinese lettering. Beside the door, you'll see the restaurant's menu, also written in red. Keep an eye out, and you'll find it!
+        </p>
+        <p>
+            But here's the catch—the menu isn't in English. So, if you're like me and don't speak Mandarin or read Chinese, don't worry! Here's a translated version of the menu to help you navigate your order.
+        </p>
+
+        <h4>English Menu Translation</h4>
+        <ul>
+            <li>純鮮肉湯包 – <em>Pure Pork Soup Dumpling</em> — 15&nbsp;Yuan</li>
+            <li>虾仁鮮肉湯包 – <em>Shrimp &amp; Pork Soup Dumpling</em> — 20&nbsp;Yuan</li>
+            <li>鸡丁鮮肉湯包 – <em>Chicken &amp; Pork Soup Dumpling</em> — 20&nbsp;Yuan</li>
+            <li>蛋黄鮮肉湯包 – <em>Pork Egg Yolk Soup Dumpling</em> — 23&nbsp;Yuan</li>
+            <li>蟹粉鮮肉湯包 – <em>Crab Meat Soup Dumpling</em> — 30&nbsp;Yuan</li>
+            <li>纯蚕仁汤 – <em>Pure Shrimp Soup</em> — 25&nbsp;Yuan</li>
+            <li>纯蟹粉汤 – <em>Pure Crab Soup</em> — 99&nbsp;Yuan</li>
+            <li>鸡鸭血汤 – <em>Duck Blood Soup</em> — 5&nbsp;Yuan</li>
+            <li>紫菜蛋花汤 – <em>Seaweed Soup</em> — 5&nbsp;Yuan</li>
+            <li>生姜丝 – <em>Ginger</em> — 2&nbsp;Yuan</li>
+        </ul>
+
+        <div class="two-column-images">
+            <figure>
+                <img src="images/jia-jia-storefront.jpg" alt="Storefront of Jia Jia Tang Bao" />
+                <figcaption>Storefront of Jia Jia Tang Bao</figcaption>
+            </figure>
+            <figure>
+                <img src="images/jia-jia-menu.jpg" alt="Jia Jia Tang Bao Menu" />
+                <figcaption>Jia Jia Tang Bao Menu</figcaption>
+            </figure>
+        </div>
+
+        <p>
+            On the top row of the menu, you'll find the different varieties of <em>Xiao Long Bao</em> (XLB), while the bottom row lists soups, sauces, and drinks.
+        </p>
+        <p>
+            If you're a foodie like me, don't miss the <span class="highlight">Pork Egg Yolk Dumpling (蛋黄鮮肉湯包)</span>—it's absolutely worth it! Just thinking about it makes my mouth water. For an even better experience, add a side of fresh ginger (生姜丝) for just 2&nbsp;yuan. The ginger perfectly enhances the flavor of the XLBs, taking them to the next level.
+        </p>
+        <p>
+            Once you've placed your order, grab a seat—or if it's busy, the staff might help you find one. Be prepared to share your table with strangers, as communal dining is pretty common in Asia. Since everything is made fresh to order, your dumplings will be brought to your table in about 10–15&nbsp;minutes. Don't worry—they'll track you down!
+        </p>
+
+        <figure>
+            <img src="images/jiajia-dumplings.jpg" alt="Bowl of steaming soup dumplings" />
+            <figcaption>Jia Jia Tang Bao – freshly steamed Xiao Long Bao</figcaption>
+        </figure>
+
+        <h4>My Thoughts on Jia Jia Tang Bao</h4>
+        <p>
+            Jia Jia Tang Bao is an absolute must‑visit for any food lover in Shanghai. Their XLB ranks among the best I've ever had. What really sets them apart is the broth—it's not overly oily like many other XLBs I've tried. Instead, it's light and flavorful, making it easy to enjoy without feeling overwhelmed. If you're in Shanghai and want to experience authentic local flavors, this is the place to start!
+        </p>
+    </section>
+
+    <section class="restaurant-section" id="yangs-dumplings">
+        <h3>Yang's Dumplings</h3>
+        <p>
+            Yang's Dumpling is a must‑visit spot in Shanghai, famous for its <em>Sheng Jian Bao</em>, a lesser‑known but equally spectacular version of the city's iconic soup dumpling. Similar in concept to Xiao Long Bao, Sheng Jian Bao features a dumpling filled with flavorful soup and tender pork, but with a twist—the skin is thicker and pan‑fried to a golden perfection instead of steamed.
+        </p>
+        <p>
+            With numerous outlets scattered across Shanghai, Yang's Dumpling is easy to find. For those exploring the Huanghe Road area, there's a convenient bonus—Yang's outlet located just across the street from Jia Jia Tang Bao, making it the perfect one‑two punch for dumpling enthusiasts!
+        </p>
+
+        <h4>How to Order at Yang's Dumpling</h4>
+        <ol>
+            <li><strong>Place Your Order at the Cashier</strong><br/>
+                Head to the counter and choose your meal. If you order non‑dumpling items like noodles or soup, you'll receive a pink plastic plaque with a number on it and be directed to sit down. Your food will be delivered to your table.
+            </li>
+            <li><strong>Ordering Bao Items</strong><br/>
+                If you're ordering Sheng Jian Bao or other dumplings, you'll need to take your receipt and line up at the designated window outside. At the window, you can either have your dumplings served on a plate for dining in or request "ta pao" (takeaway), and they'll pack them in a plastic container for you.
+            </li>
+        </ol>
+
+        <figure>
+            <img src="images/yangs-menu.jpg" alt="Yang's Dumpling menu board" />
+            <figcaption>Yang's Dumpling – English‑friendly menu board</figcaption>
+        </figure>
+
+        <p class="highlight">Pro Tip:</p>
+        <p>
+            If you're looking to branch out beyond dumplings, try the <em>Pork Wonton Soup</em> or the <em>Hot and Sour Soup</em>—both are fantastic options that pair perfectly with the signature Sheng Jian Bao.
+        </p>
+    </section>
+
+    <section class="lists-section" id="shanghai-cheap-eats">
+        <h3>More Affordable Eats in Shanghai</h3>
+                    <section class="lists-section">
+  <div class="lists-grid">
+    <div class="list-column">
+      <h4>12 Affordable Restaurants in Shanghai</h4>
+      <ol>
+        <li><strong>Jia Jia Tang Bao</strong> – Famous for their Xiao Long Bao (soup dumplings). The flavors are authentic, and prices are budget-friendly.</li>
+        <li><strong>Yang’s Dumplings</strong> – Known for their Sheng Jian Bao (pan-fried soup dumplings). Multiple outlets across the city make it easy to find.</li>
+        <li><strong>Chen’s Noodles (陈亮面馆)</strong> – Offers hearty bowls of Shanghai-style noodles at very reasonable prices.</li>
+        <li><strong>A Da Cong You Bing</strong> – A street stall famous for its crispy scallion pancakes (葱油饼). Perfect for a quick snack.</li>
+        <li><strong>Xiao Yang BBQ (小杨生煎烧烤)</strong> – A great spot for cheap and flavorful street-style BBQ skewers.</li>
+        <li><strong>Xian De Lai (鲜壳来排骨年糕)</strong> – Must-try dish: Pork Chop with Rice Cake. A traditional local meal that’s affordable and filling.</li>
+        <li><strong>Cang Lang Ting Dumplings (沧浪亭饺子)</strong> – Specializes in wontons with a variety of fillings and light, flavorful soups.</li>
+        <li><strong>Hai Di Lao Express</strong> – A more budget-friendly version of the popular hot pot chain. Perfect for solo travelers or a quick bite.</li>
+        <li><strong>A Niang Mian Guan (阿娘面馆)</strong> – Famous for yellow croaker noodles (黄鱼面). A flavorful bowl of soup noodles that’s uniquely Shanghai.</li>
+        <li><strong>Qibao Old Street Snack Vendors</strong> – Located in the Qibao Ancient Town, this area has numerous affordable snack vendors selling stinky tofu, sweet rice cakes, and more.</li>
+        <li><strong>Dong Tai Xiang Snacks (东泰祥小吃)</strong> – A variety of local snacks, from fried buns to sweet sesame pastries, all under one roof.</li>
+        <li><strong>Wu Fang Zhai (五芳斋)</strong> – Specializes in zongzi (rice dumplings) and other traditional Shanghai snacks at pocket-friendly prices.</li>
+      </ol>
+    </div>
+    <div class="list-column">
+      <h4>12 Iconic Foods You Must Taste in Shanghai</h4>
+      <ol>
+        <li><strong>Xiao Long Bao (Soup Dumplings)</strong> – These delicate steamed dumplings are filled with juicy pork and hot broth. A true Shanghai classic, found at spots like Jia Jia Tang Bao.</li>
+        <li><strong>Sheng Jian Bao (Pan-Fried Soup Dumplings)</strong> – A heartier cousin of Xiao Long Bao, with a crispy bottom and juicy filling. Yang’s Dumplings is the go-to spot.</li>
+        <li><strong>Scallion Pancakes (Cong You Bing)</strong> – Flaky, savory, and crispy pancakes loaded with scallions. Try it from a local street vendor like A Da Cong You Bing.</li>
+        <li><strong>Red-Braised Pork (Hong Shao Rou)</strong> – Tender pork belly braised in a sweet and savory sauce. Look for local eateries serving this iconic dish.</li>
+        <li><strong>Crab Shell Pastry (Xie Ke Huang)</strong> – A flaky pastry filled with savory or sweet fillings like red bean paste or minced meat. Found at traditional bakeries.</li>
+        <li><strong>Shanghai Fried Noodles (Chao Mian)</strong> – Chewy noodles stir-fried with soy sauce, vegetables, and meat. It’s a comforting and affordable dish at local noodle joints.</li>
+        <li><strong>Sticky Rice Dumplings (Cifan Tuan)</strong> – A breakfast favorite made of sticky rice wrapped around various fillings like pickles, pork floss, and fried dough sticks.</li>
+        <li><strong>Stinky Tofu (Chou Dou Fu)</strong> – Deep-fried fermented tofu with a pungent aroma but a surprisingly mild and delicious taste. Perfect from a street vendor.</li>
+        <li><strong>Hairy Crab (Da Zha Xie)</strong> – Seasonal and a must-try during autumn, these crabs are prized for their rich roe. Best enjoyed at local seafood restaurants.</li>
+        <li><strong>Sweet Fermented Rice Balls (Jiu Niang Tang Yuan)</strong> – A dessert soup made with fermented rice and glutinous rice balls filled with sweet red bean paste.</li>
+        <li><strong>Yellow Croaker Noodles (Huang Yu Mian)</strong> – A Shanghai specialty of noodles served in a rich, savory soup with yellow croaker fish. Try it at A Niang Mian Guan.</li>
+        <li><strong>Eight Treasures Rice (Ba Bao Fan)</strong> – A sweet dessert made of sticky rice, red bean paste, and candied fruits. Often enjoyed during festive occasions.</li>
+      </ol>
+    </div>
+  </div>
+  <footer>
+    <p>© 2025 Tomas Partman</p>
+  </footer>                   
+</section>
+
+<script>
+  // Enhanced dropdown functionality
+  document.addEventListener('click', function(e) {
+    document.querySelectorAll('.dropdown').forEach(function(dropdown) {
+      if (e.target.closest('.dropbtn') && dropdown.contains(e.target)) {
+        dropdown.classList.toggle('open');
+      } else if (!dropdown.contains(e.target)) {
+        dropdown.classList.remove('open');
+      }
+    });
+  });
+
+  // Navbar scroll effect
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', function() {
+    if (window.pageYOffset > 100) {
+      navbar.classList.add('scrolled');
+    } else {
+      navbar.classList.remove('scrolled');
+    }
+  });
+
+  // Enhanced search button animation
+  const searchBtn = document.querySelector('.search-icon');
+  if (searchBtn) {
+    searchBtn.addEventListener('click', function() {
+      alert('Search functionality would be implemented here!');
+    });
+  }
+</script>
+
+</body>
+</html>

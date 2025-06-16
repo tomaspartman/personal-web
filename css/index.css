@@ -26,7 +26,7 @@
     /* Enhanced Header & navigation */
     header {
       position: relative;
-      background: linear-gradient(135deg, rgba(0,0,0,0.4), rgba(0,0,0,0.2)), url('personal-web/images/header-bg.jpg') center/cover no-repeat;
+      background: linear-gradient(135deg, rgba(0,0,0,0.4), rgba(0,0,0,0.2)), url('/images/header-bg.jpg') center/cover no-repeat;
       height: 60vh;
       display: flex;
       flex-direction: column;

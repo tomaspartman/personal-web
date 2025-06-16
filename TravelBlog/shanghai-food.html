@@ -8,11 +8,11 @@
 <link rel="icon" type="image/png" href="/images/favicon.png"/>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
 <style>
-    /* Reset & basic styles */
-    *, *::before, *::after { 
-        margin: 0; 
-        padding: 0; 
-        box-sizing: border-box; 
+     /* Reset & basic styles */
+    *, *::before, *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
     }
     
     html {
@@ -42,9 +42,15 @@
     }
 
     /* Header with improved responsiveness */
+     /* Header with improved responsiveness */
     header {
         position: relative;
-               background: linear-gradient(135deg, rgba(102,126,234,0.9), rgba(118,75,162,0.9)), url('/images/header-bg.jpg') center/cover no-repeat;
+        background: linear-gradient(
+            135deg,
+            rgba(102,126,234,0.9),
+            rgba(118,75,162,0.9)
+        ), url('/images/header-bg.jpg') center/cover no-repeat;
+        min-height: 60vh;           <!-- added -->
         display: flex;
         flex-direction: column;
         justify-content: flex-end;

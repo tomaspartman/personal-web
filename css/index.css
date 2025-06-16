@@ -396,39 +396,42 @@
 
     /* Mobile responsiveness */
     @media (max-width: 768px) {
-      .nav {
-        padding: 0.75rem 1rem;
-      }
-      
-      .nav-right {
-        gap: 1rem;
-      }
-      
-      .nav-right a, .dropbtn {
-        font-size: 0.85rem;
-        padding: 0.4rem 0.8rem;
-      }
-      
-      .hero-title {
-        font-size: 4rem;
-      }
-      
-      .hero-image {
-        width: 250px;
-      }
-      
-      h1 {
-        font-size: 2rem;
-      }
-      
-      h2 {
-        font-size: 1.1rem;
-      }
-      
-      p {
-        font-size: 1rem;
-      }
-
+        .nav-right {
+            gap: 0.5rem;
+        }
+        
+        .nav-right a span,
+        .dropbtn span {
+            display: none;
+        }
+        
+        .nav-right a::after {
+            content: attr(data-label);
+            font-size: 0.7rem;
+        }
+        
+        .dropdown-content {
+            right: 0;
+            left: auto;
+            min-width: 200px;
+        }
+        
+        .hero-title {
+            top: 50%;
+        }
+        
+        .book-text {
+            text-align: left;
+        }
+        
+        .book-text p {
+            text-align: left;
+        }
+        
+        .intro-section {
+            text-align: left;
+        }
+    }
       /* Mobile footer adjustments */
       .social-footer {
         padding: 1rem 0; /* Even more compact on mobile */

@@ -32,7 +32,15 @@
         <img src="images/favicon.png" alt="Favicon" class="favicon-icon">
         <span>Home</span>
       </a>
-      <div class="nav-right">
+      
+      <!-- Mobile hamburger menu toggle -->
+      <div class="mobile-menu-toggle" id="mobileToggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      
+      <div class="nav-right" id="navRight">
         <div class="dropdown">
           <button class="dropbtn" type="button">
             About
@@ -50,7 +58,7 @@
           </ul>
         </div>
         <a href="books.html">Books</a>
-                <div class="dropdown">
+        <div class="dropdown">
           <button class="dropbtn" type="button">
             Travel Blog
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 8" aria-hidden="true">
@@ -59,14 +67,14 @@
             </svg>
           </button>
           <ul class="dropdown-content">
-          <li><a href="uzbekistan.html">Uzbekistan</a></li>
-        <li><a href="kazakhstan.html">Kazakhstan</a></li>
-        <li><a href="kyrgyzstan.html">Kyrgyzstan</a></li>
-        <li><a href="ecuador.html">Ecuador</a></li>
-        <li><a href="china-shanghai.html">China Shanghai</a></li>
-        <li><a href="shanghai-food.html">Shanghai Food</a></li>
-        <li><a href="new-zealand.html">New Zealand</a></li>
-        <li><a href="romania.html">Romania</a></li>
+            <li><a href="uzbekistan.html">Uzbekistan</a></li>
+            <li><a href="kazakhstan.html">Kazakhstan</a></li>
+            <li><a href="kyrgyzstan.html">Kyrgyzstan</a></li>
+            <li><a href="ecuador.html">Ecuador</a></li>
+            <li><a href="china-shanghai.html">China Shanghai</a></li>
+            <li><a href="shanghai-food.html">Shanghai Food</a></li>
+            <li><a href="new-zealand.html">New Zealand</a></li>
+            <li><a href="romania.html">Romania</a></li>
           </ul>
         </div>
         <button class="search-icon" aria-label="Search">
@@ -116,9 +124,38 @@
   </button>
 
   <script>
+    // Mobile menu toggle functionality
+    const mobileToggle = document.getElementById('mobileToggle');
+    const navRight = document.getElementById('navRight');
+
+    mobileToggle.addEventListener('click', function() {
+      mobileToggle.classList.toggle('active');
+      navRight.classList.toggle('active');
+      // Prevent body scroll when menu is open
+      document.body.style.overflow = navRight.classList.contains('active') ? 'hidden' : '';
+    });
+
+    // Close mobile menu when clicking on any navigation link
+    document.querySelectorAll('.nav-right a, .dropdown-content a').forEach(link => {
+      link.addEventListener('click', function() {
+        mobileToggle.classList.remove('active');
+        navRight.classList.remove('active');
+        document.body.style.overflow = '';
+      });
+    });
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', function(e) {
+      if (!navRight.contains(e.target) && !mobileToggle.contains(e.target)) {
+        mobileToggle.classList.remove('active');
+        navRight.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    });
+
     // Enhanced dropdown functionality
     document.addEventListener('click', function(e) {
-        document.querySelectorAll('.dropdown').forEach(function(dropdown) {
+      document.querySelectorAll('.dropdown').forEach(function(dropdown) {
         if (e.target.closest('.dropbtn') && dropdown.contains(e.target)) {
           dropdown.classList.toggle('open');
         } else if (!dropdown.contains(e.target)) {
@@ -134,7 +171,6 @@
 
     window.addEventListener('scroll', function() {
       const scrolled = window.pageYOffset;
-      const rate = scrolled * -0.5;
       
       // Navbar background change
       if (scrolled > 100) {
@@ -198,6 +234,15 @@
     // Add loading animation
     window.addEventListener('load', function() {
       document.body.style.opacity = '1';
+    });
+
+    // Handle window resize - close mobile menu if window becomes larger
+    window.addEventListener('resize', function() {
+      if (window.innerWidth > 768) {
+        mobileToggle.classList.remove('active');
+        navRight.classList.remove('active');
+        document.body.style.overflow = '';
+      }
     });
   </script>
 </body>

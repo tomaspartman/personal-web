@@ -477,7 +477,7 @@ p:nth-child(8) { animation-delay: 1s; }
   
   .dropdown-content {
     position: static;
-    display: block;
+    display: none;
     background: transparent;
     box-shadow: none;
     backdrop-filter: none;

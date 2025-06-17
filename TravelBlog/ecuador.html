@@ -22,7 +22,12 @@
       <img src="/images/favicon.png" alt="Favicon" class="favicon-icon">
       <span>Home</span>
     </a>
-    <div class="nav-right">
+     <div class="mobile-menu-toggle" id="mobileToggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div class="nav-right" id="navRight">
       <div class="dropdown">
         <button class="dropbtn" type="button">
           About
@@ -68,7 +73,7 @@
       </button>
     </div>
   </nav>
-
+  <div class="mobile-menu-overlay" id="menuOverlay"></div>
   <div class="container">
     <div class="wip-section">
       <h1 class="wip-title">Ecuador</h1>
@@ -106,7 +111,51 @@
     <footer>
     <p>© 2025 Tomas Partman</p>
 </footer>
+     <button class="scroll-to-top" id="scrollToTop" aria-label="Scroll to top">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <polyline points="18,15 12,9 6,15"></polyline>
+    </svg>
+  </button>
   <script>
+      // Mobile menu toggle functionality
+    const mobileToggle = document.getElementById('mobileToggle');
+    const navRight = document.getElementById('navRight');
+    const menuOverlay = document.getElementById('menuOverlay');
+
+    mobileToggle.addEventListener('click', function() {
+      mobileToggle.classList.toggle('active');
+      navRight.classList.toggle('active');
+      menuOverlay.classList.toggle('active');
+      document.body.style.overflow = navRight.classList.contains('active') ? 'hidden' : '';
+    });
+
+    menuOverlay.addEventListener('click', function() {
+      mobileToggle.classList.remove('active');
+      navRight.classList.remove('active');
+      menuOverlay.classList.remove('active');
+      document.body.style.overflow = '';
+    });
+
+    // Close mobile menu when clicking on any navigation link
+    document.querySelectorAll('.nav-right a, .dropdown-content a').forEach(link => {
+      link.addEventListener('click', function() {
+        mobileToggle.classList.remove('active');
+        navRight.classList.remove('active');
+        menuOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+      });
+    });
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', function(e) {
+      if (!navRight.contains(e.target) && !mobileToggle.contains(e.target) && !menuOverlay.contains(e.target)) {
+        mobileToggle.classList.remove('active');
+        navRight.classList.remove('active');
+        menuOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    });
+
     // Enhanced dropdown functionality
     document.addEventListener('click', function(e) {
       document.querySelectorAll('.dropdown').forEach(function(dropdown) {
@@ -121,7 +170,7 @@
     // Navbar scroll effect
     const navbar = document.getElementById('navbar');
     const scrollIndicator = document.getElementById('scrollIndicator');
-
+      const scrollToTopBtn = document.getElementById('scrollToTop');
     window.addEventListener('scroll', function() {
       const scrolled = window.pageYOffset;
       
@@ -137,6 +186,21 @@
       const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
       const scrolled_percentage = (winScroll / height) * 100;
       scrollIndicator.style.width = scrolled_percentage + '%';
+      
+      // Scroll to top button
+      if (scrolled > 300) {
+        scrollToTopBtn.classList.add('visible');
+      } else {
+        scrollToTopBtn.classList.remove('visible');
+      }
+    });
+
+    // Scroll to top functionality
+    scrollToTopBtn.addEventListener('click', function() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
     });
 
     // Enhanced search button animation

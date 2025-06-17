@@ -26,7 +26,10 @@
         <img src="images/favicon.png" alt="Favicon" class="favicon-icon">
         <span>Home</span>
       </a>
-      <div class="nav-right">
+       <div class="mobile-menu-toggle" id="mobileToggle">
+        <span></span><span></span><span></span>
+      </div>
+      <div class="nav-right" id="navRight">
         <div class="dropdown">
           <button class="dropbtn" type="button">
             About
@@ -220,10 +223,45 @@
     });
     
     // Observe intro section for animation
-    const introSection = document.querySelector('.intro-section');
-    if (introSection) {
-        observer.observe(introSection);
+     const introSection = document.querySelector('.intro-section');
+  if (introSection) {
+      observer.observe(introSection);
+  }
+</script>
+<script>
+  // Mobile menu toggle functionality
+  const mobileToggle = document.getElementById('mobileToggle');
+  const navRight = document.getElementById('navRight');
+
+  mobileToggle.addEventListener('click', function() {
+    mobileToggle.classList.toggle('active');
+    navRight.classList.toggle('active');
+    document.body.style.overflow = navRight.classList.contains('active') ? 'hidden' : '';
+  });
+
+  document.querySelectorAll('.nav-right a, .dropdown-content a').forEach(link => {
+    link.addEventListener('click', function() {
+      mobileToggle.classList.remove('active');
+      navRight.classList.remove('active');
+      document.body.style.overflow = '';
+    });
+  });
+
+  document.addEventListener('click', function(e) {
+    if (!navRight.contains(e.target) && !mobileToggle.contains(e.target)) {
+      mobileToggle.classList.remove('active');
+      navRight.classList.remove('active');
+      document.body.style.overflow = '';
     }
+  });
+
+  window.addEventListener('resize', function() {
+    if (window.innerWidth > 768) {
+      mobileToggle.classList.remove('active');
+      navRight.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+ });
 </script>
 
 </body>

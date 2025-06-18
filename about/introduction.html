@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Introduction - Tomas Partman</title>
+  <meta name="description" content="Get to know Tomas Partman - skills, hobbies, and personal introduction.">
+  
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="icon" href="/images/favicon.png" type="image/png">
+  
+  <style>
+    /* Reset & basic styles */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      color: #333;
+      line-height: 1.6;
+      overflow-x: hidden;
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      min-height: 100vh;
+      position: relative;
+    }
+
+    /* Navigation - same as academic page */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      z-index: 1000;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+
+    .home-link {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 500;
+      transition: transform 0.3s ease;
+      color: #333;
+      text-decoration: none;
+    }
+
+    .home-link:hover {
+      transform: translateY(-2px);
+    }
+
+    .favicon-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: #667eea;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 16px;
+    }
+
+    .back-button {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 25px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .back-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+    }
+
+    /* Flying image */
+    .flying-image {
+      position: fixed;
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      border-radius: 50%;
+      z-index: 100;
+      transition: none;
+      box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    /* Main content */
+    .main-content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 2rem;
+      position: relative;
+      z-index: 10;
+    }
+
+    .content-wrapper {
+      max-width: 1000px;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 2fr 1fr;
+      gap: 3rem;
+      align-items: center;
+      margin-top: 2rem;
+    }
+
+    /* Animated words columns */
+    .words-column {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      height: 400px;
+      overflow: hidden;
+    }
+
+    .word-item {
+      padding: 0.75rem 1.5rem;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 25px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      font-weight: 500;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.5s ease;
+      border: 2px solid transparent;
+      backdrop-filter: blur(10px);
+    }
+
+    .word-item.visible {
+      opacity: 1;
+      transform: translateY(0);
+      border-color: rgba(102, 126, 234, 0.3);
+    }
+
+    .word-item.skills {
+      background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+      color: #667eea;
+    }
+
+    .word-item.hobbies {
+      background: linear-gradient(135deg, rgba(118, 75, 162, 0.1), rgba(102, 126, 234, 0.1));
+      color: #764ba2;
+    }
+
+    /* Central text block */
+    .intro-text {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 3rem;
+      border-radius: 30px;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      position: relative;
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .intro-text::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      border-radius: 30px 30px 0 0;
+    }
+
+    .intro-title {
+      font-size: 2.5rem;
+      font-weight: 300;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1.5rem;
+      animation: titleFadeIn 1s ease-out;
+    }
+
+    .intro-description {
+      font-size: 1.1rem;
+      color: #555;
+      line-height: 1.8;
+      animation: textFadeIn 1s ease-out 0.5s both;
+    }
+
+    .intro-description strong {
+      color: #667eea;
+      font-weight: 600;
+    }
+
+    /* Animations */
+    @keyframes titleFadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes textFadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    /* Mobile responsiveness */
+    @media (max-width: 1024px) {
+      .content-wrapper {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        text-align: center;
+      }
+
+      .words-column {
+        height: 200px;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: flex-start;
+      }
+
+      .word-item {
+        margin: 0.25rem;
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+      }
+
+      .intro-text {
+        padding: 2rem;
+      }
+
+      .intro-title {
+        font-size: 2rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav {
+        padding: 0.75rem 1rem;
+      }
+
+      .main-content {
+        padding: 1rem;
+      }
+
+      .intro-text {
+        padding: 1.5rem;
+      }
+
+      .intro-title {
+        font-size: 1.8rem;
+      }
+
+      .intro-description {
+        font-size: 1rem;
+      }
+
+      .flying-image {
+        width: 60px;
+        height: 60px;
+        font-size: 20px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .intro-title {
+        font-size: 1.5rem;
+      }
+
+      .back-button {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <a href="/index.html" class="home-link">
+      <div class="favicon-icon">T</div>
+      <span>Home</span>
+    </a>
+    <a href="/index.html" class="back-button">
+      ← Back to Home
+    </a>
+  </nav>
+
+  <!-- Flying image -->
+  <div class="flying-image" id="flyingImage">🚀</div>
+
+  <main class="main-content">
+    <div class="content-wrapper">
+      <!-- Left column - Skills -->
+      <div class="words-column" id="skillsColumn">
+        <!-- Skills will be populated by JavaScript -->
+      </div>
+
+      <!-- Center - Introduction text -->
+      <div class="intro-text">
+        <h1 class="intro-title">Hello, I'm Tomas</h1>
+        <p class="intro-description">
+          Welcome to my digital space! I'm a passionate <strong>economist and data analyst</strong> with a deep curiosity for understanding how markets work and how data can tell compelling stories. 
+          <br><br>
+          My journey spans from <strong>economic policy analysis</strong> to <strong>growth marketing</strong>, always seeking to bridge the gap between theoretical knowledge and practical application. I believe in the power of data-driven insights to solve real-world problems.
+          <br><br>
+          When I'm not diving into datasets or analyzing economic trends, you'll find me exploring new technologies, learning languages, or enjoying the great outdoors. I'm always eager to connect with like-minded individuals and tackle new challenges.
+        </p>
+      </div>
+
+      <!-- Right column - Hobbies -->
+      <div class="words-column" id="hobbiesColumn">
+        <!-- Hobbies will be populated by JavaScript -->
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // Skills and hobbies data
+    const skills = [
+      'Economics', 'Data Analysis', 'R Programming', 'SQL', 'PowerBI', 
+      'Econometrics', 'Policy Analysis', 'Growth Marketing', 'Market Research',
+      'Digital Marketing', 'International Trade', 'Behavioral Economics',
+      'Python', 'Statistical Analysis', 'ArcGIS', 'Blockchain', 'AI/ML'
+    ];
+
+    const hobbies = [
+      'Travel', 'Photography', 'Hiking', 'Reading', 'Gaming',
+      'Language Learning', 'Cooking', 'Tennis', 'Cycling', 'Music',
+      'Tech Gadgets', 'Cryptocurrency', 'Podcasts', 'History',
+      'Spanish Culture', 'Mountain Climbing', 'Board Games'
+    ];
+
+    // Flying image animation
+    const flyingImage = document.getElementById('flyingImage');
+    let x = Math.random() * (window.innerWidth - 80);
+    let y = Math.random() * (window.innerHeight - 80);
+    let vx = (Math.random() - 0.5) * 4;
+    let vy = (Math.random() - 0.5) * 4;
+
+    function animateFlyingImage() {
+      x += vx;
+      y += vy;
+
+      // Bounce off walls
+      if (x <= 0 || x >= window.innerWidth - 80) {
+        vx = -vx;
+        x = Math.max(0, Math.min(window.innerWidth - 80, x));
+      }
+      if (y <= 80 || y >= window.innerHeight - 80) { // Account for nav height
+        vy = -vy;
+        y = Math.max(80, Math.min(window.innerHeight - 80, y));
+      }
+
+      flyingImage.style.left = x + 'px';
+      flyingImage.style.top = y + 'px';
+
+      requestAnimationFrame(animateFlyingImage);
+    }
+
+    // Start flying animation
+    animateFlyingImage();
+
+    // Animated words function
+    function createAnimatedWords(container, words, className) {
+      let currentIndex = 0;
+      const maxVisible = 6;
+      const visibleWords = [];
+
+      function showNextWord() {
+        // Remove oldest word if we have too many
+        if (visibleWords.length >= maxVisible) {
+          const oldWord = visibleWords.shift();
+          oldWord.classList.remove('visible');
+          setTimeout(() => {
+            if (oldWord.parentNode) {
+              oldWord.parentNode.removeChild(oldWord);
+            }
+          }, 500);
+        }
+
+        // Add new word
+        const wordElement = document.createElement('div');
+        wordElement.className = `word-item ${className}`;
+        wordElement.textContent = words[currentIndex];
+        container.appendChild(wordElement);
+
+        // Trigger animation
+        setTimeout(() => {
+          wordElement.classList.add('visible');
+        }, 50);
+
+        visibleWords.push(wordElement);
+        currentIndex = (currentIndex + 1) % words.length;
+      }
+
+      // Show initial words
+      for (let i = 0; i < Math.min(maxVisible, words.length); i++) {
+        setTimeout(() => showNextWord(), i * 200);
+      }
+
+      // Continue showing words
+      setInterval(showNextWord, 2000);
+    }
+
+    // Initialize animated words
+    const skillsColumn = document.getElementById('skillsColumn');
+    const hobbiesColumn = document.getElementById('hobbiesColumn');
+
+    createAnimatedWords(skillsColumn, skills, 'skills');
+    createAnimatedWords(hobbiesColumn, hobbies, 'hobbies');
+
+    // Handle window resize for flying image
+    window.addEventListener('resize', () => {
+      x = Math.min(x, window.innerWidth - 80);
+      y = Math.min(y, window.innerHeight - 80);
+    });
+
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+
+    // Add some interactive effects
+    const introText = document.querySelector('.intro-text');
+    introText.addEventListener('mouseenter', () => {
+      introText.style.transform = 'translateY(-5px)';
+      introText.style.boxShadow = '0 20px 50px rgba(0, 0, 0, 0.15)';
+    });
+
+    introText.addEventListener('mouseleave', () => {
+      introText.style.transform = 'translateY(0)';
+      introText.style.boxShadow = '0 15px 40px rgba(0, 0, 0, 0.1)';
+    });
+  </script>
+</body>
+</html>

@@ -350,8 +350,13 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 3rem;
-            opacity: 0.5;
+              overflow: hidden;
+        }
+
+        .featured-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .stats {
@@ -483,8 +488,8 @@
         <div class="projects-grid">
             <!-- Featured Project -->
             <div class="project-card featured-project">
-                <div>
-                    <img src="images/dreamguru.png" alt="dreamguru" class="dreamguru">
+                  <div class="featured-image">
+                    <img src="images/dreamguru.png" alt="dreamguru">
                 </div>
                 <div>
                     <h2 class="project-title">Mystic Dream Oracle</h2>

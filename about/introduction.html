@@ -42,6 +42,7 @@
       border-bottom: 1px solid rgba(255,255,255,0.1);
       z-index: 1000;
       box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      height: 80px; /* Fixed height for consistent spacing */
     }
 
     .home-link {
@@ -91,7 +92,7 @@
       box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
     }
 
-        /* Flying image */
+    /* Flying image */
     .flying-image {
       position: fixed;
       width: 80px;
@@ -117,6 +118,7 @@
       justify-content: center;
       min-height: 100vh;
       padding: 2rem;
+      padding-top: 120px; /* Extra padding to clear the nav */
       position: relative;
       z-index: 10;
     }
@@ -127,8 +129,7 @@
       display: grid;
       grid-template-columns: 1fr 2fr 1fr;
       gap: 3rem;
-      align-items: center;
-      margin-top: 2rem;
+      align-items: start; /* Changed from center to start */
     }
 
     /* Animated words columns */
@@ -136,8 +137,9 @@
       display: flex;
       flex-direction: column;
       gap: 1rem;
-      height: 400px;
-      overflow: hidden;
+      min-height: 400px; /* Changed from height to min-height */
+      overflow: visible; /* Changed from hidden to visible */
+      padding-top: 2rem; /* Additional space from top */
     }
 
     .word-item {
@@ -152,6 +154,8 @@
       transition: all 0.5s ease;
       border: 2px solid transparent;
       backdrop-filter: blur(10px);
+      position: relative;
+      z-index: 50; /* Ensure bubbles are below nav but above background */
     }
 
     .word-item.visible {
@@ -180,6 +184,7 @@
       position: relative;
       backdrop-filter: blur(20px);
       border: 1px solid rgba(255, 255, 255, 0.2);
+      z-index: 60; /* Higher z-index for main content */
     }
 
     .intro-text::before {
@@ -234,6 +239,10 @@
 
     /* Mobile responsiveness */
     @media (max-width: 1024px) {
+      .main-content {
+        padding-top: 100px; /* Adjusted for mobile nav */
+      }
+
       .content-wrapper {
         grid-template-columns: 1fr;
         gap: 2rem;
@@ -241,11 +250,12 @@
       }
 
       .words-column {
-        height: 200px;
+        min-height: 200px;
         flex-direction: row;
         flex-wrap: wrap;
         justify-content: center;
         align-items: flex-start;
+        padding-top: 1rem;
       }
 
       .word-item {
@@ -266,10 +276,12 @@
     @media (max-width: 768px) {
       .nav {
         padding: 0.75rem 1rem;
+        height: 70px; /* Smaller nav on mobile */
       }
 
       .main-content {
         padding: 1rem;
+        padding-top: 90px; /* Adjusted for smaller nav */
       }
 
       .intro-text {
@@ -299,6 +311,10 @@
       .back-button {
         padding: 0.6rem 1.2rem;
         font-size: 0.9rem;
+      }
+
+      .main-content {
+        padding-top: 80px;
       }
     }
   </style>
@@ -362,7 +378,7 @@
     // Flying image animation
     const flyingImage = document.getElementById('flyingImage');
     let x = Math.random() * (window.innerWidth - 80);
-    let y = Math.random() * (window.innerHeight - 80);
+    let y = Math.random() * (window.innerHeight - 80) + 100; // Start below nav
     let vx = (Math.random() - 0.5) * 4;
     let vy = (Math.random() - 0.5) * 4;
 
@@ -375,9 +391,9 @@
         vx = -vx;
         x = Math.max(0, Math.min(window.innerWidth - 80, x));
       }
-      if (y <= 80 || y >= window.innerHeight - 80) { // Account for nav height
+      if (y <= 100 || y >= window.innerHeight - 80) { // Account for nav height (100px)
         vy = -vy;
-        y = Math.max(80, Math.min(window.innerHeight - 80, y));
+        y = Math.max(100, Math.min(window.innerHeight - 80, y));
       }
 
       flyingImage.style.left = x + 'px';
@@ -441,7 +457,7 @@
     // Handle window resize for flying image
     window.addEventListener('resize', () => {
       x = Math.min(x, window.innerWidth - 80);
-      y = Math.min(y, window.innerHeight - 80);
+      y = Math.min(Math.max(y, 100), window.innerHeight - 80); // Keep below nav
     });
 
     // Smooth scrolling for anchor links

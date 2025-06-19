@@ -91,19 +91,22 @@
       box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
     }
 
-      /* Flying image */
+    /* Flying image */
     .flying-image {
       position: fixed;
-      width: 120px;
-      height: 120px;
-      background-image: url('/images/circlehead.png');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, #667eea, #764ba2);
       border-radius: 50%;
       z-index: 100;
       transition: none;
       box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 24px;
+      font-weight: bold;
     }
 
     /* Main content */
@@ -281,8 +284,9 @@
       }
 
       .flying-image {
-        width: 90px;
-        height: 90px;
+        width: 60px;
+        height: 60px;
+        font-size: 20px;
       }
     }
 
@@ -310,7 +314,7 @@
   </nav>
 
   <!-- Flying image -->
-  <div class="flying-image" id="flyingImage"></div>
+  <div class="flying-image" id="flyingImage">🚀</div>
 
   <main class="main-content">
     <div class="content-wrapper">
@@ -356,10 +360,8 @@
 
     // Flying image animation
     const flyingImage = document.getElementById('flyingImage');
-    const imageSize = 120; // size of the flying image
-    const navOffset = 80;   // navbar height
-    let x = Math.random() * (window.innerWidth - imageSize);
-    let y = navOffset + Math.random() * (window.innerHeight - imageSize - navOffset);
+    let x = Math.random() * (window.innerWidth - 80);
+    let y = Math.random() * (window.innerHeight - 80);
     let vx = (Math.random() - 0.5) * 4;
     let vy = (Math.random() - 0.5) * 4;
 
@@ -368,14 +370,14 @@
       y += vy;
 
       // Bounce off walls
-     if (x <= 0 || x >= window.innerWidth - imageSize) {
-        vx = -vx;␊
-        x = Math.max(0, Math.min(window.innerWidth - imageSize, x));
-      }␊
-      if (y <= navOffset || y >= window.innerHeight - imageSize) {
-        vy = -vy;␊
-        y = Math.max(navOffset, Math.min(window.innerHeight - imageSize, y));
-      }␊
+      if (x <= 0 || x >= window.innerWidth - 80) {
+        vx = -vx;
+        x = Math.max(0, Math.min(window.innerWidth - 80, x));
+      }
+      if (y <= 80 || y >= window.innerHeight - 80) { // Account for nav height
+        vy = -vy;
+        y = Math.max(80, Math.min(window.innerHeight - 80, y));
+      }
 
       flyingImage.style.left = x + 'px';
       flyingImage.style.top = y + 'px';
@@ -436,10 +438,10 @@
     createAnimatedWords(hobbiesColumn, hobbies, 'hobbies');
 
     // Handle window resize for flying image
-    window.addEventListener('resize', () => {␊
-      x = Math.min(x, window.innerWidth - imageSize);
-      y = Math.min(y, window.innerHeight - imageSize);
-    });␊
+    window.addEventListener('resize', () => {
+      x = Math.min(x, window.innerWidth - 80);
+      y = Math.min(y, window.innerHeight - 80);
+    });
 
     // Smooth scrolling for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {

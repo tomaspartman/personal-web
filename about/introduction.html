@@ -405,7 +405,6 @@
 
     // Animated words function
     function createAnimatedWords(container, words, className) {
-      let currentIndex = 0;
       const maxVisible = 6;
       const visibleWords = [];
 
@@ -422,18 +421,27 @@
         }
 
         // Add new word
-        const wordElement = document.createElement('div');
+         const wordElement = document.createElement('div');
         wordElement.className = `word-item ${className}`;
-        wordElement.textContent = words[currentIndex];
-        container.appendChild(wordElement);
+        // Choose a random word and insert the bubble at a random position
+        const randomWord = words[Math.floor(Math.random() * words.length)];
+        wordElement.textContent = randomWord;
+        // Slight horizontal offset for a more scattered feel
+        wordElement.style.marginLeft = `${(Math.random() - 0.5) * 30}px`;
+
+        const insertIndex = Math.floor(Math.random() * (container.children.length + 1));
+        if (insertIndex >= container.children.length) {
+          container.appendChild(wordElement);
+        } else {
+          container.insertBefore(wordElement, container.children[insertIndex]);
+        }
 
         // Trigger animation
         setTimeout(() => {
           wordElement.classList.add('visible');
         }, 50);
 
-        visibleWords.push(wordElement);
-        currentIndex = (currentIndex + 1) % words.length;
+       visibleWords.push(wordElement);
       }
 
       // Show initial words

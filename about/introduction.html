@@ -27,7 +27,7 @@
       position: relative;
     }
 
-    /* Navigation - same as academic page */
+        /* Navigation - same as academic page */
     .nav {
       position: fixed;
       top: 0;
@@ -42,7 +42,6 @@
       border-bottom: 1px solid rgba(255,255,255,0.1);
       z-index: 1000;
       box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-      height: 80px; /* Fixed height for consistent spacing */
     }
 
     .home-link {
@@ -63,15 +62,9 @@
       width: 28px;
       height: 28px;
       border-radius: 50%;
-      background: #667eea;
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: bold;
-      font-size: 16px;
+      background: #fff;
+      padding: 4px;
     }
-
     .back-button {
       background: linear-gradient(135deg, #667eea, #764ba2);
       color: white;
@@ -276,11 +269,10 @@
       }
     }
 
-    @media (max-width: 768px) {
+       @media (max-width: 768px) {
       .nav {
         padding: 0.75rem 1rem;
-        height: 70px; /* Smaller nav on mobile */
-      }
+      
 
       .main-content {
         padding: 1rem;
@@ -323,15 +315,15 @@
   </style>
 </head>
 <body>
-  <nav class="nav">
-    <a href="/index.html" class="home-link">
-      <div class="favicon-icon">T</div>
-      <span>Home</span>
-    </a>
-    <a href="/index.html" class="back-button">
-      ← Back to Home
-    </a>
-  </nav>
+    <nav class="nav">␊
+    <a href="/index.html" class="home-link">␊
+      <img src="/images/favicon.png" alt="Favicon" class="favicon-icon">
+      <span>Home</span>␊
+    </a>␊
+    <a href="/index.html" class="back-button">␊
+      ← Back to Home␊
+    </a>␊
+  </nav>␊
 
   <!-- Flying image -->
   <div class="flying-image" id="flyingImage">🚀</div>

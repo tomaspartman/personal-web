@@ -85,6 +85,45 @@
       transform: translateY(-2px);
     }
 
+    /* Pop Counter */
+    .pop-counter {
+      position: fixed;
+      top: 100px;
+      right: 20px;
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(15px);
+      border: 2px solid rgba(255,255,255,0.3);
+      border-radius: 20px;
+      padding: 15px 20px;
+      color: white;
+      font-weight: 600;
+      font-size: 1.1rem;
+      text-align: center;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+      z-index: 1001;
+      min-width: 120px;
+      transition: all 0.3s ease;
+    }
+
+    .pop-counter:hover {
+      transform: scale(1.05);
+      background: rgba(255,255,255,0.2);
+    }
+
+    .counter-label {
+      display: block;
+      font-size: 0.8rem;
+      opacity: 0.8;
+      margin-bottom: 5px;
+    }
+
+    .counter-number {
+      display: block;
+      font-size: 1.8rem;
+      font-weight: 700;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+
     /* Page title */
     .page-title {
       position: fixed;
@@ -128,6 +167,9 @@
       transition: all 0.3s ease;
       animation: grow 3s ease-out forwards;
       box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+      user-select: none;
+      word-wrap: break-word;
+      padding: 10px;
     }
 
     .bubble:hover {
@@ -136,32 +178,40 @@
       border-color: rgba(255,255,255,0.5);
     }
 
+    .bubble:active {
+      transform: scale(0.95);
+    }
+
     .bubble.popping {
       animation: pop 0.5s ease-in-out forwards;
+    }
+
+    .bubble.user-popped {
+      animation: pop-success 0.6s ease-in-out forwards;
     }
 
     .bubble.small {
       width: 80px;
       height: 80px;
-      font-size: 0.8rem;
+      font-size: 0.7rem;
     }
 
     .bubble.medium {
       width: 120px;
       height: 120px;
-      font-size: 1rem;
+      font-size: 0.9rem;
     }
 
     .bubble.large {
       width: 160px;
       height: 160px;
-      font-size: 1.2rem;
+      font-size: 1.1rem;
     }
 
     .bubble.extra-large {
       width: 200px;
       height: 200px;
-      font-size: 1.4rem;
+      font-size: 1.3rem;
     }
 
     /* Animations */
@@ -194,6 +244,25 @@
       }
     }
 
+    @keyframes pop-success {
+      0% {
+        transform: scale(1);
+        opacity: 1;
+        background: rgba(255,255,255,0.15);
+      }
+      30% {
+        transform: scale(1.4);
+        opacity: 0.9;
+        background: rgba(76, 175, 80, 0.4);
+        border-color: rgba(76, 175, 80, 0.8);
+      }
+      100% {
+        transform: scale(0);
+        opacity: 0;
+        background: rgba(76, 175, 80, 0.6);
+      }
+    }
+
     @keyframes float {
       0%, 100% {
         transform: translateY(0px);
@@ -201,15 +270,6 @@
       50% {
         transform: translateY(-20px);
       }
-    }
-
-    /* Special bubble types */
-    .bubble.floating {
-      animation: grow 3s ease-out forwards, float 6s ease-in-out infinite 3s;
-    }
-
-    .bubble.pulsing {
-      animation: grow 3s ease-out forwards, pulse 4s ease-in-out infinite 3s;
     }
 
     @keyframes pulse {
@@ -223,6 +283,26 @@
       }
     }
 
+    /* Special bubble types */
+    .bubble.floating {
+      animation: grow 3s ease-out forwards, float 6s ease-in-out infinite 3s;
+    }
+
+    .bubble.pulsing {
+      animation: grow 3s ease-out forwards, pulse 4s ease-in-out infinite 3s;
+    }
+
+    /* Counter animation */
+    @keyframes counter-pop {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+
+    .counter-animate {
+      animation: counter-pop 0.3s ease-out;
+    }
+
     /* Mobile responsiveness */
     @media (max-width: 768px) {
       .nav {
@@ -233,6 +313,18 @@
         font-size: 2.5rem;
       }
 
+      .pop-counter {
+        top: 90px;
+        right: 15px;
+        padding: 12px 15px;
+        font-size: 1rem;
+        min-width: 100px;
+      }
+
+      .counter-number {
+        font-size: 1.5rem;
+      }
+
       .bubble {
         font-size: 0.8rem;
       }
@@ -240,25 +332,25 @@
       .bubble.small {
         width: 60px;
         height: 60px;
-        font-size: 0.7rem;
+        font-size: 0.6rem;
       }
 
       .bubble.medium {
         width: 90px;
         height: 90px;
-        font-size: 0.8rem;
+        font-size: 0.7rem;
       }
 
       .bubble.large {
         width: 120px;
         height: 120px;
-        font-size: 0.9rem;
+        font-size: 0.8rem;
       }
 
       .bubble.extra-large {
         width: 150px;
         height: 150px;
-        font-size: 1rem;
+        font-size: 0.9rem;
       }
     }
 
@@ -270,6 +362,18 @@
       .back-button {
         padding: 0.6rem 1.2rem;
         font-size: 0.9rem;
+      }
+
+      .pop-counter {
+        top: 85px;
+        right: 10px;
+        padding: 10px 12px;
+        font-size: 0.9rem;
+        min-width: 90px;
+      }
+
+      .counter-number {
+        font-size: 1.3rem;
       }
     }
   </style>
@@ -284,6 +388,11 @@
       ← Back to Home
     </a>
   </nav>
+
+  <div class="pop-counter" id="popCounter">
+    <span class="counter-label">Bubbles Popped</span>
+    <span class="counter-number" id="counterNumber">0</span>
+  </div>
 
   <div class="page-title">
     My Hobbies
@@ -306,19 +415,74 @@
     ];
 
     const bubbleContainer = document.getElementById('bubbleContainer');
+    const counterNumber = document.getElementById('counterNumber');
+    const popCounter = document.getElementById('popCounter');
     const activeBubbles = [];
-    const maxBubbles = 15;
+    const maxBubbles = 18;
+    let poppedCount = 0;
 
     // Bubble size classes
     const sizes = ['small', 'medium', 'large', 'extra-large'];
     const animations = ['floating', 'pulsing', ''];
 
-    function getRandomPosition() {
-      const margin = 100;
-      return {
-        x: Math.random() * (window.innerWidth - margin * 2) + margin,
-        y: Math.random() * (window.innerHeight - margin * 2) + margin + 80 // Account for nav
-      };
+    function getRandomPosition(bubbleSize = 200) {
+      const navHeight = 80; // Account for navigation
+      const counterWidth = 160; // Account for counter + padding
+      const counterHeight = 120; // Account for counter height + padding
+      const margin = 20; // Reduced margin for better space utilization
+      
+      // Calculate available space
+      const minX = margin + bubbleSize / 2;
+      const maxX = window.innerWidth - margin - bubbleSize / 2;
+      const minY = navHeight + margin + bubbleSize / 2;
+      const maxY = window.innerHeight - margin - bubbleSize / 2;
+      
+      let x, y;
+      let attempts = 0;
+      const maxAttempts = 100;
+      let validPosition = false;
+      
+      do {
+        // Generate random position within safe bounds
+        x = Math.random() * (maxX - minX) + minX;
+        y = Math.random() * (maxY - minY) + minY;
+        
+        // Check if position conflicts with counter area
+        const counterLeft = window.innerWidth - counterWidth;
+        const counterTop = navHeight;
+        const counterRight = window.innerWidth;
+        const counterBottom = navHeight + counterHeight;
+        
+        // Check if bubble overlaps with counter (with some padding)
+        const bubbleLeft = x - bubbleSize / 2;
+        const bubbleRight = x + bubbleSize / 2;
+        const bubbleTop = y - bubbleSize / 2;
+        const bubbleBottom = y + bubbleSize / 2;
+        
+        const overlapsCounter = !(bubbleRight < counterLeft - 10 || 
+                                bubbleLeft > counterRight + 10 || 
+                                bubbleBottom < counterTop - 10 || 
+                                bubbleTop > counterBottom + 10);
+        
+        if (!overlapsCounter) {
+          validPosition = true;
+        }
+        
+        attempts++;
+      } while (!validPosition && attempts < maxAttempts);
+      
+      // If we couldn't find a valid position after many attempts, 
+      // place it in the left side of the screen
+      if (!validPosition) {
+        x = Math.random() * (window.innerWidth * 0.6 - minX) + minX;
+        y = Math.random() * (maxY - minY) + minY;
+      }
+      
+      // Final safety check to ensure bubble is within bounds
+      x = Math.max(minX, Math.min(maxX, x));
+      y = Math.max(minY, Math.min(maxY, y));
+      
+      return { x, y };
     }
 
     function createBubble() {
@@ -328,32 +492,58 @@
       const randomHobby = hobbies[Math.floor(Math.random() * hobbies.length)];
       const randomSize = sizes[Math.floor(Math.random() * sizes.length)];
       const randomAnimation = animations[Math.floor(Math.random() * animations.length)];
-      const position = getRandomPosition();
+      
+      // Get bubble size for positioning
+      const sizeMap = {
+        'small': 80,
+        'medium': 120,
+        'large': 160,
+        'extra-large': 200
+      };
+      const bubbleSize = sizeMap[randomSize];
+      const position = getRandomPosition(bubbleSize);
 
       bubble.className = `bubble ${randomSize} ${randomAnimation}`;
       bubble.textContent = randomHobby;
-      bubble.style.left = position.x + 'px';
-      bubble.style.top = position.y + 'px';
+      
+      // Position bubble by its center point
+      bubble.style.left = (position.x - bubbleSize / 2) + 'px';
+      bubble.style.top = (position.y - bubbleSize / 2) + 'px';
 
       // Add click event to pop the bubble
-      bubble.addEventListener('click', () => {
-        popBubble(bubble);
+      bubble.addEventListener('click', (e) => {
+        e.preventDefault();
+        popBubble(bubble, true);
       });
 
-      // Auto-pop after random time (8-15 seconds)
-      const autoPopTime = Math.random() * 7000 + 8000;
-      setTimeout(() => {
+      // Auto-pop after random time (5-10 seconds, reduced from original)
+      const autoPopTime = Math.random() * 5000 + 5000;
+      const autoPopTimeout = setTimeout(() => {
         if (bubble.parentNode) {
-          popBubble(bubble);
+          popBubble(bubble, false);
         }
       }, autoPopTime);
+
+      // Store timeout reference to clear it if manually popped
+      bubble.autoPopTimeout = autoPopTimeout;
 
       bubbleContainer.appendChild(bubble);
       activeBubbles.push(bubble);
     }
 
-    function popBubble(bubble) {
-      bubble.classList.add('popping');
+    function popBubble(bubble, isUserPop = false) {
+      // Clear auto-pop timeout if it exists
+      if (bubble.autoPopTimeout) {
+        clearTimeout(bubble.autoPopTimeout);
+      }
+
+      if (isUserPop) {
+        bubble.classList.add('user-popped');
+        poppedCount++;
+        updateCounter();
+      } else {
+        bubble.classList.add('popping');
+      }
       
       // Remove from active bubbles array
       const index = activeBubbles.indexOf(bubble);
@@ -366,21 +556,30 @@
         if (bubble.parentNode) {
           bubble.parentNode.removeChild(bubble);
         }
-      }, 500);
+      }, isUserPop ? 600 : 500);
+    }
+
+    function updateCounter() {
+      counterNumber.textContent = poppedCount;
+      popCounter.classList.add('counter-animate');
+      
+      setTimeout(() => {
+        popCounter.classList.remove('counter-animate');
+      }, 300);
     }
 
     function generateBubbles() {
-      // Create initial bubbles
-      for (let i = 0; i < 8; i++) {
-        setTimeout(() => createBubble(), i * 500);
+      // Create initial bubbles faster
+      for (let i = 0; i < 10; i++) {
+        setTimeout(() => createBubble(), i * 200);
       }
 
-      // Continue creating bubbles
+      // Continue creating bubbles more frequently
       setInterval(() => {
         if (activeBubbles.length < maxBubbles) {
           createBubble();
         }
-      }, 2000);
+      }, 1000); // Reduced from 2000ms to 1000ms
     }
 
     // Handle window resize
@@ -388,10 +587,19 @@
       // Reposition bubbles that are out of bounds
       activeBubbles.forEach(bubble => {
         const rect = bubble.getBoundingClientRect();
-        if (rect.right > window.innerWidth || rect.bottom > window.innerHeight) {
-          const newPosition = getRandomPosition();
-          bubble.style.left = newPosition.x + 'px';
-          bubble.style.top = newPosition.y + 'px';
+        const computedStyle = window.getComputedStyle(bubble);
+        const bubbleSize = parseFloat(computedStyle.width);
+        
+        // Check if bubble is out of bounds
+        const isOutOfBounds = rect.right > window.innerWidth || 
+                             rect.bottom > window.innerHeight || 
+                             rect.left < 0 || 
+                             rect.top < 80;
+        
+        if (isOutOfBounds) {
+          const newPosition = getRandomPosition(bubbleSize);
+          bubble.style.left = (newPosition.x - bubbleSize / 2) + 'px';
+          bubble.style.top = (newPosition.y - bubbleSize / 2) + 'px';
         }
       });
     });
@@ -409,7 +617,7 @@
     // Start the bubble generation
     generateBubbles();
 
-    // Add some sparkle effects on click
+    // Add some sparkle effects on click (but not on bubbles)
     document.addEventListener('click', (e) => {
       if (e.target.classList.contains('bubble')) return;
       
@@ -433,6 +641,15 @@
           sparkle.parentNode.removeChild(sparkle);
         }
       }, 500);
+    });
+
+    // Add keyboard shortcut for fun - spacebar to pop a random bubble
+    document.addEventListener('keydown', (e) => {
+      if (e.code === 'Space' && activeBubbles.length > 0) {
+        e.preventDefault();
+        const randomBubble = activeBubbles[Math.floor(Math.random() * activeBubbles.length)];
+        popBubble(randomBubble, true);
+      }
     });
   </script>
 </body>

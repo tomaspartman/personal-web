@@ -128,34 +128,25 @@
     }
 
     .content-wrapper {
-      width: min(95vw, 1600px);
+      width: min(95vw, 1300px);
       margin: 0 auto;
       display: grid;
       /* Responsive grid layout */
-      grid-template-columns: 
-        minmax(180px, 1fr) 
-        minmax(300px, 3fr) 
-        minmax(180px, 1fr);
+      grid-template-columns:
+        minmax(200px, 1fr)
+        minmax(0, 800px)
+        minmax(200px, 1fr);
       gap: clamp(1.5rem, 3vw, 4rem);
       align-items: stretch;
     }
 
-    /* Media queries for better responsiveness */
-    @media (min-width: 1400px) {
+    /* Wider screens keep side columns narrow */
+    @media (min-width: 1600px) {
       .content-wrapper {
-        grid-template-columns: 
-          minmax(200px, 1.2fr) 
-          minmax(400px, 2.5fr) 
-          minmax(200px, 1.2fr);
-      }
-    }
-
-    @media (min-width: 1800px) {
-      .content-wrapper {
-        grid-template-columns: 
-          minmax(240px, 1.5fr) 
-          minmax(500px, 2fr) 
-          minmax(240px, 1.5fr);
+        grid-template-columns:
+          minmax(220px, 1fr)
+          minmax(0, 900px)
+          minmax(220px, 1fr);
       }
     }
 

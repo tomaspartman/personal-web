@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="sk">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -191,11 +191,16 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>Contact me</h1>
-            <p>Write me a message and I will get back to you as soon as possible</p>
+            <h1>Contact Me</h1>
+            <p>Send me a message and I'll get back to you as soon as possible</p>
         </div>
 
-        <form id="contactForm">
+        <form id="contactForm" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+            <!-- Hidden field for spam bot protection -->
+            <div style="display: none;">
+                <label>Don't fill this out if you're human: <input name="bot-field" /></label>
+            </div>
+
             <div class="form-group">
                 <label for="name">Name <span class="required">*</span></label>
                 <input type="text" id="name" name="name" required>
@@ -218,64 +223,50 @@
 
             <button type="submit" class="submit-btn" id="submitBtn">
                 <span class="loading" id="loading"></span>
-                <span id="btnText">Send message</span>
+                <span id="btnText">Send Message</span>
             </button>
         </form>
 
         <div class="success-message" id="successMessage">
-            ✓ The message was sent successfully! I will get back to you as soon as possible.
+            ✓ Message sent successfully! I'll get back to you soon.
         </div>
 
         <div class="error-message" id="errorMessage">
-            ✗ Oops! There was an error while sending. Please try again.
+            ✗ Oops! Something went wrong. Please try again.
         </div>
     </div>
 
+    <!-- EmailJS script už nie je potrebný pre Netlify -->
     <script>
-        // Obfuskovaný email - váš skutočný email vložte sem
-        const encodedEmail = btoa('partmantomas@gmail.com'); // Zmeňte na váš email
+        // Obfuscated email - insert your real email here
+        const encodedEmail = btoa('your.email@example.com'); // Change to your email
         
-        // Funkcia na dekódovanie emailu
+        // Decode email function
         function getEmail() {
             return atob(encodedEmail);
         }
 
-        // Validácia emailu
+        // Email validation
         function isValidEmail(email) {
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             return emailRegex.test(email);
         }
 
-        // Simulácia odoslania emailu (v reálnom prostredí by ste použili backend službu)
+        // Netlify Forms riešenie
         function sendEmail(formData) {
-            return new Promise((resolve, reject) => {
-                setTimeout(() => {
-                    // Simulácia úspešného odoslania
-                    if (Math.random() > 0.1) { // 90% šanca na úspech
-                        resolve();
-                    } else {
-                        reject(new Error('Chyba siete'));
-                    }
-                }, 2000);
+            return fetch('/', {
+                method: 'POST',
+                headers: { 
+                    "Content-Type": "application/x-www-form-urlencoded" 
+                },
+                body: new URLSearchParams(formData).toString()
+            }).then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response;
             });
         }
-
-        // Pre skutočné použitie môžete použiť EmailJS alebo podobnú službu:
-        /*
-        function sendEmail(formData) {
-            return emailjs.send(
-                'your_service_id',
-                'your_template_id',
-                {
-                    from_name: formData.get('name'),
-                    from_email: formData.get('email'),
-                    subject: formData.get('subject') || 'Nová správa z kontaktného formulára',
-                    message: formData.get('message'),
-                    to_email: getEmail()
-                }
-            );
-        }
-        */
 
         document.getElementById('contactForm').addEventListener('submit', async function(e) {
             e.preventDefault();
@@ -286,53 +277,54 @@
             const successMessage = document.getElementById('successMessage');
             const errorMessage = document.getElementById('errorMessage');
             
-            // Skryť predchádzajúce správy
+            // Hide previous messages
             successMessage.style.display = 'none';
             errorMessage.style.display = 'none';
             
-            // Validácia
+            // Validation
             const email = document.getElementById('email').value;
             const name = document.getElementById('name').value;
             const message = document.getElementById('message').value;
             
             if (!name.trim() || !email.trim() || !message.trim()) {
-                errorMessage.textContent = '✗ Prosím vyplňte všetky povinné polia.';
+                errorMessage.textContent = '✗ Please fill in all required fields.';
                 errorMessage.style.display = 'block';
                 return;
             }
             
             if (!isValidEmail(email)) {
-                errorMessage.textContent = '✗ Prosím zadajte platný email.';
+                errorMessage.textContent = '✗ Please enter a valid email address.';
                 errorMessage.style.display = 'block';
                 return;
             }
             
-            // Spustiť loading
+            // Start loading
             submitBtn.disabled = true;
             loading.classList.add('active');
-            btnText.textContent = 'Odosielam...';
+            btnText.textContent = 'Sending...';
             
             try {
                 const formData = new FormData(this);
+                formData.append('form-name', 'contact'); // Add form name for Netlify
                 await sendEmail(formData);
                 
-                // Úspech
+                // Success
                 successMessage.style.display = 'block';
                 this.reset();
                 
-                // Console log pre debugging (odstráňte v produkcii)
-                console.log('Email by bol odoslaný na:', getEmail());
-                console.log('Od:', formData.get('email'));
-                console.log('Meno:', formData.get('name'));
-                console.log('Predmet:', formData.get('subject'));
-                console.log('Správa:', formData.get('message'));
+                // Console log for debugging (remove in production)
+                console.log('Email would be sent to:', getEmail());
+                console.log('From:', formData.get('email'));
+                console.log('Name:', formData.get('name'));
+                console.log('Subject:', formData.get('subject'));
+                console.log('Message:', formData.get('message'));
                 
             } catch (error) {
-                // Chyba
+                // Error
                 errorMessage.style.display = 'block';
-                console.error('Chyba pri odosielaní:', error);
+                console.error('Error sending email:', error);
             } finally {
-                // Vrátiť pôvodný stav tlačidla
+                // Reset button state
                 submitBtn.disabled = false;
                 loading.classList.remove('active');
                 btnText.textContent = 'Odoslať správu';

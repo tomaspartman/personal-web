@@ -28,7 +28,7 @@
       position: relative;
     }
 
-        /* Navigation - same as academic page */
+    /* Navigation - same as academic page */
     .nav {
       position: fixed;
       top: 0;
@@ -96,7 +96,7 @@
       box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
     }
 
-      /* Flying image */
+    /* Flying image */
     .flying-image {
       position: fixed;
       width: 90px;
@@ -127,25 +127,48 @@
       z-index: 10;
     }
 
-   .content-wrapper {
-      width: min(90vw, 1400px);
+    .content-wrapper {
+      width: min(95vw, 1600px);
       margin: 0 auto;
       display: grid;
-      grid-template-columns: minmax(160px, 1fr) minmax(0, 4fr) minmax(160px, 1fr);
-      gap: clamp(2rem, 4vw, 3rem);
-      align-items: stretch; /* Changed from center to start */
+      /* Responsive grid layout */
+      grid-template-columns: 
+        minmax(180px, 1fr) 
+        minmax(300px, 3fr) 
+        minmax(180px, 1fr);
+      gap: clamp(1.5rem, 3vw, 4rem);
+      align-items: stretch;
+    }
+
+    /* Media queries for better responsiveness */
+    @media (min-width: 1400px) {
+      .content-wrapper {
+        grid-template-columns: 
+          minmax(200px, 1.2fr) 
+          minmax(400px, 2.5fr) 
+          minmax(200px, 1.2fr);
+      }
+    }
+
+    @media (min-width: 1800px) {
+      .content-wrapper {
+        grid-template-columns: 
+          minmax(240px, 1.5fr) 
+          minmax(500px, 2fr) 
+          minmax(240px, 1.5fr);
+      }
     }
 
     /* Animated words columns */
-     .words-column {
+    .words-column {
       display: flex;
-      justify-content: space-between;
+      justify-content: flex-start;
       flex-direction: column;
       gap: 1rem;
       align-self: stretch;
       height: 100%;
-      overflow: visible; /* Changed from hidden to visible */
-      padding-top: 2rem; /* Additional space from top */
+      overflow: visible;
+      padding-top: 2rem;
     }
 
     .word-item {
@@ -161,7 +184,7 @@
       border: 2px solid transparent;
       backdrop-filter: blur(10px);
       position: relative;
-      z-index: 50; /* Ensure bubbles are below nav but above background */
+      z-index: 50;
     }
 
     .word-item.visible {
@@ -180,10 +203,10 @@
       color: #764ba2;
     }
 
-    /* Central text block */
+    /* Central text block - enhanced responsiveness */
     .intro-text {
       background: rgba(255, 255, 255, 0.95);
-      padding: 3rem;
+      padding: clamp(2rem, 4vw, 4rem);
       border-radius: 30px;
       box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
       text-align: center;
@@ -191,11 +214,14 @@
       position: relative;
       backdrop-filter: blur(20px);
       border: 1px solid rgba(255, 255, 255, 0.2);
-      z-index: 60; /* Higher z-index for main content */
+      z-index: 60;
+      /* Better width handling */
+      width: 100%;
+      max-width: none;
     }
 
     .intro-title {
-      font-size: 2.5rem;
+      font-size: clamp(2rem, 4vw, 3.5rem);
       font-weight: 300;
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       -webkit-background-clip: text;
@@ -206,10 +232,11 @@
     }
 
     .intro-description {
-      font-size: 1.1rem;
+      font-size: clamp(1rem, 1.5vw, 1.3rem);
       color: #555;
       line-height: 1.8;
       animation: textFadeIn 1s ease-out 0.5s both;
+      max-width: none;
     }
 
     .intro-description strong {
@@ -236,13 +263,14 @@
     /* Mobile responsiveness */
     @media (max-width: 1024px) {
       .main-content {
-        padding-top: 100px; /* Adjusted for mobile nav */
+        padding-top: 100px;
       }
 
       .content-wrapper {
         grid-template-columns: 1fr;
         gap: 2rem;
         text-align: center;
+        width: min(95vw, 800px);
       }
 
       .words-column {
@@ -263,32 +291,24 @@
       .intro-text {
         padding: 2rem;
       }
-
-      .intro-title {
-        font-size: 2rem;
-      }
     }
 
-       @media (max-width: 768px) {
+    @media (max-width: 768px) {
       .nav {
         padding: 0.75rem 1rem;
-      
+      }
 
       .main-content {
         padding: 1rem;
-        padding-top: 90px; /* Adjusted for smaller nav */
+        padding-top: 90px;
+      }
+
+      .content-wrapper {
+        width: min(95vw, 600px);
       }
 
       .intro-text {
         padding: 1.5rem;
-      }
-
-      .intro-title {
-        font-size: 1.8rem;
-      }
-
-      .intro-description {
-        font-size: 1rem;
       }
 
       .flying-image {
@@ -299,10 +319,6 @@
     }
 
     @media (max-width: 480px) {
-      .intro-title {
-        font-size: 1.5rem;
-      }
-
       .back-button {
         padding: 0.6rem 1.2rem;
         font-size: 0.9rem;
@@ -310,6 +326,10 @@
 
       .main-content {
         padding-top: 80px;
+      }
+
+      .content-wrapper {
+        width: min(95vw, 400px);
       }
     }
   </style>
@@ -388,9 +408,9 @@
       <div class="intro-text">
         <h1 class="intro-title">Hello, I'm Tomas</h1>
         <p class="intro-description">
-          I hold a Bachelor’s in Security & Strategic Studies & Economic Policy and a Master’s in Economic Policy from Masaryk University, with an Erasmus year in Business Economics at Universidad de Cantabria. I’m passionate about unpacking how markets and policies shape our world, and I thrive on turning data into clear, actionable insights.
+          I hold a Bachelor's in Security & Strategic Studies & Economic Policy and a Master's in Economic Policy from Masaryk University, with an Erasmus year in Business Economics at Universidad de Cantabria. I'm passionate about unpacking how markets and policies shape our world, and I thrive on turning data into clear, actionable insights.
           <br><br>
-          Beyond my academic and professional work, I’m a true outdoor enthusiast and global citizen—drawn to the beauty of nature, fascinated by international relations, and always up for a new challenge. You’ll often find me rock-climbing, surfing, playing tennis, mountaineering, training Brazilian jiu-jitsu, or planning my next travel adventure.
+          Beyond my academic and professional work, I'm a true outdoor enthusiast and global citizen—drawn to the beauty of nature, fascinated by international relations, and always up for a new challenge. You'll often find me rock-climbing, surfing, playing tennis, mountaineering, training Brazilian jiu-jitsu, or planning my next travel adventure.
         </p>
       </div>
 
@@ -465,7 +485,7 @@
         }
 
         // Add new word
-         const wordElement = document.createElement('div');
+        const wordElement = document.createElement('div');
         wordElement.className = `word-item ${className}`;
         // Choose a random word and insert the bubble at a random position
         const randomWord = words[Math.floor(Math.random() * words.length)];
@@ -485,7 +505,7 @@
           wordElement.classList.add('visible');
         }, 50);
 
-       visibleWords.push(wordElement);
+        visibleWords.push(wordElement);
       }
 
       // Show initial words
@@ -534,7 +554,7 @@
       introText.style.transform = 'translateY(0)';
       introText.style.boxShadow = '0 15px 40px rgba(0, 0, 0, 0.1)';
     });
- </script>
+  </script>
   <button class="scroll-to-top" id="scrollToTop" aria-label="Scroll to top">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
       <polyline points="18,15 12,9 6,15"></polyline>

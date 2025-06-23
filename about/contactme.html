@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact</title>
+    <link rel="stylesheet" href="/css/index.css">
     <style>
         * {
             margin: 0;
@@ -189,6 +190,64 @@
     </style>
 </head>
 <body>
+    <div class="scroll-indicator" id="scrollIndicator"></div>
+    <nav class="nav" id="navbar">
+        <a href="/index.html" class="home-link">
+            <img src="/images/favicon.png" alt="Favicon" class="favicon-icon">
+            <span>Home</span>
+        </a>
+        <div class="mobile-menu-toggle" id="mobileToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="nav-right" id="navRight">
+            <div class="dropdown">
+                <button class="dropbtn" type="button">
+                    About
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 8" aria-hidden="true">
+                        <line x1="1" y1="2" x2="4" y2="5" stroke="currentColor" stroke-width="1"/>
+                        <line x1="7" y1="2" x2="4" y2="5" stroke="currentColor" stroke-width="1"/>
+                    </svg>
+                </button>
+                <ul class="dropdown-content">
+                    <li><a href="/about/introduction.html">Introduction</a></li>
+                    <li><a href="/about/academic.html">Academic Background</a></li>
+                    <li><a href="/about/professional.html">Professional Background</a></li>
+                    <li><a href="/about/hobbies.html">My Hobbies</a></li>
+                    <li><a href="/about/contactme.html">Contact me</a></li>
+                </ul>
+            </div>
+            <a href="/books.html">Books</a>
+            <a href="/projects.html">Projects</a>
+            <div class="dropdown">
+                <button class="dropbtn" type="button">
+                    Travel Blog
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 8" aria-hidden="true">
+                        <line x1="1" y1="2" x2="4" y2="5" stroke="currentColor" stroke-width="1"/>
+                        <line x1="7" y1="2" x2="4" y2="5" stroke="currentColor" stroke-width="1"/>
+                    </svg>
+                </button>
+                <ul class="dropdown-content">
+                    <li><a href="/TravelBlog/uzbekistan.html">Uzbekistan</a></li>
+                    <li><a href="/TravelBlog/kazakhstan.html">Kazakhstan</a></li>
+                    <li><a href="/TravelBlog/kyrgyzstan.html">Kyrgyzstan</a></li>
+                    <li><a href="/TravelBlog/ecuador.html">Ecuador</a></li>
+                    <li><a href="/TravelBlog/china-shanghai.html">China Shanghai</a></li>
+                    <li><a href="/TravelBlog/shanghai-food.html">Shanghai Food</a></li>
+                    <li><a href="/TravelBlog/new-zealand.html">New Zealand</a></li>
+                    <li><a href="/TravelBlog/romania.html">Romania</a></li>
+                </ul>
+            </div>
+            <button class="search-icon" aria-label="Search">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+                    <circle cx="11" cy="11" r="8" />
+                    <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                </svg>
+            </button>
+        </div>
+    </nav>
+    <div class="mobile-menu-overlay" id="menuOverlay"></div>
     <div class="container">
         <div class="header">
             <h1>Contact Me</h1>
@@ -332,6 +391,95 @@
                 e.preventDefault();
                 return false;
             }
+        });
+    </script>
+    <button class="scroll-to-top" id="scrollToTop" aria-label="Scroll to top">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="18,15 12,9 6,15"></polyline>
+        </svg>
+    </button>
+    <script>
+        const mobileToggle = document.getElementById('mobileToggle');
+        const navRight = document.getElementById('navRight');
+        const menuOverlay = document.getElementById('menuOverlay');
+
+        mobileToggle.addEventListener('click', function() {
+            mobileToggle.classList.toggle('active');
+            navRight.classList.toggle('active');
+            menuOverlay.classList.toggle('active');
+            document.body.style.overflow = navRight.classList.contains('active') ? 'hidden' : '';
+        });
+
+        menuOverlay.addEventListener('click', function() {
+            mobileToggle.classList.remove('active');
+            navRight.classList.remove('active');
+            menuOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+
+        document.querySelectorAll('.nav-right a, .dropdown-content a').forEach(link => {
+            link.addEventListener('click', function() {
+                mobileToggle.classList.remove('active');
+                navRight.classList.remove('active');
+                menuOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
+
+        document.addEventListener('click', function(e) {
+            if (!navRight.contains(e.target) && !mobileToggle.contains(e.target) && !menuOverlay.contains(e.target)) {
+                mobileToggle.classList.remove('active');
+                navRight.classList.remove('active');
+                menuOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+
+        document.addEventListener('click', function(e) {
+            document.querySelectorAll('.dropdown').forEach(function(dropdown) {
+                if (e.target.closest('.dropbtn') && dropdown.contains(e.target)) {
+                    dropdown.classList.toggle('open');
+                } else if (!dropdown.contains(e.target)) {
+                    dropdown.classList.remove('open');
+                }
+            });
+        });
+
+        const navbar = document.getElementById('navbar');
+        const scrollIndicator = document.getElementById('scrollIndicator');
+        const scrollToTopBtn = document.getElementById('scrollToTop');
+
+        window.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+
+            if (scrolled > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled_percentage = (winScroll / height) * 100;
+            scrollIndicator.style.width = scrolled_percentage + '%';
+
+            if (scrolled > 300) {
+                scrollToTopBtn.classList.add('visible');
+            } else {
+                scrollToTopBtn.classList.remove('visible');
+            }
+        });
+
+        scrollToTopBtn.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        const searchBtn = document.querySelector('.search-icon');
+        searchBtn.addEventListener('click', function() {
+            alert('Search functionality would be implemented here!');
         });
     </script>
 </body>

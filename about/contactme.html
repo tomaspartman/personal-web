@@ -238,13 +238,7 @@
 
     <!-- EmailJS script už nie je potrebný pre Netlify -->
     <script>
-        // Obfuscated email - insert your real email here
-        const encodedEmail = btoa('your.email@example.com'); // Change to your email
-        
-        // Decode email function
-        function getEmail() {
-            return atob(encodedEmail);
-        }
+        // Netlify Forms solution - no email needed in code!
 
         // Email validation
         function isValidEmail(email) {
@@ -312,13 +306,6 @@
                 successMessage.style.display = 'block';
                 this.reset();
                 
-                // Console log for debugging (remove in production)
-                console.log('Email would be sent to:', getEmail());
-                console.log('From:', formData.get('email'));
-                console.log('Name:', formData.get('name'));
-                console.log('Subject:', formData.get('subject'));
-                console.log('Message:', formData.get('message'));
-                
             } catch (error) {
                 // Error
                 errorMessage.style.display = 'block';
@@ -327,11 +314,11 @@
                 // Reset button state
                 submitBtn.disabled = false;
                 loading.classList.remove('active');
-                btnText.textContent = 'Odoslať správu';
+                btnText.textContent = 'Send Message';
             }
         });
 
-        // Prevencia pravého kliknutia a výberu textu (dodatočná ochrana)
+        // Prevent right-click and text selection (additional protection)
         document.addEventListener('contextmenu', e => e.preventDefault());
         document.addEventListener('selectstart', e => {
             if (e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') {
@@ -339,7 +326,7 @@
             }
         });
 
-        // Ochrana pred DevTools (základná)
+        // Basic DevTools protection
         document.addEventListener('keydown', function(e) {
             if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key === 'I')) {
                 e.preventDefault();

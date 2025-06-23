@@ -210,14 +210,14 @@
       border-radius: 30px;
       box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
       text-align: center;
-      align-self: stretch;
+      align-self: center;
       position: relative;
       backdrop-filter: blur(20px);
       border: 1px solid rgba(255, 255, 255, 0.2);
       z-index: 60;
-      /* Better width handling */
       width: 100%;
-      max-width: none;
+      max-width: 800px;
+      margin: 0 auto;
     }
 
     .intro-title {
@@ -236,7 +236,8 @@
       color: #555;
       line-height: 1.8;
       animation: textFadeIn 1s ease-out 0.5s both;
-      max-width: none;
+      max-width: 60ch;
+      margin: 0 auto;
     }
 
     .intro-description strong {
@@ -487,18 +488,10 @@
         // Add new word
         const wordElement = document.createElement('div');
         wordElement.className = `word-item ${className}`;
-        // Choose a random word and insert the bubble at a random position
+        // Choose a random word and append it to the column
         const randomWord = words[Math.floor(Math.random() * words.length)];
         wordElement.textContent = randomWord;
-        // Slight horizontal offset for a more scattered feel
-        wordElement.style.marginLeft = `${(Math.random() - 0.5) * 30}px`;
-
-        const insertIndex = Math.floor(Math.random() * (container.children.length + 1));
-        if (insertIndex >= container.children.length) {
-          container.appendChild(wordElement);
-        } else {
-          container.insertBefore(wordElement, container.children[insertIndex]);
-        }
+        container.appendChild(wordElement);
 
         // Trigger animation
         setTimeout(() => {

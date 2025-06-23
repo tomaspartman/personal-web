@@ -1,1 +1,359 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kontakt</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            max-width: 600px;
+            width: 100%;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            color: #333;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e1e5e9;
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .loading {
+            display: none;
+        }
+
+        .loading.active {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-top: 2px solid white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-right: 10px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .success-message {
+            background: linear-gradient(135deg, #4ade80, #22c55e);
+            color: white;
+            padding: 15px;
+            border-radius: 12px;
+            margin-top: 20px;
+            text-align: center;
+            display: none;
+            animation: slideIn 0.5s ease;
+        }
+
+        .error-message {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: white;
+            padding: 15px;
+            border-radius: 12px;
+            margin-top: 20px;
+            text-align: center;
+            display: none;
+            animation: slideIn 0.5s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .required {
+            color: #e11d48;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 25px;
+                margin: 10px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Kontaktujte ma</h1>
+            <p>Napíšte mi správu a ozvem sa vám čo najskôr</p>
+        </div>
+
+        <form id="contactForm">
+            <div class="form-group">
+                <label for="name">Meno <span class="required">*</span></label>
+                <input type="text" id="name" name="name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email <span class="required">*</span></label>
+                <input type="email" id="email" name="email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="subject">Predmet</label>
+                <input type="text" id="subject" name="subject">
+            </div>
+
+            <div class="form-group">
+                <label for="message">Správa <span class="required">*</span></label>
+                <textarea id="message" name="message" placeholder="Napíšte vašu správu..." required></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn" id="submitBtn">
+                <span class="loading" id="loading"></span>
+                <span id="btnText">Odoslať správu</span>
+            </button>
+        </form>
+
+        <div class="success-message" id="successMessage">
+            ✓ Správa bola úspešne odoslaná! Ozvem sa vám čo najskôr.
+        </div>
+
+        <div class="error-message" id="errorMessage">
+            ✗ Ups! Nastala chyba pri odosielaní. Skúste to prosím znovu.
+        </div>
+    </div>
+
+    <script>
+        // Obfuskovaný email - váš skutočný email vložte sem
+        const encodedEmail = btoa('vas.email@example.com'); // Zmeňte na váš email
+        
+        // Funkcia na dekódovanie emailu
+        function getEmail() {
+            return atob(encodedEmail);
+        }
+
+        // Validácia emailu
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+
+        // Simulácia odoslania emailu (v reálnom prostredí by ste použili backend službu)
+        function sendEmail(formData) {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    // Simulácia úspešného odoslania
+                    if (Math.random() > 0.1) { // 90% šanca na úspech
+                        resolve();
+                    } else {
+                        reject(new Error('Chyba siete'));
+                    }
+                }, 2000);
+            });
+        }
+
+        // Pre skutočné použitie môžete použiť EmailJS alebo podobnú službu:
+        /*
+        function sendEmail(formData) {
+            return emailjs.send(
+                'your_service_id',
+                'your_template_id',
+                {
+                    from_name: formData.get('name'),
+                    from_email: formData.get('email'),
+                    subject: formData.get('subject') || 'Nová správa z kontaktného formulára',
+                    message: formData.get('message'),
+                    to_email: getEmail()
+                }
+            );
+        }
+        */
+
+        document.getElementById('contactForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            const loading = document.getElementById('loading');
+            const btnText = document.getElementById('btnText');
+            const successMessage = document.getElementById('successMessage');
+            const errorMessage = document.getElementById('errorMessage');
+            
+            // Skryť predchádzajúce správy
+            successMessage.style.display = 'none';
+            errorMessage.style.display = 'none';
+            
+            // Validácia
+            const email = document.getElementById('email').value;
+            const name = document.getElementById('name').value;
+            const message = document.getElementById('message').value;
+            
+            if (!name.trim() || !email.trim() || !message.trim()) {
+                errorMessage.textContent = '✗ Prosím vyplňte všetky povinné polia.';
+                errorMessage.style.display = 'block';
+                return;
+            }
+            
+            if (!isValidEmail(email)) {
+                errorMessage.textContent = '✗ Prosím zadajte platný email.';
+                errorMessage.style.display = 'block';
+                return;
+            }
+            
+            // Spustiť loading
+            submitBtn.disabled = true;
+            loading.classList.add('active');
+            btnText.textContent = 'Odosielam...';
+            
+            try {
+                const formData = new FormData(this);
+                await sendEmail(formData);
+                
+                // Úspech
+                successMessage.style.display = 'block';
+                this.reset();
+                
+                // Console log pre debugging (odstráňte v produkcii)
+                console.log('Email by bol odoslaný na:', getEmail());
+                console.log('Od:', formData.get('email'));
+                console.log('Meno:', formData.get('name'));
+                console.log('Predmet:', formData.get('subject'));
+                console.log('Správa:', formData.get('message'));
+                
+            } catch (error) {
+                // Chyba
+                errorMessage.style.display = 'block';
+                console.error('Chyba pri odosielaní:', error);
+            } finally {
+                // Vrátiť pôvodný stav tlačidla
+                submitBtn.disabled = false;
+                loading.classList.remove('active');
+                btnText.textContent = 'Odoslať správu';
+            }
+        });
+
+        // Prevencia pravého kliknutia a výberu textu (dodatočná ochrana)
+        document.addEventListener('contextmenu', e => e.preventDefault());
+        document.addEventListener('selectstart', e => {
+            if (e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') {
+                e.preventDefault();
+            }
+        });
+
+        // Ochrana pred DevTools (základná)
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key === 'I')) {
+                e.preventDefault();
+                return false;
+            }
+        });
+    </script>
+</body>
+</html>

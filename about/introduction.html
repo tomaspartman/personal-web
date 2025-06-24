@@ -6,29 +6,80 @@
   <title>Introduction - Tomas Partman</title>
   <meta name="description" content="Get to know Tomas Partman - skills, hobbies, and personal introduction.">
   
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="icon" href="/images/favicon.png" type="image/png">
-  <link rel="stylesheet" href="/css/index.css">
   
   <style>
-    /* Reset & basic styles */
+    /* Reset & Variables */
     *, *::before, *::after {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
 
+    :root {
+      --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      --accent-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+      --dark-gradient: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+      --glass-bg: rgba(255, 255, 255, 0.1);
+      --glass-border: rgba(255, 255, 255, 0.2);
+      --text-primary: #2c3e50;
+      --text-secondary: #7f8c8d;
+      --shadow-light: 0 8px 32px rgba(0, 0, 0, 0.1);
+      --shadow-heavy: 0 20px 60px rgba(0, 0, 0, 0.15);
+    }
+
     body {
-      font-family: 'Roboto', sans-serif;
-      color: #333;
+      font-family: 'Inter', sans-serif;
+      color: var(--text-primary);
       line-height: 1.6;
       overflow-x: hidden;
-      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+      background-size: 400% 400%;
+      animation: gradientShift 15s ease infinite;
       min-height: 100vh;
       position: relative;
     }
 
-    /* Navigation - same as academic page */
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Floating particles background */
+    .particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .particle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.6);
+      border-radius: 50%;
+      animation: float 20s infinite linear;
+    }
+
+    @keyframes float {
+      from {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 1;
+      }
+      to {
+        transform: translateY(-100px) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    /* Navigation - Enhanced */
     .nav {
       position: fixed;
       top: 0;
@@ -38,81 +89,116 @@
       justify-content: space-between;
       align-items: center;
       padding: 1rem 2rem;
-      background: rgba(255,255,255,0.95);
+      background: rgba(255, 255, 255, 0.1);
       backdrop-filter: blur(20px);
-      border-bottom: 1px solid rgba(255,255,255,0.1);
+      border-bottom: 1px solid var(--glass-border);
       z-index: 1000;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      box-shadow: var(--shadow-light);
+      transition: all 0.3s ease;
+    }
+
+    .nav.scrolled {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(25px);
     }
 
     .home-link {
       display: flex;
       align-items: center;
-      gap: 0.5rem;
-      font-weight: 500;
-      transition: transform 0.3s ease;
-      color: #333;
+      gap: 0.75rem;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      color: white;
       text-decoration: none;
+      font-size: 1.1rem;
     }
 
-    /* Ensure navigation links are visible on light backgrounds */
-    .nav-right a,
-    .dropbtn {
-      color: #333;
-    }
-
-    .search-icon svg {
-      stroke: #333;
+    .nav.scrolled .home-link {
+      color: var(--text-primary);
     }
 
     .home-link:hover {
-      transform: translateY(-2px);
+      transform: translateY(-2px) scale(1.05);
     }
 
     .favicon-icon {
-      width: 28px;
-      height: 28px;
+      width: 32px;
+      height: 32px;
       border-radius: 50%;
-      background: #fff;
-      padding: 4px;
+      background: var(--primary-gradient);
+      padding: 6px;
+      transition: all 0.3s ease;
     }
-    .back-button {
-      background: linear-gradient(135deg, #667eea, #764ba2);
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .nav-right a,
+    .dropbtn {
       color: white;
-      border: none;
-      padding: 0.75rem 1.5rem;
-      border-radius: 25px;
-      cursor: pointer;
+      text-decoration: none;
       font-weight: 500;
       transition: all 0.3s ease;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
+      position: relative;
     }
 
-    .back-button:hover {
+    .nav.scrolled .nav-right a,
+    .nav.scrolled .dropbtn {
+      color: var(--text-primary);
+    }
+
+    .nav-right a:hover,
+    .dropbtn:hover {
       transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
     }
 
-    /* Flying image */
+    .nav-right a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent-gradient);
+      transition: width 0.3s ease;
+    }
+
+    .nav-right a:hover::after {
+      width: 100%;
+    }
+
+    /* Flying image - Enhanced */
     .flying-image {
       position: fixed;
-      width: 90px;
-      height: 90px;
+      width: 100px;
+      height: 100px;
       background-image: url('/images/circlehead.png');
       background-size: cover;
       background-position: center;
       border-radius: 50%;
       z-index: 100;
       transition: none;
-      box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
-      border: 3px solid rgba(255, 255, 255, 0.8);
+      box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
+      border: 4px solid rgba(255, 255, 255, 0.9);
       font-size: 0;
       color: transparent;
       text-indent: -9999px;
       overflow: hidden;
+      animation: pulse 3s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { 
+        transform: scale(1);
+        box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
+      }
+      50% { 
+        transform: scale(1.1);
+        box-shadow: 0 20px 50px rgba(102, 126, 234, 0.6);
+      }
     }
 
     /* Main content */
@@ -122,168 +208,224 @@
       justify-content: center;
       min-height: 100vh;
       padding: 2rem;
-      padding-top: 120px; /* Extra padding to clear the nav */
+      padding-top: 120px;
       position: relative;
       z-index: 10;
     }
+
     .content-wrapper {
-      width: 95vw;
+      max-width: 1400px;
+      width: 100%;
       margin: 0 auto;
       display: grid;
-      /* Responsive grid layout */
-      grid-template-columns:
-        minmax(180px, 1fr)
-        minmax(300px, 4fr)
-        minmax(180px, 1fr);
-      gap: clamp(1.5rem, 3vw, 4rem);
-      align-items: stretch;
-    }
-   
-    /* Media queries for better responsiveness */
-    @media (min-width: 1400px) {
-      .content-wrapper {
-        grid-template-columns:
-          minmax(200px, 1fr)
-          minmax(500px, 5fr)
-          minmax(200px, 1fr);
-      }
+      grid-template-columns: 1fr 2fr 1fr;
+      gap: 3rem;
+      align-items: start;
     }
 
-    @media (min-width: 1800px) {
-      .content-wrapper {
-        grid-template-columns:
-          minmax(240px, 1fr)
-          minmax(600px, 6fr)
-          minmax(240px, 1fr);
-      }
-    }
-
-    /* Animated words columns */
+    /* Skill/Hobby cards - Redesigned */
     .words-column {
       display: flex;
-      justify-content: flex-start;
       flex-direction: column;
       gap: 1rem;
-      align-self: stretch;
-      height: 100%;
-      overflow: visible;
-      padding-top: 2rem;
+      height: fit-content;
+      max-height: 70vh;
+      overflow: hidden;
+      position: relative;
     }
 
     .word-item {
-      padding: 0.75rem 1.5rem;
-      background: rgba(255, 255, 255, 0.9);
-      border-radius: 25px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      padding: 1rem 1.5rem;
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      border-radius: 20px;
+      box-shadow: var(--shadow-light);
       font-weight: 500;
       text-align: center;
       opacity: 0;
-      transform: translateY(20px);
-      transition: all 0.5s ease;
-      border: 2px solid transparent;
-      backdrop-filter: blur(10px);
+      transform: translateY(30px) scale(0.9);
+      transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      border: 1px solid var(--glass-border);
+      color: white;
       position: relative;
-      z-index: 50;
+      overflow: hidden;
+    }
+
+    .word-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .word-item:hover::before {
+      left: 100%;
     }
 
     .word-item.visible {
       opacity: 1;
-      transform: translateY(0);
-      border-color: rgba(102, 126, 234, 0.3);
+      transform: translateY(0) scale(1);
+    }
+
+    .word-item:hover {
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: var(--shadow-heavy);
     }
 
     .word-item.skills {
-      background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
-      color: #667eea;
+      background: linear-gradient(135deg, rgba(102, 126, 234, 0.3), rgba(118, 75, 162, 0.3));
+      border-color: rgba(102, 126, 234, 0.5);
     }
 
     .word-item.hobbies {
-      background: linear-gradient(135deg, rgba(118, 75, 162, 0.1), rgba(102, 126, 234, 0.1));
-      color: #764ba2;
+      background: linear-gradient(135deg, rgba(240, 147, 251, 0.3), rgba(245, 87, 108, 0.3));
+      border-color: rgba(240, 147, 251, 0.5);
     }
 
-    /* Central text block - enhanced responsiveness */
+    /* Central introduction - Completely redesigned */
     .intro-text {
-      background: rgba(255, 255, 255, 0.95);
-      padding: clamp(2rem, 4vw, 4rem);
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(25px);
+      padding: 3rem;
       border-radius: 30px;
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+      box-shadow: var(--shadow-heavy);
       text-align: center;
-      align-self: stretch;
       position: relative;
-      backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      z-index: 60;
-      /* Better width handling */
-      width: 100%;
-      max-width: none;
+      border: 1px solid var(--glass-border);
+      overflow: hidden;
+    }
+
+    .intro-text::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: conic-gradient(from 0deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+      animation: rotate 10s linear infinite;
+      z-index: -1;
+    }
+
+    @keyframes rotate {
+      to { transform: rotate(360deg); }
     }
 
     .intro-title {
-      font-size: clamp(2rem, 4vw, 3.5rem);
-      font-weight: 300;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 700;
+      background: linear-gradient(135deg, #fff 0%, #f0f0f0 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      margin-bottom: 1.5rem;
-      animation: titleFadeIn 1s ease-out;
+      margin-bottom: 2rem;
+      animation: titleSlideIn 1s ease-out;
+      text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .intro-subtitle {
+      font-size: 1.2rem;
+      color: rgba(255, 255, 255, 0.9);
+      font-weight: 500;
+      margin-bottom: 2rem;
+      animation: subtitleSlideIn 1s ease-out 0.3s both;
     }
 
     .intro-description {
-      font-size: clamp(1rem, 1.5vw, 1.3rem);
-      color: #555;
+      font-size: 1.1rem;
+      color: rgba(255, 255, 255, 0.8);
       line-height: 1.8;
-      animation: textFadeIn 1s ease-out 0.5s both;
-      max-width: none;
+      animation: textSlideIn 1s ease-out 0.6s both;
+      max-width: 600px;
+      margin: 0 auto;
     }
 
     .intro-description strong {
-      color: #667eea;
+      color: #fff;
       font-weight: 600;
     }
 
-    /* Animations */
-    @keyframes titleFadeIn {
-      from { opacity: 0; transform: translateY(-20px); }
-      to { opacity: 1; transform: translateY(0); }
+    /* Stats section */
+    .stats-section {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+      animation: statsSlideIn 1s ease-out 0.9s both;
     }
 
-    @keyframes textFadeIn {
+    .stat-item {
+      text-align: center;
+      padding: 1rem;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .stat-item:hover {
+      transform: translateY(-5px);
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .stat-number {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #fff;
+      display: block;
+    }
+
+    .stat-label {
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.8);
+      margin-top: 0.5rem;
+    }
+
+    /* Animations */
+    @keyframes titleSlideIn {
+      from { opacity: 0; transform: translateY(-30px) scale(0.9); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    @keyframes subtitleSlideIn {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.05); }
+    @keyframes textSlideIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Mobile responsiveness */
-    @media (max-width: 1024px) {
-      .main-content {
-        padding-top: 100px;
-      }
+    @keyframes statsSlideIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
 
+    /* Responsive Design */
+    @media (max-width: 1024px) {
       .content-wrapper {
         grid-template-columns: 1fr;
         gap: 2rem;
         text-align: center;
-        width: min(95vw, 800px);
       }
 
       .words-column {
-        min-height: 200px;
         flex-direction: row;
         flex-wrap: wrap;
         justify-content: center;
-        align-items: flex-start;
-        padding-top: 1rem;
+        max-height: none;
+        height: auto;
       }
 
       .word-item {
-        margin: 0.25rem;
-        padding: 0.5rem 1rem;
+        margin: 0.5rem;
+        padding: 0.75rem 1.25rem;
         font-size: 0.9rem;
       }
 
@@ -297,13 +439,13 @@
         padding: 0.75rem 1rem;
       }
 
-      .main-content {
-        padding: 1rem;
-        padding-top: 90px;
+      .nav-right {
+        gap: 1rem;
       }
 
-      .content-wrapper {
-        width: min(95vw, 600px);
+      .main-content {
+        padding: 1rem;
+        padding-top: 100px;
       }
 
       .intro-text {
@@ -311,87 +453,77 @@
       }
 
       .flying-image {
-        width: 60px;
-        height: 60px;
-        font-size: 20px;
+        width: 70px;
+        height: 70px;
+      }
+
+      .stats-section {
+        grid-template-columns: repeat(2, 1fr);
       }
     }
 
     @media (max-width: 480px) {
-      .back-button {
-        padding: 0.6rem 1.2rem;
-        font-size: 0.9rem;
+      .nav-right {
+        display: none; /* Simplified for mobile */
       }
 
-      .main-content {
-        padding-top: 80px;
+      .stats-section {
+        grid-template-columns: 1fr;
       }
+    }
 
-      .content-wrapper {
-        width: min(95vw, 400px);
-      }
+    /* Scroll indicator */
+    .scroll-indicator {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 3px;
+      background: var(--accent-gradient);
+      z-index: 1001;
+      transition: width 0.3s ease;
+    }
+
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: rgba(0, 0, 0, 0.1);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--primary-gradient);
+      border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--secondary-gradient);
     }
   </style>
 </head>
 <body>
+  <!-- Particles background -->
+  <div class="particles" id="particles"></div>
+  
+  <!-- Scroll indicator -->
   <div class="scroll-indicator" id="scrollIndicator"></div>
+  
+  <!-- Navigation -->
   <nav class="nav" id="navbar">
     <a href="/index.html" class="home-link">
       <img src="/images/favicon.png" alt="Favicon" class="favicon-icon">
-      <span>Home</span>
+      <span>Tomas Partman</span>
     </a>
-    <div class="mobile-menu-toggle" id="mobileToggle">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-    <div class="nav-right" id="navRight">
-      <div class="dropdown">
-        <button class="dropbtn" type="button">
-          About
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 8" aria-hidden="true">
-            <line x1="1" y1="2" x2="4" y2="5" stroke="currentColor" stroke-width="1"/>
-            <line x1="7" y1="2" x2="4" y2="5" stroke="currentColor" stroke-width="1"/>
-          </svg>
-        </button>
-        <ul class="dropdown-content">
-          <li><a href="/about/introduction.html">Introduction</a></li>
-          <li><a href="/about/academic.html">Academic Background</a></li>
-          <li><a href="/about/professional.html">Professional Background</a></li>
-          <li><a href="/about/hobbies.html">My Hobbies</a></li>
-          <li><a href="/about/contactme.html">Contact me</a></li>
-        </ul>
-      </div>
+    <div class="nav-right">
+      <a href="/about/introduction.html">About</a>
       <a href="/books.html">Books</a>
       <a href="/projects.html">Projects</a>
-      <div class="dropdown">
-        <button class="dropbtn" type="button">
-          Travel Blog
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 8" aria-hidden="true">
-            <line x1="1" y1="2" x2="4" y2="5" stroke="currentColor" stroke-width="1"/>
-            <line x1="7" y1="2" x2="4" y2="5" stroke="currentColor" stroke-width="1"/>
-          </svg>
-        </button>
-        <ul class="dropdown-content">
-          <li><a href="/TravelBlog/uzbekistan.html">Uzbekistan</a></li>
-          <li><a href="/TravelBlog/kazakhstan.html">Kazakhstan</a></li>
-          <li><a href="/TravelBlog/kyrgyzstan.html">Kyrgyzstan</a></li>
-          <li><a href="/TravelBlog/ecuador.html">Ecuador</a></li>
-          <li><a href="/TravelBlog/china-shanghai.html">China Shanghai</a></li>
-          <li><a href="/TravelBlog/shanghai-food.html">Shanghai Food</a></li>
-          <li><a href="/TravelBlog/new-zealand.html">New Zealand</a></li>
-          <li><a href="/TravelBlog/romania.html">Romania</a></li>
-        </ul>
-      </div>
-      <button class="search-icon" aria-label="Search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
-          <circle cx="11" cy="11" r="8" />
-          <line x1="21" y1="21" x2="16.65" y2="16.65" />
-        </svg>
-      </button>
+      <a href="/TravelBlog/">Travel</a>
+      <a href="/about/contactme.html">Contact</a>
     </div>
   </nav>
-  <div class="mobile-menu-overlay" id="menuOverlay"></div>
 
   <!-- Flying image -->
   <div class="flying-image" id="flyingImage">🚀</div>
@@ -406,11 +538,32 @@
       <!-- Center - Introduction text -->
       <div class="intro-text">
         <h1 class="intro-title">Hello, I'm Tomas</h1>
+        <p class="intro-subtitle">Economist • Data Analyst • Global Explorer</p>
+        
         <p class="intro-description">
-          I hold a Bachelor's in Security & Strategic Studies & Economic Policy and a Master's in Economic Policy from Masaryk University, with an Erasmus year in Business Economics at Universidad de Cantabria. I'm passionate about unpacking how markets and policies shape our world, and I thrive on turning data into clear, actionable insights.
+          I combine academic rigor with real-world insights, holding degrees in <strong>Security & Strategic Studies</strong> and <strong>Economic Policy</strong> from Masaryk University, plus international experience from Universidad de Cantabria. 
           <br><br>
-          Beyond my academic and professional work, I'm a true outdoor enthusiast and global citizen—drawn to the beauty of nature, fascinated by international relations, and always up for a new challenge. You'll often find me rock-climbing, surfing, playing tennis, mountaineering, training Brazilian jiu-jitsu, or planning my next travel adventure.
+          I'm passionate about transforming complex data into clear, actionable insights that drive meaningful change. When I'm not analyzing markets or crafting policy recommendations, you'll find me exploring the world through <strong>rock climbing</strong>, <strong>surfing</strong>, <strong>mountaineering</strong>, or planning my next adventure.
         </p>
+
+        <div class="stats-section">
+          <div class="stat-item">
+            <span class="stat-number">15+</span>
+            <span class="stat-label">Countries Visited</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">5+</span>
+            <span class="stat-label">Years Experience</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">3</span>
+            <span class="stat-label">Languages</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">∞</span>
+            <span class="stat-label">Curiosity</span>
+          </div>
+        </div>
       </div>
 
       <!-- Right column - Hobbies -->
@@ -421,41 +574,65 @@
   </main>
 
   <script>
-    // Skills and hobbies data
+    // Enhanced skills and hobbies data
     const skills = [
-      'Economics', 'Data Analysis', 'R Programming', 'SQL', 'PowerBI', 
-      'Econometrics', 'Policy Analysis', 'Growth Marketing', 'Market Research',
-      'Digital Marketing', 'International Trade', 'Behavioral Economics',
-      'Python', 'Statistical Analysis', 'ArcGIS', 'Blockchain', 'AI/ML'
+      'Economic Analysis', 'Data Science', 'R Programming', 'Python', 'SQL', 
+      'PowerBI', 'Econometrics', 'Policy Research', 'Market Analysis',
+      'Statistical Modeling', 'International Trade', 'Behavioral Economics',
+      'Machine Learning', 'ArcGIS', 'Blockchain', 'Digital Marketing', 'Growth Strategy'
     ];
 
     const hobbies = [
-      'Travel', 'Photography', 'Hiking', 'Reading', 'Gaming',
-      'Language Learning', 'Cooking', 'Tennis', 'Cycling', 'Music',
-      'Tech Gadgets', 'Cryptocurrency', 'Podcasts', 'History',
-      'Spanish Culture', 'Mountain Climbing', 'Board Games'
+      'Rock Climbing', 'Mountaineering', 'Surfing', 'Brazilian Jiu-Jitsu', 'Tennis',
+      'Travel Photography', 'Hiking', 'Language Learning', 'Cooking', 'Reading',
+      'Cryptocurrency', 'Tech Innovation', 'Cultural Exploration', 'History',
+      'Board Games', 'Cycling', 'Music Discovery'
     ];
 
-    // Flying image animation
+    // Create floating particles
+    function createParticles() {
+      const particles = document.getElementById('particles');
+      const particleCount = 50;
+
+      for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.animationDelay = Math.random() * 20 + 's';
+        particle.style.animationDuration = (Math.random() * 10 + 15) + 's';
+        particles.appendChild(particle);
+      }
+    }
+
+    // Flying image animation with improved physics
     const flyingImage = document.getElementById('flyingImage');
-    let x = Math.random() * (window.innerWidth - 80);
-    let y = Math.random() * (window.innerHeight - 80) + 100; // Start below nav
-    let vx = (Math.random() - 0.5) * 4;
-    let vy = (Math.random() - 0.5) * 4;
+    let x = Math.random() * (window.innerWidth - 100);
+    let y = Math.random() * (window.innerHeight - 100) + 120;
+    let vx = (Math.random() - 0.5) * 3;
+    let vy = (Math.random() - 0.5) * 3;
 
     function animateFlyingImage() {
       x += vx;
       y += vy;
 
-      // Bounce off walls
-      if (x <= 0 || x >= window.innerWidth - 80) {
-        vx = -vx;
-        x = Math.max(0, Math.min(window.innerWidth - 80, x));
+      // Enhanced bounce physics
+      if (x <= 0 || x >= window.innerWidth - 100) {
+        vx = -vx * 0.8; // Add some energy loss
+        x = Math.max(0, Math.min(window.innerWidth - 100, x));
       }
-      if (y <= 100 || y >= window.innerHeight - 80) { // Account for nav height (100px)
-        vy = -vy;
-        y = Math.max(100, Math.min(window.innerHeight - 80, y));
+      if (y <= 120 || y >= window.innerHeight - 100) {
+        vy = -vy * 0.8;
+        y = Math.max(120, Math.min(window.innerHeight - 100, y));
       }
+
+      // Add slight random movement for more natural feel
+      vx += (Math.random() - 0.5) * 0.1;
+      vy += (Math.random() - 0.5) * 0.1;
+
+      // Limit max speed
+      const maxSpeed = 4;
+      if (Math.abs(vx) > maxSpeed) vx = vx > 0 ? maxSpeed : -maxSpeed;
+      if (Math.abs(vy) > maxSpeed) vy = vy > 0 ? maxSpeed : -maxSpeed;
 
       flyingImage.style.left = x + 'px';
       flyingImage.style.top = y + 'px';
@@ -463,16 +640,12 @@
       requestAnimationFrame(animateFlyingImage);
     }
 
-    // Start flying animation
-    animateFlyingImage();
-
-    // Animated words function
+    // Enhanced animated words with better timing
     function createAnimatedWords(container, words, className) {
-      const maxVisible = 9;
+      const maxVisible = 8;
       const visibleWords = [];
 
       function showNextWord() {
-        // Remove oldest word if we have too many
         if (visibleWords.length >= maxVisible) {
           const oldWord = visibleWords.shift();
           oldWord.classList.remove('visible');
@@ -480,18 +653,15 @@
             if (oldWord.parentNode) {
               oldWord.parentNode.removeChild(oldWord);
             }
-          }, 500);
+          }, 600);
         }
 
-        // Add new word
         const wordElement = document.createElement('div');
         wordElement.className = `word-item ${className}`;
-        // Choose a random word and insert the bubble at a random position
         const randomWord = words[Math.floor(Math.random() * words.length)];
         wordElement.textContent = randomWord;
-        // Slight horizontal offset for a more scattered feel
-        wordElement.style.marginLeft = `${(Math.random() - 0.5) * 30}px`;
 
+        // Add to random position
         const insertIndex = Math.floor(Math.random() * (container.children.length + 1));
         if (insertIndex >= container.children.length) {
           container.appendChild(wordElement);
@@ -499,158 +669,74 @@
           container.insertBefore(wordElement, container.children[insertIndex]);
         }
 
-        // Trigger animation
         setTimeout(() => {
           wordElement.classList.add('visible');
-        }, 50);
+        }, 100);
 
         visibleWords.push(wordElement);
       }
 
-      // Show initial words
+      // Initial words with staggered animation
       for (let i = 0; i < Math.min(maxVisible, words.length); i++) {
-        setTimeout(() => showNextWord(), i * 200);
+        setTimeout(() => showNextWord(), i * 300);
       }
 
       // Continue showing words
-      setInterval(showNextWord, 2000);
+      setInterval(showNextWord, 3000);
     }
 
-    // Initialize animated words
-    const skillsColumn = document.getElementById('skillsColumn');
-    const hobbiesColumn = document.getElementById('hobbiesColumn');
-
-    createAnimatedWords(skillsColumn, skills, 'skills');
-    createAnimatedWords(hobbiesColumn, hobbies, 'hobbies');
-
-    // Handle window resize for flying image
-    window.addEventListener('resize', () => {
-      x = Math.min(x, window.innerWidth - 80);
-      y = Math.min(Math.max(y, 100), window.innerHeight - 80); // Keep below nav
-    });
-
-    // Smooth scrolling for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({
-            behavior: 'smooth'
-          });
-        }
-      });
-    });
-
-    // Add some interactive effects
-    const introText = document.querySelector('.intro-text');
-    introText.addEventListener('mouseenter', () => {
-      introText.style.transform = 'translateY(-5px)';
-      introText.style.boxShadow = '0 20px 50px rgba(0, 0, 0, 0.15)';
-    });
-
-    introText.addEventListener('mouseleave', () => {
-      introText.style.transform = 'translateY(0)';
-      introText.style.boxShadow = '0 15px 40px rgba(0, 0, 0, 0.1)';
-    });
-  </script>
-  <button class="scroll-to-top" id="scrollToTop" aria-label="Scroll to top">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-      <polyline points="18,15 12,9 6,15"></polyline>
-    </svg>
-  </button>
-  <script>
-    // Mobile menu toggle functionality
-    const mobileToggle = document.getElementById('mobileToggle');
-    const navRight = document.getElementById('navRight');
-    const menuOverlay = document.getElementById('menuOverlay');
-
-    mobileToggle.addEventListener('click', function() {
-      mobileToggle.classList.toggle('active');
-      navRight.classList.toggle('active');
-      menuOverlay.classList.toggle('active');
-      document.body.style.overflow = navRight.classList.contains('active') ? 'hidden' : '';
-    });
-
-    menuOverlay.addEventListener('click', function() {
-      mobileToggle.classList.remove('active');
-      navRight.classList.remove('active');
-      menuOverlay.classList.remove('active');
-      document.body.style.overflow = '';
-    });
-
-    // Close mobile menu when clicking on any navigation link
-    document.querySelectorAll('.nav-right a, .dropdown-content a').forEach(link => {
-      link.addEventListener('click', function() {
-        mobileToggle.classList.remove('active');
-        navRight.classList.remove('active');
-        menuOverlay.classList.remove('active');
-        document.body.style.overflow = '';
-      });
-    });
-
-    // Close mobile menu when clicking outside
-    document.addEventListener('click', function(e) {
-      if (!navRight.contains(e.target) && !mobileToggle.contains(e.target) && !menuOverlay.contains(e.target)) {
-        mobileToggle.classList.remove('active');
-        navRight.classList.remove('active');
-        menuOverlay.classList.remove('active');
-        document.body.style.overflow = '';
-      }
-    });
-
-    // Enhanced dropdown functionality
-    document.addEventListener('click', function(e) {
-      document.querySelectorAll('.dropdown').forEach(function(dropdown) {
-        if (e.target.closest('.dropbtn') && dropdown.contains(e.target)) {
-          dropdown.classList.toggle('open');
-        } else if (!dropdown.contains(e.target)) {
-          dropdown.classList.remove('open');
-        }
-      });
-    });
-
-    // Navbar scroll effect
+    // Scroll effects
     const navbar = document.getElementById('navbar');
     const scrollIndicator = document.getElementById('scrollIndicator');
-    const scrollToTopBtn = document.getElementById('scrollToTop');
 
     window.addEventListener('scroll', function() {
       const scrolled = window.pageYOffset;
-
-      // Navbar background change
+      
       if (scrolled > 100) {
         navbar.classList.add('scrolled');
       } else {
         navbar.classList.remove('scrolled');
       }
 
-      // Scroll indicator
       const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
       const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-      const scrolled_percentage = (winScroll / height) * 100;
-      scrollIndicator.style.width = scrolled_percentage + '%';
-
-      // Scroll to top button
-      if (scrolled > 300) {
-        scrollToTopBtn.classList.add('visible');
-      } else {
-        scrollToTopBtn.classList.remove('visible');
-      }
+      const scrolledPercentage = (winScroll / height) * 100;
+      scrollIndicator.style.width = scrolledPercentage + '%';
     });
 
-    // Scroll to top functionality
-    scrollToTopBtn.addEventListener('click', function() {
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      });
+    // Initialize everything
+    document.addEventListener('DOMContentLoaded', function() {
+      createParticles();
+      animateFlyingImage();
+      
+      const skillsColumn = document.getElementById('skillsColumn');
+      const hobbiesColumn = document.getElementById('hobbiesColumn');
+      
+      setTimeout(() => {
+        createAnimatedWords(skillsColumn, skills, 'skills');
+      }, 500);
+      
+      setTimeout(() => {
+        createAnimatedWords(hobbiesColumn, hobbies, 'hobbies');
+      }, 1000);
     });
 
-    // Enhanced search button animation
-    const searchBtn = document.querySelector('.search-icon');
-    searchBtn.addEventListener('click', function() {
-      alert('Search functionality would be implemented here!');
+    // Handle window resize
+    window.addEventListener('resize', () => {
+      x = Math.min(x, window.innerWidth - 100);
+      y = Math.min(Math.max(y, 120), window.innerHeight - 100);
+    });
+
+    // Interactive intro text effect
+    const introText = document.querySelector('.intro-text');
+    introText.addEventListener('mouseenter', () => {
+      introText.style.transform = 'translateY(-10px) scale(1.02)';
+      introText.style.boxShadow = '0 30px 80px rgba(0, 0, 0, 0.2)';
+    });
+
+    introText.addEventListener('mouseleave', () => {
+      introText.style.transform = 'translateY(0) scale(1)';
+      introText.style.boxShadow = '0 20px 60px rgba(0, 0, 0, 0.15)';
     });
   </script>
 </body>

@@ -8,6 +8,7 @@
   
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="icon" href="/images/favicon.png" type="image/png">
+  <link rel="stylesheet" href="/css/index.css">
   
   <style>
     /* Reset & Variables */
@@ -77,97 +78,6 @@
         transform: translateY(-100px) rotate(360deg);
         opacity: 0;
       }
-    }
-
-    /* Navigation - Enhanced */
-    .nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 2rem;
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--glass-border);
-      z-index: 1000;
-      box-shadow: var(--shadow-light);
-      transition: all 0.3s ease;
-    }
-
-    .nav.scrolled {
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(25px);
-    }
-
-    .home-link {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      font-weight: 600;
-      transition: all 0.3s ease;
-      color: white;
-      text-decoration: none;
-      font-size: 1.1rem;
-    }
-
-    .nav.scrolled .home-link {
-      color: var(--text-primary);
-    }
-
-    .home-link:hover {
-      transform: translateY(-2px) scale(1.05);
-    }
-
-    .favicon-icon {
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      background: var(--primary-gradient);
-      padding: 6px;
-      transition: all 0.3s ease;
-    }
-
-    .nav-right {
-      display: flex;
-      align-items: center;
-      gap: 2rem;
-    }
-
-    .nav-right a,
-    .dropbtn {
-      color: white;
-      text-decoration: none;
-      font-weight: 500;
-      transition: all 0.3s ease;
-      position: relative;
-    }
-
-    .nav.scrolled .nav-right a,
-    .nav.scrolled .dropbtn {
-      color: var(--text-primary);
-    }
-
-    .nav-right a:hover,
-    .dropbtn:hover {
-      transform: translateY(-2px);
-    }
-
-    .nav-right a::after {
-      content: '';
-      position: absolute;
-      bottom: -5px;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: var(--accent-gradient);
-      transition: width 0.3s ease;
-    }
-
-    .nav-right a:hover::after {
-      width: 100%;
     }
 
     /* Flying image - Enhanced */
@@ -433,16 +343,7 @@
         padding: 2rem;
       }
     }
-
-    @media (max-width: 768px) {
-      .nav {
-        padding: 0.75rem 1rem;
-      }
-
-      .nav-right {
-        gap: 1rem;
-      }
-
+     @media (max-width: 768px) {
       .main-content {
         padding: 1rem;
         padding-top: 100px;
@@ -463,10 +364,6 @@
     }
 
     @media (max-width: 480px) {
-      .nav-right {
-        display: none; /* Simplified for mobile */
-      }
-
       .stats-section {
         grid-template-columns: 1fr;
       }
@@ -509,21 +406,64 @@
   
   <!-- Scroll indicator -->
   <div class="scroll-indicator" id="scrollIndicator"></div>
-  
-  <!-- Navigation -->
+   <!-- Navigation -->
   <nav class="nav" id="navbar">
     <a href="/index.html" class="home-link">
       <img src="/images/favicon.png" alt="Favicon" class="favicon-icon">
-      <span>Tomas Partman</span>
+      <span>Home</span>
     </a>
-    <div class="nav-right">
-      <a href="/about/introduction.html">About</a>
+    <div class="mobile-menu-toggle" id="mobileToggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div class="nav-right" id="navRight">
+      <div class="dropdown">
+        <button class="dropbtn" type="button">
+          About
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 8" aria-hidden="true">
+            <line x1="1" y1="2" x2="4" y2="5" stroke="currentColor" stroke-width="1"/>
+            <line x1="7" y1="2" x2="4" y2="5" stroke="currentColor" stroke-width="1"/>
+          </svg>
+        </button>
+        <ul class="dropdown-content">
+          <li><a href="/about/introduction.html">Introduction</a></li>
+          <li><a href="/about/academic.html">Academic Background</a></li>
+          <li><a href="/about/professional.html">Professional Background</a></li>
+          <li><a href="/about/hobbies.html">My Hobbies</a></li>
+          <li><a href="/about/contactme.html">Contact me</a></li>
+        </ul>
+      </div>
       <a href="/books.html">Books</a>
       <a href="/projects.html">Projects</a>
-      <a href="/TravelBlog/">Travel</a>
-      <a href="/about/contactme.html">Contact</a>
+      <div class="dropdown">
+        <button class="dropbtn" type="button">
+          Travel Blog
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 8" aria-hidden="true">
+            <line x1="1" y1="2" x2="4" y2="5" stroke="currentColor" stroke-width="1"/>
+            <line x1="7" y1="2" x2="4" y2="5" stroke="currentColor" stroke-width="1"/>
+          </svg>
+        </button>
+        <ul class="dropdown-content">
+          <li><a href="/TravelBlog/uzbekistan.html">Uzbekistan</a></li>
+          <li><a href="/TravelBlog/kazakhstan.html">Kazakhstan</a></li>
+          <li><a href="/TravelBlog/kyrgyzstan.html">Kyrgyzstan</a></li>
+          <li><a href="/TravelBlog/ecuador.html">Ecuador</a></li>
+          <li><a href="/TravelBlog/china-shanghai.html">China Shanghai</a></li>
+          <li><a href="/TravelBlog/shanghai-food.html">Shanghai Food</a></li>
+          <li><a href="/TravelBlog/new-zealand.html">New Zealand</a></li>
+          <li><a href="/TravelBlog/romania.html">Romania</a></li>
+        </ul>
+      </div>
+      <button class="search-icon" aria-label="Search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="11" cy="11" r="8" />
+          <line x1="21" y1="21" x2="16.65" y2="16.65" />
+        </svg>
+      </button>
     </div>
   </nav>
+  <div class="mobile-menu-overlay" id="menuOverlay"></div>
 
   <!-- Flying image -->
   <div class="flying-image" id="flyingImage">🚀</div>
@@ -571,7 +511,13 @@
         <!-- Hobbies will be populated by JavaScript -->
       </div>
     </div>
-  </main>
+   </main>
+
+  <button class="scroll-to-top" id="scrollToTop" aria-label="Scroll to top">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <polyline points="18,15 12,9 6,15"></polyline>
+    </svg>
+  </button>
 
   <script>
     // Enhanced skills and hobbies data
@@ -733,10 +679,79 @@
       introText.style.transform = 'translateY(-10px) scale(1.02)';
       introText.style.boxShadow = '0 30px 80px rgba(0, 0, 0, 0.2)';
     });
+     introText.addEventListener('mouseleave', () => {
+    introText.style.transform = 'translateY(0) scale(1)';
+    introText.style.boxShadow = '0 20px 60px rgba(0, 0, 0, 0.15)';
+  });
+  </script>
+  <script>
+    const mobileToggle = document.getElementById('mobileToggle');
+    const navRight = document.getElementById('navRight');
+    const menuOverlay = document.getElementById('menuOverlay');
 
-    introText.addEventListener('mouseleave', () => {
-      introText.style.transform = 'translateY(0) scale(1)';
-      introText.style.boxShadow = '0 20px 60px rgba(0, 0, 0, 0.15)';
+    mobileToggle.addEventListener('click', function() {
+      mobileToggle.classList.toggle('active');
+      navRight.classList.toggle('active');
+      menuOverlay.classList.toggle('active');
+      document.body.style.overflow = navRight.classList.contains('active') ? 'hidden' : '';
+    });
+
+    menuOverlay.addEventListener('click', function() {
+      mobileToggle.classList.remove('active');
+      navRight.classList.remove('active');
+      menuOverlay.classList.remove('active');
+      document.body.style.overflow = '';
+    });
+
+    document.querySelectorAll('.nav-right a, .dropdown-content a').forEach(link => {
+      link.addEventListener('click', function() {
+        mobileToggle.classList.remove('active');
+        navRight.classList.remove('active');
+        menuOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+      });
+    });
+
+    document.addEventListener('click', function(e) {
+      if (!navRight.contains(e.target) && !mobileToggle.contains(e.target) && !menuOverlay.contains(e.target)) {
+        mobileToggle.classList.remove('active');
+        navRight.classList.remove('active');
+        menuOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    });
+
+    document.addEventListener('click', function(e) {
+      document.querySelectorAll('.dropdown').forEach(function(dropdown) {
+        if (e.target.closest('.dropbtn') && dropdown.contains(e.target)) {
+          dropdown.classList.toggle('open');
+        } else if (!dropdown.contains(e.target)) {
+          dropdown.classList.remove('open');
+        }
+      });
+    });
+
+    const scrollToTopBtn = document.getElementById('scrollToTop');
+    window.addEventListener('scroll', function() {
+      const scrolled = window.pageYOffset;
+
+      if (scrolled > 300) {
+        scrollToTopBtn.classList.add('visible');
+      } else {
+        scrollToTopBtn.classList.remove('visible');
+      }
+    });
+
+    scrollToTopBtn.addEventListener('click', function() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+
+    const searchBtn = document.querySelector('.search-icon');
+    searchBtn.addEventListener('click', function() {
+      alert('Search functionality would be implemented here!');
     });
   </script>
 </body>

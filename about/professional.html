@@ -20,6 +20,9 @@
             min-height: 100vh;
             padding: 20px;
             padding-top: 7rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .container {
@@ -42,11 +45,17 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            overflow: hidden;
             font-size: 48px;
             color: white;
             box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
         }
-
+        .profile-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
         h1 {
             font-size: 2.5em;
             margin-bottom: 20px;
@@ -232,7 +241,7 @@
     <div class="mobile-menu-overlay" id="menuOverlay"></div>
     <div class="container">
         <div class="profile-icon">
-            👤
+            <img src="/images/circlehead.png" alt="Profile picture">
         </div>
         
         <h1>Professional Background</h1>
@@ -264,11 +273,11 @@
                 <p style="margin-bottom: 20px; color: #666;">
                      To request my most recent resume or any additional information
                 </p>
-               <a href="mailto:vas.email@example.com?subject=Resume%20Request" class="email-btn">
+                <a href="/about/contactme.html" class="email-btn">
                     <svg class="icon" viewBox="0 0 24 24">
                         <path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-.904.732-1.636 1.636-1.636h3.819l6.545 4.91 6.545-4.91h3.819A1.636 1.636 0 0 1 24 5.457z"/>
                     </svg>
-                    Contact via Email
+                      Email Me
                 </a>
             </div>
         </div>

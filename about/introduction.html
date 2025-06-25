@@ -42,7 +42,7 @@
       min-height: 100vh;
     }
 
-    /* Flying image - zachovaný presne ako bol */
+    /* Flying image */
     .flying-image {
       position: fixed;
       width: 100px;
@@ -75,7 +75,7 @@
 
     /* Main Content */
     .main-content {
-      padding: 140px 2rem 4rem;
+      padding: 200px 2rem 4rem; /* Increased top padding to avoid overlap */
       max-width: 1200px;
       margin: 0 auto;
     }
@@ -83,35 +83,61 @@
     /* Hero Section */
     .hero-section {
       text-align: center;
-      margin-bottom: 6rem;
+      margin-bottom: 4rem;
     }
 
     .hero-title {
-      font-size: clamp(3rem, 8vw, 5rem);
+      font-size: clamp(2.5rem, 6vw, 4.5rem); /* Reduced size to prevent overlap */
       font-weight: 700;
       margin-bottom: 1rem;
       background: linear-gradient(135deg, var(--primary-light), var(--accent));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
+      text-align: center;
     }
 
     .hero-subtitle {
-      font-size: 1.5rem;
+      font-size: 1.4rem;
       color: var(--text-secondary);
       margin-bottom: 2rem;
       font-weight: 500;
+      text-align: center;
     }
 
     .hero-description {
       font-size: 1.1rem;
       color: var(--text-muted);
       max-width: 600px;
-      margin: 0 auto;
+      margin: 0 auto 3rem;
       line-height: 1.8;
+      text-align: center;
     }
 
-    /* Content Grid */
+    /* About Section */
+    .about-section {
+      background: var(--surface);
+      border-radius: 16px;
+      padding: 3rem;
+      border: 1px solid var(--border);
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .about-text {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      line-height: 1.8;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .about-text strong {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    /* Content Grid - moved below about */
     .content-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -179,30 +205,6 @@
       color: var(--accent);
     }
 
-    /* About Section */
-    .about-section {
-      background: var(--surface);
-      border-radius: 16px;
-      padding: 3rem;
-      border: 1px solid var(--border);
-      text-align: center;
-    }
-
-    .about-text {
-      font-size: 1.1rem;
-      color: var(--text-secondary);
-      line-height: 1.8;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-
-    .about-text strong {
-      color: var(--text-primary);
-      font-weight: 600;
-    }
-
-    /* Stats Grid - removed */
-
     /* Responsive Design */
     @media (max-width: 768px) {
       .content-grid {
@@ -211,7 +213,15 @@
       }
 
       .main-content {
-        padding: 120px 1rem 2rem;
+        padding: 160px 1rem 2rem;
+      }
+
+      .hero-title {
+        font-size: clamp(2rem, 5vw, 3rem);
+      }
+
+      .hero-subtitle {
+        font-size: 1.2rem;
       }
 
       .hero-section {
@@ -222,10 +232,6 @@
         padding: 2rem;
       }
 
-      .stats-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
       .flying-image {
         width: 70px;
         height: 70px;
@@ -233,7 +239,13 @@
     }
 
     @media (max-width: 480px) {
-      /* Removed stats grid reference */
+      .main-content {
+        padding: 140px 1rem 2rem;
+      }
+
+      .hero-title {
+        font-size: 2rem;
+      }
     }
 
     /* Scroll to top button */
@@ -267,7 +279,7 @@
   </style>
 </head>
 <body>
-  <!-- Navigation - zachovaná presne ako bola -->
+  <!-- Navigation -->
   <nav class="nav" id="navbar">
     <a href="/index.html" class="home-link">
       <img src="/images/favicon.png" alt="Favicon" class="favicon-icon">
@@ -326,7 +338,7 @@
   </nav>
   <div class="mobile-menu-overlay" id="menuOverlay"></div>
 
-  <!-- Flying image - zachovaný presne ako bol -->
+  <!-- Flying image -->
   <div class="flying-image" id="flyingImage">🚀</div>
 
   <main class="main-content">
@@ -339,7 +351,16 @@
       </p>
     </section>
 
-    <!-- Content Grid -->
+    <!-- About Section - moved above skills/hobbies -->
+    <section class="about-section">
+      <p class="about-text">
+        I combine academic rigor with real-world insights, holding degrees in <strong>Security & Strategic Studies</strong> and <strong>Economic Policy</strong> from Masaryk University, plus international experience from Universidad de Cantabria. 
+        <br><br>
+        I'm passionate about transforming complex data into clear, actionable insights that drive meaningful change. When I'm not analyzing markets or crafting policy recommendations, you'll find me exploring the world through <strong>adventure sports</strong> and <strong>cultural immersion</strong>.
+      </p>
+    </section>
+
+    <!-- Content Grid - moved below about -->
     <div class="content-grid">
       <!-- Skills Section -->
       <section class="section">
@@ -389,15 +410,6 @@
         </div>
       </section>
     </div>
-
-    <!-- About Section -->
-    <section class="about-section">
-      <p class="about-text">
-        I combine academic rigor with real-world insights, holding degrees in <strong>Security & Strategic Studies</strong> and <strong>Economic Policy</strong> from Masaryk University, plus international experience from Universidad de Cantabria. 
-        <br><br>
-        I'm passionate about transforming complex data into clear, actionable insights that drive meaningful change. When I'm not analyzing markets or crafting policy recommendations, you'll find me exploring the world through <strong>adventure sports</strong> and <strong>cultural immersion</strong>.
-      </p>
-    </section>
   </main>
 
   <button class="scroll-to-top" id="scrollToTop" aria-label="Scroll to top">
@@ -407,10 +419,10 @@
   </button>
 
   <script>
-    // Flying image animation - zachovaný presne ako bol
+    // Flying image animation
     const flyingImage = document.getElementById('flyingImage');
     let x = Math.random() * (window.innerWidth - 100);
-    let y = Math.random() * (window.innerHeight - 100) + 120;
+    let y = Math.random() * (window.innerHeight - 100) + 200; // Start below navigation
     let vx = (Math.random() - 0.5) * 3;
     let vy = (Math.random() - 0.5) * 3;
 
@@ -422,9 +434,9 @@
         vx = -vx * 0.8;
         x = Math.max(0, Math.min(window.innerWidth - 100, x));
       }
-      if (y <= 120 || y >= window.innerHeight - 100) {
+      if (y <= 200 || y >= window.innerHeight - 100) { // Keep below navigation
         vy = -vy * 0.8;
-        y = Math.max(120, Math.min(window.innerHeight - 100, y));
+        y = Math.max(200, Math.min(window.innerHeight - 100, y));
       }
 
       vx += (Math.random() - 0.5) * 0.1;
@@ -440,7 +452,7 @@
       requestAnimationFrame(animateFlyingImage);
     }
 
-    // Navigation functionality - zachovaná presne ako bola
+    // Navigation functionality
     const mobileToggle = document.getElementById('mobileToggle');
     const navRight = document.getElementById('navRight');
     const menuOverlay = document.getElementById('menuOverlay');
@@ -520,7 +532,7 @@
     // Handle window resize
     window.addEventListener('resize', () => {
       x = Math.min(x, window.innerWidth - 100);
-      y = Math.min(Math.max(y, 120), window.innerHeight - 100);
+      y = Math.min(Math.max(y, 200), window.innerHeight - 100);
     });
   </script>
 </body>

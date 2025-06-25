@@ -19,68 +19,30 @@
     }
 
     :root {
-      --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-      --accent-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-      --dark-gradient: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
-      --glass-bg: rgba(255, 255, 255, 0.1);
-      --glass-border: rgba(255, 255, 255, 0.2);
-      --text-primary: #2c3e50;
-      --text-secondary: #7f8c8d;
-      --shadow-light: 0 8px 32px rgba(0, 0, 0, 0.1);
-      --shadow-heavy: 0 20px 60px rgba(0, 0, 0, 0.15);
+      --primary: #2563eb;
+      --primary-light: #3b82f6;
+      --secondary: #64748b;
+      --accent: #0ea5e9;
+      --background: #0f172a;
+      --surface: #1e293b;
+      --surface-light: #334155;
+      --text-primary: #f8fafc;
+      --text-secondary: #cbd5e1;
+      --text-muted: #94a3b8;
+      --border: #334155;
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
     }
 
     body {
       font-family: 'Inter', sans-serif;
+      background: var(--background);
       color: var(--text-primary);
       line-height: 1.6;
-      overflow-x: hidden;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-      background-size: 400% 400%;
-      animation: gradientShift 15s ease infinite;
       min-height: 100vh;
-      position: relative;
     }
 
-    @keyframes gradientShift {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    /* Floating particles background */
-    .particles {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 1;
-    }
-
-    .particle {
-      position: absolute;
-      width: 4px;
-      height: 4px;
-      background: rgba(255, 255, 255, 0.6);
-      border-radius: 50%;
-      animation: float 20s infinite linear;
-    }
-
-    @keyframes float {
-      from {
-        transform: translateY(100vh) rotate(0deg);
-        opacity: 1;
-      }
-      to {
-        transform: translateY(-100px) rotate(360deg);
-        opacity: 0;
-      }
-    }
-
-    /* Flying image - Enhanced */
+    /* Flying image - zachovaný presne ako bol */
     .flying-image {
       position: fixed;
       width: 100px;
@@ -111,302 +73,201 @@
       }
     }
 
-    /* Main content */
+    /* Main Content */
     .main-content {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      padding: 2rem;
-      padding-top: 120px;
-      position: relative;
-      z-index: 10;
-    }
-
-    .content-wrapper {
-      max-width: 1400px;
-      width: 100%;
+      padding: 140px 2rem 4rem;
+      max-width: 1200px;
       margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr 2fr 1fr;
-      gap: 3rem;
-      align-items: start;
     }
 
-    /* Skill/Hobby cards - Redesigned */
-    .words-column {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      height: fit-content;
-      max-height: 70vh;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .word-item {
-      padding: 1rem 1.5rem;
-      background: var(--glass-bg);
-      backdrop-filter: blur(20px);
-      border-radius: 20px;
-      box-shadow: var(--shadow-light);
-      font-weight: 500;
+    /* Hero Section */
+    .hero-section {
       text-align: center;
-      opacity: 0;
-      transform: translateY(30px) scale(0.9);
-      transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-      border: 1px solid var(--glass-border);
-      color: white;
-      position: relative;
-      overflow: hidden;
+      margin-bottom: 6rem;
     }
 
-    .word-item::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-      transition: left 0.5s ease;
-    }
-
-    .word-item:hover::before {
-      left: 100%;
-    }
-
-    .word-item.visible {
-      opacity: 1;
-      transform: translateY(0) scale(1);
-    }
-
-    .word-item:hover {
-      transform: translateY(-5px) scale(1.05);
-      box-shadow: var(--shadow-heavy);
-    }
-
-    .word-item.skills {
-      background: linear-gradient(135deg, rgba(102, 126, 234, 0.3), rgba(118, 75, 162, 0.3));
-      border-color: rgba(102, 126, 234, 0.5);
-    }
-
-    .word-item.hobbies {
-      background: linear-gradient(135deg, rgba(240, 147, 251, 0.3), rgba(245, 87, 108, 0.3));
-      border-color: rgba(240, 147, 251, 0.5);
-    }
-
-    /* Central introduction - Completely redesigned */
-    .intro-text {
-      background: rgba(255, 255, 255, 0.15);
-      backdrop-filter: blur(25px);
-      padding: 3rem;
-      border-radius: 30px;
-      box-shadow: var(--shadow-heavy);
-      text-align: center;
-      position: relative;
-      border: 1px solid var(--glass-border);
-      overflow: hidden;
-    }
-
-    .intro-text::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: conic-gradient(from 0deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-      animation: rotate 10s linear infinite;
-      z-index: -1;
-    }
-
-    @keyframes rotate {
-      to { transform: rotate(360deg); }
-    }
-
-    .intro-title {
-      font-size: clamp(2.5rem, 5vw, 4rem);
+    .hero-title {
+      font-size: clamp(3rem, 8vw, 5rem);
       font-weight: 700;
-      background: linear-gradient(135deg, #fff 0%, #f0f0f0 100%);
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, var(--primary-light), var(--accent));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      margin-bottom: 2rem;
-      animation: titleSlideIn 1s ease-out;
-      text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
     }
 
-    .intro-subtitle {
-      font-size: 1.2rem;
-      color: rgba(255, 255, 255, 0.9);
+    .hero-subtitle {
+      font-size: 1.5rem;
+      color: var(--text-secondary);
+      margin-bottom: 2rem;
       font-weight: 500;
-      margin-bottom: 2rem;
-      animation: subtitleSlideIn 1s ease-out 0.3s both;
     }
 
-    .intro-description {
+    .hero-description {
       font-size: 1.1rem;
-      color: rgba(255, 255, 255, 0.8);
-      line-height: 1.8;
-      animation: textSlideIn 1s ease-out 0.6s both;
+      color: var(--text-muted);
       max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.8;
+    }
+
+    /* Content Grid */
+    .content-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      margin-bottom: 4rem;
+    }
+
+    .section {
+      background: var(--surface);
+      border-radius: 16px;
+      padding: 2rem;
+      border: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .section-icon {
+      width: 24px;
+      height: 24px;
+      color: var(--primary-light);
+    }
+
+    /* Tags */
+    .tags-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      justify-content: center;
+    }
+
+    .tag {
+      background: var(--surface-light);
+      color: var(--text-secondary);
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      border: 1px solid var(--border);
+      transition: all 0.2s ease;
+    }
+
+    .tag:hover {
+      background: var(--primary);
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    .tag.skill {
+      border-color: var(--primary);
+      color: var(--primary-light);
+    }
+
+    .tag.hobby {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* About Section */
+    .about-section {
+      background: var(--surface);
+      border-radius: 16px;
+      padding: 3rem;
+      border: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .about-text {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      line-height: 1.8;
+      max-width: 800px;
       margin: 0 auto;
     }
 
-    .intro-description strong {
-      color: #fff;
+    .about-text strong {
+      color: var(--text-primary);
       font-weight: 600;
     }
 
-    /* Stats section */
-    .stats-section {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-      gap: 1.5rem;
-      margin-top: 2rem;
-      animation: statsSlideIn 1s ease-out 0.9s both;
-    }
-
-    .stat-item {
-      text-align: center;
-      padding: 1rem;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 15px;
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      transition: all 0.3s ease;
-    }
-
-    .stat-item:hover {
-      transform: translateY(-5px);
-      background: rgba(255, 255, 255, 0.15);
-    }
-
-    .stat-number {
-      font-size: 2rem;
-      font-weight: 700;
-      color: #fff;
-      display: block;
-    }
-
-    .stat-label {
-      font-size: 0.9rem;
-      color: rgba(255, 255, 255, 0.8);
-      margin-top: 0.5rem;
-    }
-
-    /* Animations */
-    @keyframes titleSlideIn {
-      from { opacity: 0; transform: translateY(-30px) scale(0.9); }
-      to { opacity: 1; transform: translateY(0) scale(1); }
-    }
-
-    @keyframes subtitleSlideIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes textSlideIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes statsSlideIn {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+    /* Stats Grid - removed */
 
     /* Responsive Design */
-    @media (max-width: 1024px) {
-      .content-wrapper {
+    @media (max-width: 768px) {
+      .content-grid {
         grid-template-columns: 1fr;
         gap: 2rem;
-        text-align: center;
       }
 
-      .words-column {
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
-        max-height: none;
-        height: auto;
+      .main-content {
+        padding: 120px 1rem 2rem;
       }
 
-      .word-item {
-        margin: 0.5rem;
-        padding: 0.75rem 1.25rem;
-        font-size: 0.9rem;
+      .hero-section {
+        margin-bottom: 3rem;
       }
 
-      .intro-text {
+      .about-section {
         padding: 2rem;
       }
-    }
-     @media (max-width: 768px) {
-      .main-content {
-        padding: 1rem;
-        padding-top: 100px;
-      }
 
-      .intro-text {
-        padding: 1.5rem;
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
       }
 
       .flying-image {
         width: 70px;
         height: 70px;
       }
-
-      .stats-section {
-        grid-template-columns: repeat(2, 1fr);
-      }
     }
 
     @media (max-width: 480px) {
-      .stats-section {
-        grid-template-columns: 1fr;
-      }
+      /* Removed stats grid reference */
     }
 
-    /* Scroll indicator */
-    .scroll-indicator {
+    /* Scroll to top button */
+    .scroll-to-top {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 0%;
-      height: 3px;
-      background: var(--accent-gradient);
-      z-index: 1001;
-      transition: width 0.3s ease;
+      bottom: 2rem;
+      right: 2rem;
+      width: 50px;
+      height: 50px;
+      background: var(--primary);
+      border: none;
+      border-radius: 50%;
+      color: white;
+      cursor: pointer;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.3s ease;
+      z-index: 1000;
+      box-shadow: var(--shadow-lg);
     }
 
-    /* Custom scrollbar */
-    ::-webkit-scrollbar {
-      width: 8px;
+    .scroll-to-top.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
-    ::-webkit-scrollbar-track {
-      background: rgba(0, 0, 0, 0.1);
-    }
-
-    ::-webkit-scrollbar-thumb {
-      background: var(--primary-gradient);
-      border-radius: 10px;
-    }
-
-    ::-webkit-scrollbar-thumb:hover {
-      background: var(--secondary-gradient);
+    .scroll-to-top:hover {
+      background: var(--primary-light);
+      transform: translateY(-2px);
     }
   </style>
 </head>
 <body>
-  <!-- Particles background -->
-  <div class="particles" id="particles"></div>
-  
-  <!-- Scroll indicator -->
-  <div class="scroll-indicator" id="scrollIndicator"></div>
-   <!-- Navigation -->
+  <!-- Navigation - zachovaná presne ako bola -->
   <nav class="nav" id="navbar">
     <a href="/index.html" class="home-link">
       <img src="/images/favicon.png" alt="Favicon" class="favicon-icon">
@@ -465,34 +326,79 @@
   </nav>
   <div class="mobile-menu-overlay" id="menuOverlay"></div>
 
-  <!-- Flying image -->
+  <!-- Flying image - zachovaný presne ako bol -->
   <div class="flying-image" id="flyingImage">🚀</div>
 
   <main class="main-content">
-    <div class="content-wrapper">
-      <!-- Left column - Skills -->
-      <div class="words-column" id="skillsColumn">
-        <!-- Skills will be populated by JavaScript -->
-      </div>
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <h1 class="hero-title">Hello, I'm Tomas</h1>
+      <p class="hero-subtitle">Economist • Data Analyst • Global Explorer</p>
+      <p class="hero-description">
+        Transforming complex data into clear insights while exploring the world through adventure and analysis.
+      </p>
+    </section>
 
-      <!-- Center - Introduction text -->
-      <div class="intro-text">
-        <h1 class="intro-title">Hello, I'm Tomas</h1>
-        <p class="intro-subtitle">Economist • Data Analyst • Global Explorer</p>
-        
-        <p class="intro-description">
-          I combine academic rigor with real-world insights, holding degrees in <strong>Security & Strategic Studies</strong> and <strong>Economic Policy</strong> from Masaryk University, plus international experience from Universidad de Cantabria. 
-          <br><br>
-          I'm passionate about transforming complex data into clear, actionable insights that drive meaningful change. When I'm not analyzing markets or crafting policy recommendations, you'll find me exploring the world through <strong>rock climbing</strong>, <strong>surfing</strong>, <strong>mountaineering</strong>, or planning my next adventure.
-        </p>
-      </div>
+    <!-- Content Grid -->
+    <div class="content-grid">
+      <!-- Skills Section -->
+      <section class="section">
+        <h2 class="section-title">
+          <svg class="section-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+          </svg>
+          Skills & Expertise
+        </h2>
+        <div class="tags-container">
+          <span class="tag skill">Economic Analysis</span>
+          <span class="tag skill">Data Science</span>
+          <span class="tag skill">R Programming</span>
+          <span class="tag skill">Python</span>
+          <span class="tag skill">SQL</span>
+          <span class="tag skill">PowerBI</span>
+          <span class="tag skill">Econometrics</span>
+          <span class="tag skill">Policy Research</span>
+          <span class="tag skill">Market Analysis</span>
+          <span class="tag skill">Statistical Modeling</span>
+          <span class="tag skill">Machine Learning</span>
+          <span class="tag skill">ArcGIS</span>
+        </div>
+      </section>
 
-      <!-- Right column - Hobbies -->
-      <div class="words-column" id="hobbiesColumn">
-        <!-- Hobbies will be populated by JavaScript -->
-      </div>
+      <!-- Hobbies Section -->
+      <section class="section">
+        <h2 class="section-title">
+          <svg class="section-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1a3 3 0 000-6h-1m0 6V4m0 6h6m-7 4h.01M19 16h.01"></path>
+          </svg>
+          Hobbies & Interests
+        </h2>
+        <div class="tags-container">
+          <span class="tag hobby">Rock Climbing</span>
+          <span class="tag hobby">Mountaineering</span>
+          <span class="tag hobby">Surfing</span>
+          <span class="tag hobby">Brazilian Jiu-Jitsu</span>
+          <span class="tag hobby">Tennis</span>
+          <span class="tag hobby">Travel Photography</span>
+          <span class="tag hobby">Hiking</span>
+          <span class="tag hobby">Language Learning</span>
+          <span class="tag hobby">Cooking</span>
+          <span class="tag hobby">Reading</span>
+          <span class="tag hobby">Cultural Exploration</span>
+          <span class="tag hobby">Board Games</span>
+        </div>
+      </section>
     </div>
-   </main>
+
+    <!-- About Section -->
+    <section class="about-section">
+      <p class="about-text">
+        I combine academic rigor with real-world insights, holding degrees in <strong>Security & Strategic Studies</strong> and <strong>Economic Policy</strong> from Masaryk University, plus international experience from Universidad de Cantabria. 
+        <br><br>
+        I'm passionate about transforming complex data into clear, actionable insights that drive meaningful change. When I'm not analyzing markets or crafting policy recommendations, you'll find me exploring the world through <strong>adventure sports</strong> and <strong>cultural immersion</strong>.
+      </p>
+    </section>
+  </main>
 
   <button class="scroll-to-top" id="scrollToTop" aria-label="Scroll to top">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -501,37 +407,7 @@
   </button>
 
   <script>
-    // Enhanced skills and hobbies data
-    const skills = [
-      'Economic Analysis', 'Data Science', 'R Programming', 'Python', 'SQL', 
-      'PowerBI', 'Econometrics', 'Policy Research', 'Market Analysis',
-      'Statistical Modeling', 'International Trade', 'Behavioral Economics',
-      'Machine Learning', 'ArcGIS', 'Blockchain', 'Digital Marketing', 'Growth Strategy'
-    ];
-
-    const hobbies = [
-      'Rock Climbing', 'Mountaineering', 'Surfing', 'Brazilian Jiu-Jitsu', 'Tennis',
-      'Travel Photography', 'Hiking', 'Language Learning', 'Cooking', 'Reading',
-      'Cryptocurrency', 'Tech Innovation', 'Cultural Exploration', 'History',
-      'Board Games', 'Cycling', 'Music Discovery'
-    ];
-
-    // Create floating particles
-    function createParticles() {
-      const particles = document.getElementById('particles');
-      const particleCount = 50;
-
-      for (let i = 0; i < particleCount; i++) {
-        const particle = document.createElement('div');
-        particle.className = 'particle';
-        particle.style.left = Math.random() * 100 + '%';
-        particle.style.animationDelay = Math.random() * 20 + 's';
-        particle.style.animationDuration = (Math.random() * 10 + 15) + 's';
-        particles.appendChild(particle);
-      }
-    }
-
-    // Flying image animation with improved physics
+    // Flying image animation - zachovaný presne ako bol
     const flyingImage = document.getElementById('flyingImage');
     let x = Math.random() * (window.innerWidth - 100);
     let y = Math.random() * (window.innerHeight - 100) + 120;
@@ -542,9 +418,8 @@
       x += vx;
       y += vy;
 
-      // Enhanced bounce physics
       if (x <= 0 || x >= window.innerWidth - 100) {
-        vx = -vx * 0.8; // Add some energy loss
+        vx = -vx * 0.8;
         x = Math.max(0, Math.min(window.innerWidth - 100, x));
       }
       if (y <= 120 || y >= window.innerHeight - 100) {
@@ -552,11 +427,9 @@
         y = Math.max(120, Math.min(window.innerHeight - 100, y));
       }
 
-      // Add slight random movement for more natural feel
       vx += (Math.random() - 0.5) * 0.1;
       vy += (Math.random() - 0.5) * 0.1;
 
-      // Limit max speed
       const maxSpeed = 4;
       if (Math.abs(vx) > maxSpeed) vx = vx > 0 ? maxSpeed : -maxSpeed;
       if (Math.abs(vy) > maxSpeed) vy = vy > 0 ? maxSpeed : -maxSpeed;
@@ -567,105 +440,7 @@
       requestAnimationFrame(animateFlyingImage);
     }
 
-    // Enhanced animated words with better timing
-    function createAnimatedWords(container, words, className) {
-      const maxVisible = 8;
-      const visibleWords = [];
-
-      function showNextWord() {
-        if (visibleWords.length >= maxVisible) {
-          const oldWord = visibleWords.shift();
-          oldWord.classList.remove('visible');
-          setTimeout(() => {
-            if (oldWord.parentNode) {
-              oldWord.parentNode.removeChild(oldWord);
-            }
-          }, 600);
-        }
-
-        const wordElement = document.createElement('div');
-        wordElement.className = `word-item ${className}`;
-        const randomWord = words[Math.floor(Math.random() * words.length)];
-        wordElement.textContent = randomWord;
-
-        // Add to random position
-        const insertIndex = Math.floor(Math.random() * (container.children.length + 1));
-        if (insertIndex >= container.children.length) {
-          container.appendChild(wordElement);
-        } else {
-          container.insertBefore(wordElement, container.children[insertIndex]);
-        }
-
-        setTimeout(() => {
-          wordElement.classList.add('visible');
-        }, 100);
-
-        visibleWords.push(wordElement);
-      }
-
-      // Initial words with staggered animation
-      for (let i = 0; i < Math.min(maxVisible, words.length); i++) {
-        setTimeout(() => showNextWord(), i * 300);
-      }
-
-      // Continue showing words
-      setInterval(showNextWord, 3000);
-    }
-
-    // Scroll effects
-    const navbar = document.getElementById('navbar');
-    const scrollIndicator = document.getElementById('scrollIndicator');
-
-    window.addEventListener('scroll', function() {
-      const scrolled = window.pageYOffset;
-      
-      if (scrolled > 100) {
-        navbar.classList.add('scrolled');
-      } else {
-        navbar.classList.remove('scrolled');
-      }
-
-      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-      const scrolledPercentage = (winScroll / height) * 100;
-      scrollIndicator.style.width = scrolledPercentage + '%';
-    });
-
-    // Initialize everything
-    document.addEventListener('DOMContentLoaded', function() {
-      createParticles();
-      animateFlyingImage();
-      
-      const skillsColumn = document.getElementById('skillsColumn');
-      const hobbiesColumn = document.getElementById('hobbiesColumn');
-      
-      setTimeout(() => {
-        createAnimatedWords(skillsColumn, skills, 'skills');
-      }, 500);
-      
-      setTimeout(() => {
-        createAnimatedWords(hobbiesColumn, hobbies, 'hobbies');
-      }, 1000);
-    });
-
-    // Handle window resize
-    window.addEventListener('resize', () => {
-      x = Math.min(x, window.innerWidth - 100);
-      y = Math.min(Math.max(y, 120), window.innerHeight - 100);
-    });
-
-    // Interactive intro text effect
-    const introText = document.querySelector('.intro-text');
-    introText.addEventListener('mouseenter', () => {
-      introText.style.transform = 'translateY(-10px) scale(1.02)';
-      introText.style.boxShadow = '0 30px 80px rgba(0, 0, 0, 0.2)';
-    });
-     introText.addEventListener('mouseleave', () => {
-    introText.style.transform = 'translateY(0) scale(1)';
-    introText.style.boxShadow = '0 20px 60px rgba(0, 0, 0, 0.15)';
-  });
-  </script>
-  <script>
+    // Navigation functionality - zachovaná presne ako bola
     const mobileToggle = document.getElementById('mobileToggle');
     const navRight = document.getElementById('navRight');
     const menuOverlay = document.getElementById('menuOverlay');
@@ -712,6 +487,7 @@
       });
     });
 
+    // Scroll to top functionality
     const scrollToTopBtn = document.getElementById('scrollToTop');
     window.addEventListener('scroll', function() {
       const scrolled = window.pageYOffset;
@@ -730,9 +506,21 @@
       });
     });
 
+    // Search functionality
     const searchBtn = document.querySelector('.search-icon');
     searchBtn.addEventListener('click', function() {
       alert('Search functionality would be implemented here!');
+    });
+
+    // Initialize flying image animation
+    document.addEventListener('DOMContentLoaded', function() {
+      animateFlyingImage();
+    });
+
+    // Handle window resize
+    window.addEventListener('resize', () => {
+      x = Math.min(x, window.innerWidth - 100);
+      y = Math.min(Math.max(y, 120), window.innerHeight - 100);
     });
   </script>
 </body>

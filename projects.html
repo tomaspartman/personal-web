@@ -265,6 +265,16 @@
             overflow: hidden;
         }
 
+         .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .project-image:not(:empty)::after {
+            display: none;
+        }
+
         .project-image::after {
             content: '🖼️';
             font-size: 2rem;

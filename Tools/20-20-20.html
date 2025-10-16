@@ -302,10 +302,10 @@
         const dashOffset = circumference * (1 - progress / 100);
         progressRing.setAttribute("stroke-dashoffset", dashOffset.toString());
         progressRing.setAttribute("stroke", isBreakTime ? "#10b981" : "#3b82f6");
-        statusText.textContent = isBreakTime ? "👀 Čas na prestávku!" : "💼 Pracovný čas";
+        statusText.textContent = isBreakTime ? "👀 Time for rest!" : "💼 Working Time";
         statusHint.textContent = isBreakTime
-          ? "Pozeraj na niečo vzdialené 20 sekúnd"
-          : "Pracuj, kým sa nezačne prestávka";
+          ? "Look at something 6 feet+ away"
+          : "Work until the pause";
         toggleButton.textContent = isRunning ? "⏸" : "▶";
         toggleButton.classList.toggle("btn-danger", isRunning);
         toggleButton.classList.toggle("btn-primary", !isRunning);
@@ -394,6 +394,7 @@
   </script>
 </body>
 </html>
+
 
 
 

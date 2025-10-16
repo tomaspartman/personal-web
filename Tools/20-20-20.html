@@ -1,168 +1,362 @@
-import React, { useState, useEffect } from 'react';
-import { Play, Pause, RotateCcw, Eye } from 'lucide-react';
-
-export default function EyeExerciseTimer() {
-  const WORK_TIME = 20 * 60; // 20 minút v sekundách
-  const BREAK_TIME = 20; // 20 sekúnd
-  
-  const [timeLeft, setTimeLeft] = useState(WORK_TIME);
-  const [isRunning, setIsRunning] = useState(false);
-  const [isBreakTime, setIsBreakTime] = useState(false);
-  const [sessions, setSessions] = useState(0);
-
-  useEffect(() => {
-    let interval;
-    
-    if (isRunning && timeLeft > 0) {
-      interval = setInterval(() => {
-        setTimeLeft(prev => prev - 1);
-      }, 1000);
-    } else if (timeLeft === 0 && isRunning) {
-      // Prechod medzi pracovným časom a prestávkou
-      if (!isBreakTime) {
-        setIsBreakTime(true);
-        setTimeLeft(BREAK_TIME);
-        // Zvuk upozornenia
-        playSound();
-      } else {
-        // Koniec cyklu
-        setSessions(prev => prev + 1);
-        setIsBreakTime(false);
-        setTimeLeft(WORK_TIME);
-        playSound();
-      }
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>20-20-20 Cvičenie očí</title>
+  <style>
+    :root {
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color-scheme: light;
     }
-    
-    return () => clearInterval(interval);
-  }, [isRunning, timeLeft, isBreakTime]);
 
-  const playSound = () => {
-    // Jednoduchý zvuk pomocou Web Audio API
-    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-    const oscillator = audioContext.createOscillator();
-    const gainNode = audioContext.createGain();
-    
-    oscillator.connect(gainNode);
-    gainNode.connect(audioContext.destination);
-    
-    oscillator.frequency.value = 800;
-    oscillator.type = 'sine';
-    
-    gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
-    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.5);
-    
-    oscillator.start(audioContext.currentTime);
-    oscillator.stop(audioContext.currentTime + 0.5);
-  };
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #eff6ff, #e0e7ff);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
 
-  const formatTime = (seconds) => {
-    const mins = Math.floor(seconds / 60);
-    const secs = seconds % 60;
-    return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
-  };
+    .card {
+      background: #ffffff;
+      border-radius: 1.5rem;
+      box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.25);
+      padding: 2.5rem;
+      max-width: 28rem;
+      width: 100%;
+    }
 
-  const handleReset = () => {
-    setIsRunning(false);
-    setIsBreakTime(false);
-    setTimeLeft(WORK_TIME);
-  };
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 2rem;
+      gap: 0.75rem;
+    }
 
-  const progress = isBreakTime 
-    ? ((BREAK_TIME - timeLeft) / BREAK_TIME) * 100
-    : ((WORK_TIME - timeLeft) / WORK_TIME) * 100;
+    .header .icon {
+      font-size: 2.25rem;
+      color: #2563eb;
+    }
 
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4">
-      <div className="bg-white rounded-2xl shadow-2xl p-8 max-w-md w-full">
-        {/* Header */}
-        <div className="flex items-center justify-center mb-8">
-          <Eye className="text-blue-600 mr-3" size={32} />
-          <h1 className="text-3xl font-bold text-gray-800">20-20-20</h1>
-        </div>
+    h1 {
+      margin: 0;
+      font-size: 2rem;
+      font-weight: 700;
+      color: #1f2937;
+    }
 
-        {/* Status */}
-        <div className="text-center mb-8">
-          <p className="text-gray-600 text-lg mb-2">
-            {isBreakTime ? '👀 Čas na prestávku!' : '💼 Pracovný čas'}
-          </p>
-          <p className="text-sm text-gray-500 mb-4">
-            {isBreakTime 
-              ? 'Pozeraj na niečo vzdialené 20 sekúnd'
-              : 'Pracuj, kým sa nezačne prestávka'}
-          </p>
-        </div>
+    .status {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
 
-        {/* Timer Display */}
-        <div className="relative mb-8">
-          <div className="w-48 h-48 mx-auto relative">
-            {/* Circular Progress */}
-            <svg className="w-full h-full transform -rotate-90" viewBox="0 0 200 200">
-              <circle
-                cx="100"
-                cy="100"
-                r="90"
-                fill="none"
-                stroke="#e5e7eb"
-                strokeWidth="8"
-              />
-              <circle
-                cx="100"
-                cy="100"
-                r="90"
-                fill="none"
-                stroke={isBreakTime ? '#10b981' : '#3b82f6'}
-                strokeWidth="8"
-                strokeDasharray={`${2 * Math.PI * 90}`}
-                strokeDashoffset={`${2 * Math.PI * 90 * (1 - progress / 100)}`}
-                strokeLinecap="round"
-                className="transition-all duration-1000"
-              />
-            </svg>
-            {/* Time Text */}
-            <div className="absolute inset-0 flex items-center justify-center">
-              <span className="text-5xl font-bold text-gray-800">
-                {formatTime(timeLeft)}
-              </span>
-            </div>
-          </div>
-        </div>
+    .status p {
+      margin: 0.25rem 0;
+      color: #4b5563;
+      font-size: 1.125rem;
+    }
 
-        {/* Controls */}
-        <div className="flex gap-4 mb-6 justify-center">
-          <button
-            onClick={() => setIsRunning(!isRunning)}
-            className={`p-3 rounded-full transition-colors ${
-              isRunning
-                ? 'bg-red-500 hover:bg-red-600 text-white'
-                : 'bg-blue-500 hover:bg-blue-600 text-white'
-            }`}
-          >
-            {isRunning ? <Pause size={24} /> : <Play size={24} />}
-          </button>
-          <button
-            onClick={handleReset}
-            className="p-3 rounded-full bg-gray-200 hover:bg-gray-300 text-gray-800 transition-colors"
-          >
-            <RotateCcw size={24} />
-          </button>
-        </div>
+    .status .hint {
+      color: #6b7280;
+      font-size: 0.95rem;
+    }
 
-        {/* Sessions Counter */}
-        <div className="text-center bg-indigo-50 rounded-lg p-4">
-          <p className="text-gray-600 text-sm">Počet dokončených cyklov</p>
-          <p className="text-3xl font-bold text-indigo-600">{sessions}</p>
-        </div>
+    .timer {
+      position: relative;
+      margin-bottom: 2rem;
+      display: flex;
+      justify-content: center;
+    }
 
-        {/* Tips */}
-        <div className="mt-8 p-4 bg-blue-50 rounded-lg">
-          <h3 className="font-semibold text-gray-800 mb-2">💡 Tipy:</h3>
-          <ul className="text-sm text-gray-700 space-y-1">
-            <li>• Pozeraj 20 sekúnd na niečo 20+ metrov ďaleko</li>
-            <li>• Mrmlaj zakaždým, keď uvidíš niečo nové</li>
-            <li>• Robí čudesa pre úľavu od únavy očí</li>
-          </ul>
-        </div>
-      </div>
+    .timer svg {
+      width: 12rem;
+      height: 12rem;
+      transform: rotate(-90deg);
+    }
+
+    .time-display {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      font-weight: 700;
+      color: #1f2937;
+    }
+
+    .controls {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    button {
+      border: none;
+      cursor: pointer;
+      border-radius: 9999px;
+      padding: 0.75rem;
+      transition: background-color 150ms ease, transform 150ms ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 3.25rem;
+      min-height: 3.25rem;
+      font-size: 1.5rem;
+    }
+
+    button:active {
+      transform: scale(0.96);
+    }
+
+    .btn-primary {
+      background: #3b82f6;
+      color: #ffffff;
+    }
+
+    .btn-primary:hover {
+      background: #2563eb;
+    }
+
+    .btn-danger {
+      background: #ef4444;
+      color: #ffffff;
+    }
+
+    .btn-danger:hover {
+      background: #dc2626;
+    }
+
+    .btn-secondary {
+      background: #e5e7eb;
+      color: #1f2937;
+    }
+
+    .btn-secondary:hover {
+      background: #d1d5db;
+    }
+
+    .sessions {
+      text-align: center;
+      background: #eef2ff;
+      border-radius: 0.75rem;
+      padding: 1rem;
+    }
+
+    .sessions p {
+      margin: 0;
+      color: #4b5563;
+      font-size: 0.95rem;
+    }
+
+    .sessions .count {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #4f46e5;
+      margin-top: 0.25rem;
+    }
+
+    .tips {
+      margin-top: 2rem;
+      padding: 1rem;
+      background: #dbeafe;
+      border-radius: 0.75rem;
+      color: #1f2937;
+    }
+
+    .tips h3 {
+      margin: 0 0 0.75rem;
+      font-size: 1.05rem;
+    }
+
+    .tips ul {
+      margin: 0;
+      padding-left: 1rem;
+      color: #374151;
+      font-size: 0.95rem;
+      list-style: none;
+    }
+
+    .tips li::before {
+      content: "•";
+      color: #2563eb;
+      display: inline-block;
+      width: 1rem;
+      margin-left: -1rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="header">
+      <span class="icon" aria-hidden="true">👁️</span>
+      <h1>20-20-20</h1>
     </div>
-  );
-}
+
+    <div class="status">
+      <p id="status-text">💼 Pracovný čas</p>
+      <p id="status-hint" class="hint">Pracuj, kým sa nezačne prestávka</p>
+    </div>
+
+    <div class="timer">
+      <svg viewBox="0 0 200 200" aria-hidden="true">
+        <circle cx="100" cy="100" r="90" fill="none" stroke="#e5e7eb" stroke-width="8"></circle>
+        <circle id="progress-ring" cx="100" cy="100" r="90" fill="none" stroke="#3b82f6" stroke-width="8" stroke-linecap="round"></circle>
+      </svg>
+      <div class="time-display" id="time-display">20:00</div>
+    </div>
+
+    <div class="controls">
+      <button id="toggle-button" class="btn-primary" aria-label="Spustiť časovač">▶</button>
+      <button id="reset-button" class="btn-secondary" aria-label="Resetovať časovač">⟳</button>
+    </div>
+
+    <div class="sessions">
+      <p>Počet dokončených cyklov</p>
+      <p class="count" id="sessions-count">0</p>
+    </div>
+
+    <div class="tips">
+      <h3>💡 Tipy:</h3>
+      <ul>
+        <li>Pozeraj 20 sekúnd na niečo 20+ metrov ďaleko</li>
+        <li>Mrmlaj zakaždým, keď uvidíš niečo nové</li>
+        <li>Robí čudesa pre úľavu od únavy očí</li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      const WORK_TIME = 20 * 60;
+      const BREAK_TIME = 20;
+
+      const timeDisplay = document.getElementById("time-display");
+      const progressRing = document.getElementById("progress-ring");
+      const toggleButton = document.getElementById("toggle-button");
+      const resetButton = document.getElementById("reset-button");
+      const statusText = document.getElementById("status-text");
+      const statusHint = document.getElementById("status-hint");
+      const sessionsCount = document.getElementById("sessions-count");
+
+      const circumference = 2 * Math.PI * 90;
+      progressRing.setAttribute("stroke-dasharray", circumference.toString());
+      progressRing.setAttribute("stroke-dashoffset", circumference.toString());
+
+      let timeLeft = WORK_TIME;
+      let isRunning = false;
+      let isBreakTime = false;
+      let sessions = 0;
+      let intervalId = null;
+
+      function formatTime(seconds) {
+        const mins = Math.floor(seconds / 60).toString().padStart(2, "0");
+        const secs = (seconds % 60).toString().padStart(2, "0");
+        return `${mins}:${secs}`;
+      }
+
+      function updateDisplay() {
+        timeDisplay.textContent = formatTime(timeLeft);
+        const progress = isBreakTime
+          ? ((BREAK_TIME - timeLeft) / BREAK_TIME) * 100
+          : ((WORK_TIME - timeLeft) / WORK_TIME) * 100;
+        const dashOffset = circumference * (1 - progress / 100);
+        progressRing.setAttribute("stroke-dashoffset", dashOffset.toString());
+        progressRing.setAttribute("stroke", isBreakTime ? "#10b981" : "#3b82f6");
+        statusText.textContent = isBreakTime ? "👀 Čas na prestávku!" : "💼 Pracovný čas";
+        statusHint.textContent = isBreakTime
+          ? "Pozeraj na niečo vzdialené 20 sekúnd"
+          : "Pracuj, kým sa nezačne prestávka";
+        toggleButton.textContent = isRunning ? "⏸" : "▶";
+        toggleButton.classList.toggle("btn-danger", isRunning);
+        toggleButton.classList.toggle("btn-primary", !isRunning);
+      }
+
+      function playSound() {
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        const audioContext = new AudioContext();
+        const oscillator = audioContext.createOscillator();
+        const gainNode = audioContext.createGain();
+
+        oscillator.connect(gainNode);
+        gainNode.connect(audioContext.destination);
+
+        oscillator.frequency.value = 800;
+        oscillator.type = "sine";
+
+        gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.5);
+
+        oscillator.start(audioContext.currentTime);
+        oscillator.stop(audioContext.currentTime + 0.5);
+
+        oscillator.addEventListener("ended", () => audioContext.close());
+      }
+
+      function startTimer() {
+        if (isRunning) return;
+        isRunning = true;
+        intervalId = setInterval(() => {
+          if (timeLeft > 0) {
+            timeLeft -= 1;
+            updateDisplay();
+          } else {
+            handlePhaseCompletion();
+          }
+        }, 1000);
+        updateDisplay();
+      }
+
+      function pauseTimer() {
+        isRunning = false;
+        if (intervalId) {
+          clearInterval(intervalId);
+          intervalId = null;
+        }
+        updateDisplay();
+      }
+
+      function resetTimer() {
+        pauseTimer();
+        isBreakTime = false;
+        timeLeft = WORK_TIME;
+        updateDisplay();
+      }
+
+      function handlePhaseCompletion() {
+        if (!isBreakTime) {
+          isBreakTime = true;
+          timeLeft = BREAK_TIME;
+          playSound();
+        } else {
+          sessions += 1;
+          sessionsCount.textContent = sessions.toString();
+          isBreakTime = false;
+          timeLeft = WORK_TIME;
+          playSound();
+        }
+        updateDisplay();
+      }
+
+      toggleButton.addEventListener("click", () => {
+        if (isRunning) {
+          pauseTimer();
+        } else {
+          startTimer();
+        }
+      });
+
+      resetButton.addEventListener("click", () => {
+        resetTimer();
+      });
+
+      updateDisplay();
+    })();
+  </script>
+</body>
+</html>

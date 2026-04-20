@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0f0f0f" />
+
+    <!-- Primary -->
+    <title>Tomas Partman — Engineer, Traveler, Photographer</title>
+    <meta name="description" content="Personal site of Tomas Partman. Travel notes from 30+ countries, photography, books worth sharing, and engineering projects." />
+    <meta name="author" content="Tomas Partman" />
+    <link rel="canonical" href="https://tomaspartman.com/" />
+
+    <!-- Favicon (replace public/favicon.ico with your own) -->
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/favicon.png" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Tomas Partman" />
+    <meta property="og:title" content="Tomas Partman — Engineer, Traveler, Photographer" />
+    <meta property="og:description" content="Travel notes from 30+ countries, photography, books worth sharing, and engineering projects." />
+    <meta property="og:url" content="https://tomaspartman.com/" />
+    <meta property="og:image" content="https://tomaspartman.com/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="640" />
+    <meta property="og:image:alt" content="Tomas Partman — personal site" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Tomas Partman — Engineer, Traveler, Photographer" />
+    <meta name="twitter:description" content="Travel notes from 30+ countries, photography, books worth sharing, and engineering projects." />
+    <meta name="twitter:image" content="https://tomaspartman.com/og-image.jpg" />
+    <meta name="twitter:image:alt" content="Tomas Partman — personal site" />
+
+    <!-- Structured data: Person -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Tomas Partman",
+        "url": "https://tomaspartman.com/",
+        "image": "https://tomaspartman.com/og-image.jpg",
+        "jobTitle": "Engineer",
+        "description": "Engineer, traveler and photographer sharing notes from the road, photography, and books worth reading.",
+        "sameAs": [
+          "https://www.instagram.com/tomas.partman/"
+        ]
+      }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  </head>
+
+  <body>
+    <!-- Netlify Forms detection: hidden static form picked up at build time.
+         The real form is rendered by React; submissions POST here as form-name=contact. -->
+    <form name="contact" netlify netlify-honeypot="bot-field" hidden>
+      <input type="text" name="name" />
+      <input type="email" name="email" />
+      <input type="text" name="subject" />
+      <textarea name="message"></textarea>
+    </form>
+
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

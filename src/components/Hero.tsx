@@ -8,7 +8,7 @@ export const Hero = () => {
         <img
           src={heroImg}
           alt="Tomas Partman"
-          className="h-full w-full object-cover opacity-95 dark:opacity-70"
+          className="h-full w-full object-cover object-top opacity-95 dark:opacity-70"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/20 to-background" />
         <div className="absolute inset-0 bg-gradient-to-r from-background/60 via-transparent to-transparent" />

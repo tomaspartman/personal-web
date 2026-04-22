@@ -215,7 +215,7 @@ export const TravelMap = () => {
           </div>
           <div className="md:col-span-4 md:text-right">
             <a
-              href="https://www.instagram.com/tomas.partman/"
+              href="https://www.instagram.com/tomaspartman/"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex h-11 items-center gap-2 rounded-full border border-foreground px-5 text-sm font-medium text-foreground transition-colors hover:bg-foreground hover:text-background"

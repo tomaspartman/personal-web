@@ -44,7 +44,7 @@ export const ContactForm = () => {
         description: "Thanks — I'll get back to you soon.",
       });
       form.reset();
-    } catch (err) {
+    } catch {
       toast({
         title: "Couldn't send the message",
         description: "Please try again, or email me directly at hello@tomaspartman.com.",
@@ -70,20 +70,21 @@ export const ContactForm = () => {
       {/* Honeypot field — hidden from humans */}
       <p className="hidden">
         <label>
-          Don't fill this out if you're human: <input name="bot-field" />
+          Don't fill this out if you're human: <input name="bot-field" autoComplete="off" />
         </label>
       </p>
 
       <div className="grid gap-6 sm:grid-cols-2">
-        <Field label="Name *" name="name" type="text" required />
-        <Field label="Email *" name="email" type="email" required />
+        <Field label="Name *" name="name" type="text" required autoComplete="name" />
+        <Field label="Email *" name="email" type="email" required autoComplete="email" />
       </div>
-      <Field label="Subject" name="subject" type="text" />
-      <Field label="Message *" name="message" textarea required />
+      <Field label="Subject" name="subject" type="text" autoComplete="off" maxLength={120} />
+      <Field label="Message *" name="message" textarea required minLength={10} maxLength={2000} />
 
       <button
         type="submit"
         disabled={sending}
+        aria-busy={sending}
         className="inline-flex h-12 items-center rounded-full bg-foreground px-7 text-sm font-medium text-background transition-opacity hover:opacity-90 disabled:opacity-60"
       >
         {sending ? "Sending…" : "Send message"}
@@ -92,28 +93,37 @@ export const ContactForm = () => {
   );
 };
 
+type FieldProps = {
+  label: string;
+  name: string;
+  type?: string;
+  required?: boolean;
+  textarea?: boolean;
+  autoComplete?: string;
+  minLength?: number;
+  maxLength?: number;
+};
+
 const Field = ({
   label,
   name,
   type = "text",
   required,
   textarea,
-}: {
-  label: string;
-  name: string;
-  type?: string;
-  required?: boolean;
-  textarea?: boolean;
-}) => (
+  autoComplete,
+  minLength,
+  maxLength,
+}: FieldProps) => (
   <label className="block">
-    <span className="font-mono text-xs uppercase tracking-[0.15em] text-muted-foreground">
-      {label}
-    </span>
+    <span className="font-mono text-xs uppercase tracking-[0.15em] text-muted-foreground">{label}</span>
     {textarea ? (
       <textarea
         name={name}
         required={required}
         rows={5}
+        autoComplete={autoComplete}
+        minLength={minLength}
+        maxLength={maxLength}
         className="mt-2 block w-full resize-none border-0 border-b border-border bg-transparent py-2 text-foreground placeholder:text-muted-foreground/50 focus:border-foreground focus:outline-none focus:ring-0"
       />
     ) : (
@@ -121,8 +131,12 @@ const Field = ({
         name={name}
         type={type}
         required={required}
+        autoComplete={autoComplete}
+        minLength={minLength}
+        maxLength={maxLength}
         className="mt-2 block w-full border-0 border-b border-border bg-transparent py-2 text-foreground placeholder:text-muted-foreground/50 focus:border-foreground focus:outline-none focus:ring-0"
       />
     )}
   </label>
+);
 );

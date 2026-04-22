@@ -19,7 +19,7 @@ export const ContactForm = () => {
     if (honeypot) return;
 
     const name = (form.elements.namedItem("name") as HTMLInputElement).value;
-    const email = (form.elements.namedItem("email") as HTMLInputElement).value;
+       const email = (form.elements.namedItem("email") as HTMLInputElement).value;
     const subject = (form.elements.namedItem("subject") as HTMLInputElement).value || "";
     const message = (form.elements.namedItem("message") as HTMLTextAreaElement).value;
 
@@ -113,30 +113,31 @@ const Field = ({
   autoComplete,
   minLength,
   maxLength,
-}: FieldProps) => (
-  <label className="block">
-    <span className="font-mono text-xs uppercase tracking-[0.15em] text-muted-foreground">{label}</span>
-    {textarea ? (
-      <textarea
-        name={name}
-        required={required}
-        rows={5}
-        autoComplete={autoComplete}
-        minLength={minLength}
-        maxLength={maxLength}
-        className="mt-2 block w-full resize-none border-0 border-b border-border bg-transparent py-2 text-foreground placeholder:text-muted-foreground/50 focus:border-foreground focus:outline-none focus:ring-0"
-      />
-    ) : (
-      <input
-        name={name}
-        type={type}
-        required={required}
-        autoComplete={autoComplete}
-        minLength={minLength}
-        maxLength={maxLength}
-        className="mt-2 block w-full border-0 border-b border-border bg-transparent py-2 text-foreground placeholder:text-muted-foreground/50 focus:border-foreground focus:outline-none focus:ring-0"
-      />
-    )}
-  </label>
-);
-);
+}: FieldProps) => {
+  return (
+    <label className="block">
+      <span className="font-mono text-xs uppercase tracking-[0.15em] text-muted-foreground">{label}</span>
+      {textarea ? (
+        <textarea
+          name={name}
+          required={required}
+          rows={5}
+          autoComplete={autoComplete}
+          minLength={minLength}
+          maxLength={maxLength}
+          className="mt-2 block w-full resize-none border-0 border-b border-border bg-transparent py-2 text-foreground placeholder:text-muted-foreground/50 focus:border-foreground focus:outline-none focus:ring-0"
+        />
+      ) : (
+        <input
+          name={name}
+          type={type}
+          required={required}
+          autoComplete={autoComplete}
+          minLength={minLength}
+          maxLength={maxLength}
+          className="mt-2 block w-full border-0 border-b border-border bg-transparent py-2 text-foreground placeholder:text-muted-foreground/50 focus:border-foreground focus:outline-none focus:ring-0"
+        />
+      )}
+    </label>
+  );
+};

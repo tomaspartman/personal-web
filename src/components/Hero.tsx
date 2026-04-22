@@ -8,6 +8,9 @@ export const Hero = () => {
         <img
           src={heroImg}
           alt="Tomas Partman"
+          loading="eager"
+          fetchPriority="high"
+          decoding="async"
           className="h-full w-full object-cover object-top opacity-95 dark:opacity-70"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/20 to-background" />

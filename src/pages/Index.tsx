@@ -2,6 +2,7 @@ import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import { SiteHeader } from "@/components/SiteHeader";
 import { Hero } from "@/components/Hero";
 import { Intro } from "@/components/Intro";
+import { Projects } from "@/components/Projects";
 import { About } from "@/components/About";
 import { Background } from "@/components/Background";
 import { BooksStrip } from "@/components/BooksStrip";
@@ -77,6 +78,7 @@ const Index = () => {
       <main>
         <Hero />
         <Intro />
+        <Projects />
         <About />
         <Background />
         <DeferredTravelMap />

@@ -18,8 +18,9 @@ export const Projects = () => {
             <p className="eyebrow mb-4">Featured project</p>
             <h3 className="font-display text-3xl text-foreground">CivicMap</h3>
             <p className="mt-4 max-w-2xl leading-relaxed text-foreground/80">
-              Interactive civic platform that helps people discover local places, community points, and city data in a
-              simple visual map experience.
+                            CIVICMAP is a cross-border civic tech platform for Slovakia and Czechia where residents can report local
+              issues on an interactive map, add photos, and vote on problems that affect them. Municipalities get a
+              transparent dashboard to track reports from new to resolved and improve trust with citizens.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-3">

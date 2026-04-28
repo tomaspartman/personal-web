@@ -51,7 +51,7 @@ export const Projects = () => {
             aria-label="Preview of CivicMap project"
           >
             <img
-              src="/civicmap-preview.svg"
+              src="public/CivicMap_Screen.png"
               alt="CivicMap project preview"
               loading="lazy"
               className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"

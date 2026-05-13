@@ -8,6 +8,7 @@ import { Background } from "@/components/Background";
 import { BooksStrip } from "@/components/BooksStrip";
 import { Mountains } from "@/components/Mountains";
 import { Footer } from "@/components/Footer";
+import { ParkingMapReplica } from "@/components/ParkingMapReplica";
 
 const TravelMap = lazy(() =>
   import("@/components/TravelMap").then((module) => ({ default: module.TravelMap })),
@@ -82,6 +83,7 @@ const Index = () => {
         <About />
         <Background />
         <DeferredTravelMap />
+        <ParkingMapReplica />
         <Mountains />
         <BooksStrip />
       </main>

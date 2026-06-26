@@ -1,3 +1,29 @@
+const projects = [
+  {
+    label: "Featured project",
+    title: "CivicMap",
+    description:
+      "CIVICMAP is a cross-border civic tech platform for Slovakia and Czechia where residents can report local issues on an interactive map, add photos, and vote on problems that affect them. Municipalities get a transparent dashboard to track reports from new to resolved and improve trust with citizens.",
+    href: "https://civicmap.tomaspartman.com",
+    linkLabel: "Open project",
+    metaLabel: "civicmap.tomaspartman.com",
+    imageSrc: "/CivicMap_Screen.png",
+    imageAlt: "CivicMap project preview",
+  },
+  {
+    label: "Mobile app",
+    title: "BeerRadar",
+    description:
+      "BeerRadar is a GPS beer compass for craft and draft beer on tap. It helps people search by brand or style, find nearby pubs, bars, and taprooms across Czechia and Slovakia, plan pub crawl routes, and track pints in a beer diary.",
+    href: "https://play.google.com/store/apps/details?id=tomaspartman.beerradar",
+    linkLabel: "Open app",
+    metaLabel: "Google Play",
+    imageSrc:
+      "https://play-lh.googleusercontent.com/32LS2RGfp0d0sF9bkAW6DKW4lFsmAaeOfD5sRXvJHCZnHOXOI5J4DLaof_sd3LOXiVWl9CV6EpDkbVgdfcgrvA=w960-h540-rw",
+    imageAlt: "BeerRadar app preview from Google Play",
+  },
+];
+
 export const Projects = () => {
   return (
     <section id="projects" className="border-t border-border bg-secondary/20">
@@ -13,51 +39,58 @@ export const Projects = () => {
           </div>
         </div>
 
-        <article className="grid gap-px bg-border lg:grid-cols-12">
-          <div className="bg-background p-8 sm:p-10 lg:col-span-7">
-            <p className="eyebrow mb-4">Featured project</p>
-            <h3 className="font-display text-3xl text-foreground">CivicMap</h3>
-            <p className="mt-4 max-w-2xl leading-relaxed text-foreground/80">
-                            CIVICMAP is a cross-border civic tech platform for Slovakia and Czechia where residents can report local
-              issues on an interactive map, add photos, and vote on problems that affect them. Municipalities get a
-              transparent dashboard to track reports from new to resolved and improve trust with citizens.
-            </p>
+        <div
+          className="-mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-4 sm:-mx-6 sm:px-6 lg:mx-0 lg:px-0"
+          aria-label="Projects carousel"
+        >
+          {projects.map((project) => (
+            <article
+              key={project.title}
+              className="grid w-[86vw] max-w-[1120px] shrink-0 snap-start gap-px bg-border lg:w-[82vw] lg:max-w-[1180px] lg:grid-cols-12"
+            >
+              <div className="bg-background p-8 sm:p-10 lg:col-span-7">
+                <p className="eyebrow mb-4">{project.label}</p>
+                <h3 className="font-display text-3xl text-foreground">{project.title}</h3>
+                <p className="mt-4 max-w-2xl leading-relaxed text-foreground/80">{project.description}</p>
 
-            <div className="mt-8 flex flex-wrap gap-3">
+                <div className="mt-8 flex flex-wrap gap-3">
+                  <a
+                    href={project.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center rounded-full border border-foreground px-5 py-2.5 text-sm font-medium text-foreground transition-colors hover:bg-foreground hover:text-background"
+                  >
+                    {project.linkLabel} ↗
+                  </a>
+                  <a
+                    href={project.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center rounded-full border border-border px-5 py-2.5 text-sm text-foreground/75 transition-colors hover:border-foreground hover:text-foreground"
+                  >
+                    {project.metaLabel}
+                  </a>
+                </div>
+              </div>
+
               <a
-                href="https://civicmap.tomaspartman.com"
+                href={project.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center rounded-full border border-foreground px-5 py-2.5 text-sm font-medium text-foreground transition-colors hover:bg-foreground hover:text-background"
+                className="group relative min-h-[280px] overflow-hidden bg-background sm:min-h-[360px] lg:col-span-5"
+                aria-label={`Preview of ${project.title} project`}
               >
-                Open project ↗
+                <img
+                  src={project.imageSrc}
+                  alt={project.imageAlt}
+                  loading="lazy"
+                  referrerPolicy="no-referrer"
+                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+                />
               </a>
-              <a
-                href="https://civicmap.tomaspartman.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center rounded-full border border-border px-5 py-2.5 text-sm text-foreground/75 transition-colors hover:border-foreground hover:text-foreground"
-              >
-                civicmap.tomaspartman.com
-              </a>
-            </div>
-          </div>
-
-          <a
-            href="https://civicmap.tomaspartman.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group relative overflow-hidden bg-background lg:col-span-5"
-            aria-label="Preview of CivicMap project"
-          >
-            <img
-              src="/CivicMap_Screen.png"
-              alt="CivicMap project preview"
-              loading="lazy"
-              className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
-            />
-          </a>
-        </article>
+            </article>
+          ))}
+        </div>
       </div>
     </section>
   );

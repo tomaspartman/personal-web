@@ -39,9 +39,15 @@ export const Projects = () => {
           </div>
         </div>
 
-        <div className="grid gap-px bg-border">
+        <div
+          className="-mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-4 sm:-mx-6 sm:px-6 lg:mx-0 lg:px-0"
+          aria-label="Projects carousel"
+        >
           {projects.map((project) => (
-            <article key={project.title} className="grid gap-px bg-border lg:grid-cols-12">
+            <article
+              key={project.title}
+              className="grid w-[86vw] max-w-[1120px] shrink-0 snap-start gap-px bg-border lg:w-[82vw] lg:max-w-[1180px] lg:grid-cols-12"
+            >
               <div className="bg-background p-8 sm:p-10 lg:col-span-7">
                 <p className="eyebrow mb-4">{project.label}</p>
                 <h3 className="font-display text-3xl text-foreground">{project.title}</h3>

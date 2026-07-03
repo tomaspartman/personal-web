@@ -8,11 +8,11 @@ export const FeaturedTravel = () => {
       <div className="container py-24 sm:py-32">
         <div className="mb-16 grid gap-6 md:grid-cols-12 md:items-end">
           <div className="md:col-span-3">
-            <p className="eyebrow">Index — 02</p>
+            <p className="eyebrow">Index - 02</p>
           </div>
           <div className="md:col-span-7">
             <h2 className="display text-display-lg text-balance">
-              Travel blog <span className="italic text-muted-foreground">— stories from the road.</span>
+              Travel blog <span className="italic text-muted-foreground">- stories from the road.</span>
             </h2>
           </div>
           <div className="md:col-span-2 md:text-right">

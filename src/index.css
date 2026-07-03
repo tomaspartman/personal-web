@@ -3,14 +3,14 @@
 @tailwind utilities;
 
 /* =========================================================
-   Tomas Partman — Design System
+   Tomas Partman - Design System
    Aesthetic: Minimal Swiss / Apple-like
-   All colors HSL. Tokens only — no ad-hoc colors in components.
+   All colors HSL. Tokens only - no ad-hoc colors in components.
    ========================================================= */
 
 @layer base {
   :root {
-    /* Surface — warm cream paper */
+    /* Surface - warm cream paper */
     --background: 40 33% 98%;
     --foreground: 30 12% 14%;
 
@@ -61,7 +61,7 @@
   }
 
   .dark {
-    /* Warm dark — espresso, not cold black */
+    /* Warm dark - espresso, not cold black */
     --background: 28 14% 9%;
     --foreground: 38 25% 92%;
 

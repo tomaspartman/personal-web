@@ -2,11 +2,12 @@ import { useEffect, useState } from "react";
 import { ThemeToggle } from "./ThemeToggle";
 
 const links = [
-  { label: "Projects",   href: "#projects" },
-  { label: "About",      href: "#about" },
-  { label: "Background", href: "#background" },
-  { label: "Travel",     href: "#travel" },
-  { label: "Books",      href: "#books" },
+  { label: "Projects", href: "/#projects" },
+  { label: "App Audit", href: "/app-store-growth-audit" },
+  { label: "About", href: "/#about" },
+  { label: "Background", href: "/#background" },
+  { label: "Travel", href: "/#travel" },
+  { label: "Books", href: "/#books" },
 ];
 
 export const SiteHeader = () => {
@@ -27,7 +28,7 @@ export const SiteHeader = () => {
       }`}
     >
       <div className="container flex h-16 items-center justify-between">
-        <a href="#top" className="flex items-center gap-2 font-mono text-sm tracking-tight">
+        <a href="/" className="flex items-center gap-2 font-mono text-sm tracking-tight">
           <span className="inline-block h-2 w-2 rounded-full bg-foreground" />
           <span>tomas partman</span>
         </a>

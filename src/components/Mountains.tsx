@@ -1,4 +1,4 @@
-// Mountains section — personal note + animated SVG with a hiker
+// Mountains section - personal note + animated SVG with a hiker
 // walking left-to-right across a hand-drawn mountain ridge in an infinite loop.
 
 export const Mountains = () => {
@@ -23,7 +23,7 @@ export const Mountains = () => {
             <p>
               Mountains are where I feel most at home. The slow rhythm of
               walking uphill, the air thinning out, the silence on a ridge at
-              sunrise — there is nothing quite like it.
+              sunrise, there is nothing quite like it.
             </p>
             <p>
               I'm putting together a small collection of photos from the trails
@@ -51,7 +51,7 @@ export const Mountains = () => {
               strokeLinejoin="round"
               strokeLinecap="round"
             />
-            {/* Foreground ridge — the path the hiker walks on */}
+            {/* Foreground ridge - the path the hiker walks on */}
             <path
               id="ridge"
               d="M0 180 L100 130 L180 160 L280 100 L380 150 L480 90 L600 140 L720 110 L800 150"
@@ -63,7 +63,7 @@ export const Mountains = () => {
               strokeLinecap="round"
             />
 
-            {/* Hiker — small stick figure with a backpack, follows the ridge */}
+            {/* Hiker - small stick figure with a backpack, follows the ridge */}
             <g>
               <animateMotion
                 dur="14s"
@@ -84,7 +84,7 @@ export const Mountains = () => {
                 <line x1="0" y1="-8" x2="0" y2="0" />
                 {/* Backpack */}
                 <rect x="-3.2" y="-7" width="3" height="5" rx="0.6" fill="currentColor" opacity="0.85" stroke="none" />
-                {/* Walking legs — animated */}
+                {/* Walking legs - animated */}
                 <line x1="0" y1="0" x2="-2" y2="6">
                   <animate attributeName="x2" values="-2;2;-2" dur="0.6s" repeatCount="indefinite" />
                 </line>

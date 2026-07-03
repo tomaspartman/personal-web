@@ -31,7 +31,7 @@ const VISITED: Record<string, { slug: string; place: string }> = {
   "642": { slug: "romania", place: "Romania" },
 };
 
-// Visited but write-up still in progress — filled, but click opens "in progress" dialog.
+// Visited but write-up still in progress - filled, but click opens "in progress" dialog.
 const IN_PROGRESS: Record<string, string> = {
   "484": "Mexico",
   "608": "Philippines",
@@ -85,13 +85,13 @@ export const TravelMap = () => {
         {/* Header */}
         <div className="mb-12 grid gap-6 md:grid-cols-12 md:items-end">
           <div className="md:col-span-3">
-            <p className="eyebrow">Index — 02</p>
+            <p className="eyebrow">Index - 02</p>
           </div>
           <div className="md:col-span-7">
             <h2 className="display text-display-lg text-balance">
               Travel blog{" "}
               <span className="italic text-muted-foreground">
-                — stories from the road.
+                - stories from the road.
               </span>
             </h2>
             <p className="mt-4 text-sm text-muted-foreground max-w-xl">
@@ -199,13 +199,13 @@ export const TravelMap = () => {
         </div>
 
         <p className="mt-4 text-xs text-muted-foreground font-mono">
-          Tip — pinch / scroll to zoom, drag to pan.
+          Tip: pinch / scroll to zoom, drag to pan.
         </p>
 
         {/* Instagram callout */}
         <div className="mt-16 border-t border-border pt-10 grid gap-6 md:grid-cols-12 md:items-center">
           <div className="md:col-span-8">
-            <p className="eyebrow mb-3">Meanwhile —</p>
+            <p className="eyebrow mb-3">Meanwhile</p>
             <p className="font-display text-2xl sm:text-3xl text-foreground text-balance">
               I try to share my travels on Instagram as I go.{" "}
               <span className="italic text-muted-foreground">
@@ -248,7 +248,7 @@ export const TravelMap = () => {
           <div className="flex flex-col items-center gap-4 py-6">
             <Loader2 className="h-10 w-10 animate-spin text-muted-foreground" />
             <p className="text-sm text-muted-foreground text-center max-w-xs">
-              I&apos;m working on this one — notes, photos and memories are
+              I&apos;m working on this one. Notes, photos and memories are
               being put together. Check back soon.
             </p>
           </div>

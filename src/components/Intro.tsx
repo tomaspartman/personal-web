@@ -3,11 +3,11 @@ export const Intro = () => {
     <section id="intro" className="container py-32 sm:py-40">
       <div className="grid gap-12 md:grid-cols-12">
         <div className="md:col-span-3">
-          <p className="eyebrow">Index — 01</p>
+          <p className="eyebrow">Index - 01</p>
         </div>
         <div className="md:col-span-9">
           <p className="display text-display-md text-balance text-foreground">
-            I pair analytical rigor with creative experimentation —
+            I pair analytical rigor with creative experimentation,
             a Master's in Economic Policy, Erasmus in Spain, and hands-on
             work scaling mobile apps across global markets.
           </p>

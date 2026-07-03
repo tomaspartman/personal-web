@@ -14,12 +14,12 @@ export const ContactForm = () => {
     e.preventDefault();
     const form = e.currentTarget;
 
-    // Honeypot — Netlify will silently drop submissions that fill this.
+    // Honeypot - Netlify will silently drop submissions that fill this.
     const honeypot = (form.elements.namedItem("bot-field") as HTMLInputElement)?.value;
     if (honeypot) return;
 
     const name = (form.elements.namedItem("name") as HTMLInputElement).value;
-       const email = (form.elements.namedItem("email") as HTMLInputElement).value;
+    const email = (form.elements.namedItem("email") as HTMLInputElement).value;
     const subject = (form.elements.namedItem("subject") as HTMLInputElement).value || "";
     const message = (form.elements.namedItem("message") as HTMLTextAreaElement).value;
 
@@ -41,7 +41,7 @@ export const ContactForm = () => {
 
       toast({
         title: "✓ Message sent",
-        description: "Thanks — I'll get back to you soon.",
+        description: "Thanks, I'll get back to you soon.",
       });
       form.reset();
     } catch {
@@ -67,7 +67,7 @@ export const ContactForm = () => {
       {/* Required by Netlify so the function knows which form this is */}
       <input type="hidden" name="form-name" value="contact" />
 
-      {/* Honeypot field — hidden from humans */}
+      {/* Honeypot field - hidden from humans */}
       <p className="hidden">
         <label>
           Don't fill this out if you're human: <input name="bot-field" autoComplete="off" />

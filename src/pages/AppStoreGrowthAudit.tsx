@@ -1,4 +1,4 @@
-import { ArrowDown, BarChart3, CheckCircle2, ClipboardCheck, Compass, Gamepad2, Rocket, Search, Sparkles, Store, Target, Users } from "lucide-react";
+import { ArrowDown, BarChart3, ClipboardCheck, Gamepad2, Rocket, Search, Sparkles, Store, Target, Users } from "lucide-react";
 import { Footer } from "@/components/Footer";
 import { SiteHeader } from "@/components/SiteHeader";
 
@@ -122,7 +122,7 @@ export default function AppStoreGrowthAudit() {
                   <article key={area.title} className="bg-background p-7 sm:p-8">
                     <Icon className="h-5 w-5 text-accent" aria-hidden="true" />
                     <h3 className="mt-6 font-display text-2xl text-foreground">{area.title}</h3>
-                    <p className="mt-4 text-sm leading-relaxed text-foreground/72">{area.text}</p>
+                    <p className="mt-4 text-sm leading-relaxed text-foreground/70">{area.text}</p>
                   </article>
                 );
               })}

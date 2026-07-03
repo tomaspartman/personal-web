@@ -17,11 +17,11 @@ export const About = () => {
       <div className="container py-24 sm:py-32">
         <div className="mb-16 grid gap-6 md:grid-cols-12 md:items-end">
           <div className="md:col-span-3">
-            <p className="eyebrow">Index — 05</p>
+            <p className="eyebrow">Index - 05</p>
           </div>
           <div className="md:col-span-9">
             <h2 className="display text-display-lg text-balance">
-              About me <span className="italic text-muted-foreground">— skills & interests.</span>
+              About me <span className="italic text-muted-foreground">- skills & interests.</span>
             </h2>
           </div>
         </div>

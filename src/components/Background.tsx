@@ -55,7 +55,7 @@ const academic: Item[] = [
     bullets: [
       "Third-ranked selective gymnasium in Slovakia",
       "Comprehensive, interdisciplinary curriculum across sciences, humanities and languages",
-      "Passed Maturita exams in Mathematics, Slovak Language, English (B2), Economics and History — all with the highest marks",
+      "Passed Maturita exams in Mathematics, Slovak Language, English (B2), Economics and History, all with the highest marks",
       "Participated in international history competitions abroad, representing the school",
     ],
   },
@@ -79,11 +79,11 @@ export const Background = () => {
       <div className="container py-24 sm:py-32">
         <div className="mb-16 grid gap-6 md:grid-cols-12 md:items-end">
           <div className="md:col-span-3">
-            <p className="eyebrow">Index — 06</p>
+            <p className="eyebrow">Index - 06</p>
           </div>
           <div className="md:col-span-9">
             <h2 className="display text-display-lg text-balance">
-              Background <span className="italic text-muted-foreground">— academic & professional.</span>
+              Background <span className="italic text-muted-foreground">- academic & professional.</span>
             </h2>
             <p className="mt-6 max-w-2xl text-muted-foreground">
               My educational journey & scholarly pursuits.

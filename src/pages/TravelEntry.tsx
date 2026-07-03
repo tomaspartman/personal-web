@@ -12,7 +12,7 @@ const TravelEntry = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
     if (entry) {
-      document.title = `${entry.place} — Travel notes`;
+      document.title = `${entry.place} | Travel notes`;
     }
   }, [entry]);
 
@@ -51,7 +51,7 @@ const TravelEntry = () => {
 
           <header className="grid gap-6 md:grid-cols-12 md:items-end mb-16">
             <div className="md:col-span-3">
-              <p className="eyebrow">Entry — {entry.n}</p>
+              <p className="eyebrow">Entry - {entry.n}</p>
               <p className="font-mono text-xs text-muted-foreground mt-2">
                 {entry.year} · {entry.region}
               </p>

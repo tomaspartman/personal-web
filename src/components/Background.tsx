@@ -9,7 +9,7 @@ type Item = {
 
 const academic: Item[] = [
   {
-    period: "2021 – 2024",
+    period: "2021 - 2024",
     title: "Master's Degree in Economic Policy",
     place: "Masaryk University, Brno, Czechia",
     summary:
@@ -34,7 +34,7 @@ const academic: Item[] = [
     ],
   },
   {
-    period: "2017 – 2021",
+    period: "2017 - 2021",
     title: "Bachelor's Degree in Security & Strategic Studies and Economic Policy",
     place: "Masaryk University, Brno, Czechia",
     summary:
@@ -47,7 +47,7 @@ const academic: Item[] = [
     ],
   },
   {
-    period: "2013 – 2017",
+    period: "2013 - 2017",
     title: "High School Diploma",
     place: "Gymnázium Vršavská cesta 1, Žilina, Slovakia",
     summary:

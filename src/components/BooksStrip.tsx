@@ -8,17 +8,17 @@ type Book = {
 };
 
 const books: Book[] = [
-  // — Featured personal picks (kept from the original site) —
+  // Featured personal picks (kept from the original site)
   {
     title: "The Lord of the Rings",
     author: "J.R.R. Tolkien",
-    note: "Epic fantasy — friendship, courage, sacrifice, and unmatched world-building.",
+    note: "Epic fantasy: friendship, courage, sacrifice, and unmatched world-building.",
     rating: 5, read: "Personal favourite",
   },
   {
     title: "Sapiens: A Brief History of Humankind",
     author: "Yuval Noah Harari",
-    note: "Cognitive, agricultural, and scientific revolutions — and what it means to be human.",
+    note: "Cognitive, agricultural, and scientific revolutions, and what it means to be human.",
     rating: 5, read: "Personal favourite",
   },
   {
@@ -28,7 +28,7 @@ const books: Book[] = [
     rating: 5, read: "Personal favourite",
   },
 
-  // — Recently read (Goodreads) —
+  // Recently read (Goodreads)
   {
     title: "Down and Out in Paris and London",
     author: "George Orwell",
@@ -38,19 +38,19 @@ const books: Book[] = [
   {
     title: "Fire and Fury: Inside the Trump White House",
     author: "Michael Wolff",
-    note: "A behind-the-curtain account of the early Trump administration — chaotic, gossipy, and hard to put down regardless of where you stand.",
+    note: "A behind-the-curtain account of the early Trump administration: chaotic, gossipy, and hard to put down regardless of where you stand.",
     rating: 3, read: "Feb 2025",
   },
   {
     title: "Alice in Wonderland",
     author: "Jane Carruth (after Lewis Carroll)",
-    note: "Returning to a childhood classic as an adult — odder, wittier and more nonsensical than I remembered.",
+    note: "Returning to a childhood classic as an adult: odder, wittier and more nonsensical than I remembered.",
     rating: 4, read: "Jan 2025",
   },
   {
     title: "The Upstarts: How Uber, Airbnb and the New Silicon Valley Are Changing the World",
     author: "Brad Stone",
-    note: "How two startups bent law, labor and city life around themselves — a clear-eyed history of the sharing economy.",
+    note: "How two startups bent law, labor and city life around themselves, a clear-eyed history of the sharing economy.",
     rating: 4, read: "Dec 2024",
   },
   {
@@ -62,13 +62,13 @@ const books: Book[] = [
   {
     title: "Spev sirén: Putovanie do srdca ukrajinskej vojny",
     author: "Tomáš Forró",
-    note: "A Slovak journalist's reporting from inside the Ukrainian war — close, human, and deeply uncomfortable.",
+    note: "A Slovak journalist's reporting from inside the Ukrainian war: close, human, and deeply uncomfortable.",
     rating: 5, read: "Jul 2024",
   },
   {
     title: "God Is Not Great: How Religion Poisons Everything",
     author: "Christopher Hitchens",
-    note: "Hitchens at full tilt — sharp, learned, often angry, always entertaining to argue with in your head.",
+    note: "Hitchens at full tilt: sharp, learned, often angry, always entertaining to argue with in your head.",
     rating: 4, read: "Jul 2024",
   },
   {
@@ -78,9 +78,9 @@ const books: Book[] = [
     rating: 5, read: "Feb 2024",
   },
   {
-    title: "The Hobbit: An Unexpected Journey — Annual 2013",
+    title: "The Hobbit: An Unexpected Journey - Annual 2013",
     author: "Paddy Kempshall",
-    note: "A beautifully illustrated companion to the film — a gentle re-entry into Middle-earth.",
+    note: "A beautifully illustrated companion to the film, a gentle re-entry into Middle-earth.",
     rating: 4, read: "Feb 2024",
   },
   {
@@ -92,13 +92,13 @@ const books: Book[] = [
   {
     title: "Deep Work: Rules for Focused Success in a Distracted World",
     author: "Cal Newport",
-    note: "Why uninterrupted focus is becoming rare and valuable — and how to actually build it.",
+    note: "Why uninterrupted focus is becoming rare and valuable, and how to actually build it.",
     rating: 4, read: "Dec 2023",
   },
   {
     title: "Talking to Strangers: What We Should Know About the People We Don't Know",
     author: "Malcolm Gladwell",
-    note: "Why we're so bad at reading people we don't know — and the costly mistakes that follow.",
+    note: "Why we're so bad at reading people we don't know, and the costly mistakes that follow.",
     rating: 4, read: "Dec 2023",
   },
   {
@@ -110,7 +110,7 @@ const books: Book[] = [
   {
     title: "Dune (Dune #1)",
     author: "Frank Herbert",
-    note: "Politics, religion, ecology and prophecy on a desert planet — still the gold standard of science fiction.",
+    note: "Politics, religion, ecology and prophecy on a desert planet, still the gold standard of science fiction.",
     rating: 5, read: "Jun 2023",
   },
   {
@@ -128,13 +128,13 @@ const books: Book[] = [
   {
     title: "Svedectvo o živote v KĽDR",
     author: "Nina Špitálníková",
-    note: "First-hand testimony of life inside North Korea — quiet, specific, and chilling.",
+    note: "First-hand testimony of life inside North Korea: quiet, specific, and chilling.",
     rating: 5, read: "Jun 2023",
   },
   {
     title: "Michail Strogov",
     author: "Jules Verne",
-    note: "A 19th-century courier races across Tsarist Siberia — old-school adventure storytelling at its best.",
+    note: "A 19th-century courier races across Tsarist Siberia, old-school adventure storytelling at its best.",
     rating: 4, read: "2023",
   },
 ];
@@ -152,14 +152,14 @@ export const BooksStrip = () => {
       <div className="container py-24 sm:py-32">
         <div className="grid gap-12 md:grid-cols-12">
           <div className="md:col-span-4">
-            <p className="eyebrow mb-6">Index — 04</p>
+            <p className="eyebrow mb-6">Index - 04</p>
             <h2 className="display text-display-md text-balance">
               Books worth sharing.
             </h2>
             <p className="mt-6 text-sm text-muted-foreground leading-relaxed">
-              A growing list of books I've read and found valuable —
-              for personal growth, creativity, or understanding the world a
-              little better. Updated as I close the back cover.
+              A growing list of books I've read and found valuable for personal
+              growth, creativity, or understanding the world a little better.
+              Updated as I close the back cover.
             </p>
             <p className="mt-4 font-mono text-xs uppercase tracking-[0.15em] text-muted-foreground">
               {books.length} titles · with my rating

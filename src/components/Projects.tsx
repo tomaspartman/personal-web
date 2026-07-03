@@ -50,11 +50,11 @@ export const Projects = () => {
       <div className="container py-24 sm:py-32">
         <div className="mb-16 grid gap-6 md:grid-cols-12 md:items-end">
           <div className="md:col-span-3">
-            <p className="eyebrow">Index — 03</p>
+            <p className="eyebrow">Index - 03</p>
           </div>
           <div className="md:col-span-9">
             <h2 className="display text-display-lg text-balance">
-              Projects <span className="italic text-muted-foreground">— things I&apos;m building.</span>
+              Projects <span className="italic text-muted-foreground">- things I&apos;m building.</span>
             </h2>
           </div>
         </div>

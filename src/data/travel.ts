@@ -20,7 +20,7 @@ export const travelEntries: TravelEntry[] = [
     intro:
       "Uzbekistan felt like stepping into a living museum of the Silk Road. From the turquoise tilework of Samarkand to the labyrinth alleys of Bukhara, every corner carried centuries of trade, conquest, and craft.",
     highlights: [
-      "Registan Square at sunrise — empty, gold, silent.",
+      "Registan Square at sunrise: empty, gold, silent.",
       "Long marshrutka rides between oases.",
       "Plov shared with strangers in Tashkent.",
       "The desert quiet outside Khiva.",
@@ -34,7 +34,7 @@ export const travelEntries: TravelEntry[] = [
     region: "Central Asia",
     summary: "Soviet skylines giving way to steppe and sharp mountain light.",
     intro:
-      "Kazakhstan surprised me with its scale — Almaty's tree-lined avenues under the Tien Shan, then hours of empty steppe in every direction. A country still figuring out its post-Soviet identity, in the best way.",
+      "Kazakhstan surprised me with its scale: Almaty's tree-lined avenues under the Tien Shan, then hours of empty steppe in every direction. A country still figuring out its post-Soviet identity, in the best way.",
     highlights: [
       "Hiking above Almaty in Ile-Alatau.",
       "Brutalist architecture in Astana.",
@@ -53,8 +53,8 @@ export const travelEntries: TravelEntry[] = [
       "Kyrgyzstan is mountains. Everywhere. I rode horses across jailoo pastures, slept in yurts beside Song-Kul, and met nomadic families whose hospitality redefined the word for me.",
     highlights: [
       "Three days on horseback to Song-Kul.",
-      "Ala-Kul lake — turquoise, freezing, perfect.",
-      "Kumis (fermented mare's milk) — once was enough.",
+      "Ala-Kul lake: turquoise, freezing, perfect.",
+      "Kumis (fermented mare's milk), once was enough.",
       "Bishkek's Soviet mosaics.",
     ],
   },
@@ -64,7 +64,7 @@ export const travelEntries: TravelEntry[] = [
     slug: "ecuador",
     year: "2023",
     region: "South America",
-    summary: "Andes, Amazon, and Pacific — all in one small country.",
+    summary: "Andes, Amazon, and Pacific, all in one small country.",
     intro:
       "Ecuador packs three worlds into a country the size of Colorado. I climbed volcanoes near Quito, dropped into the Amazon basin, and ended on the Pacific coast eating ceviche straight from the boats.",
     highlights: [
@@ -101,7 +101,7 @@ export const travelEntries: TravelEntry[] = [
       "Eating in Shanghai deserves its own entry. Mornings of jianbing from a cart, lunches of xiaolongbao at Jia Jia Tang Bao, late-night skewers in alleys that don't exist on any map.",
     highlights: [
       "Xiaolongbao at Jia Jia Tang Bao.",
-      "Shengjianbao — pan-fried, life-changing.",
+      "Shengjianbao: pan-fried, life-changing.",
       "Scallion oil noodles for ¥10.",
       "Hairy crab season at a local spot.",
     ],

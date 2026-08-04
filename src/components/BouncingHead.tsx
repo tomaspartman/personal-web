@@ -102,7 +102,7 @@ export const BouncingHead = () => {
       <img
         src={heroImg}
         alt=""
-        className="h-full w-full origin-[50%_27%] scale-[2.15] object-cover object-center"
+        className="h-full w-full origin-[47%_21%] scale-[3.8] object-cover object-center"
         draggable={false}
       />
     </div>

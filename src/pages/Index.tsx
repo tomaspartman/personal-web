@@ -8,6 +8,7 @@ import { Background } from "@/components/Background";
 import { BooksStrip } from "@/components/BooksStrip";
 import { Mountains } from "@/components/Mountains";
 import { Footer } from "@/components/Footer";
+import { BouncingHead } from "@/components/BouncingHead";
 
 const TravelMap = lazy(() =>
   import("@/components/TravelMap").then((module) => ({ default: module.TravelMap })),
@@ -75,6 +76,7 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <SiteHeader />
+      <BouncingHead />
       <main>
         <Hero />
         <Intro />

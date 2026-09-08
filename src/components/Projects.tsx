@@ -12,8 +12,7 @@ const projects = [
     metaLabel: "civicmap.tomaspartman.com",
     imageSrc: "/CivicMap_Screen.png",
     imageAlt: "CivicMap project preview",
-    previewClassName: "bg-background",
-    imageClassName: "h-full w-full object-cover",
+    imageClassName: "object-cover",
   },
   {
     label: "Data visualization",
@@ -25,8 +24,7 @@ const projects = [
     metaLabel: "kamtecu.org",
     imageSrc: "/kamtecu-preview.png",
     imageAlt: "Kam tečú state budget visualization",
-    previewClassName: "flex items-center justify-center bg-[#f7f5ef] p-4 sm:p-6",
-    imageClassName: "h-auto w-full object-contain shadow-2xl",
+    imageClassName: "object-cover",
   },
   {
     label: "Mobile app",
@@ -39,8 +37,7 @@ const projects = [
     imageSrc:
       "https://play-lh.googleusercontent.com/rzH-K6vuyqaPRNIWFxFIexpZi3cMSXRs2m5Zz_z37vqXuV92mnr1gPIsyVzesPssRNFcTA0RTSqZKAO4BQBy=w512-h512-rw",
     imageAlt: "BeerRadar app icon",
-    previewClassName: "flex items-center justify-center bg-secondary/60 p-10 sm:p-14",
-    imageClassName: "h-48 w-48 object-contain shadow-2xl sm:h-64 sm:w-64",
+    imageClassName: "object-contain bg-secondary/60",
   },
 ];
 
@@ -120,16 +117,18 @@ export const Projects = () => {
               href={activeProject.href}
               target="_blank"
               rel="noopener noreferrer"
-              className={`group relative min-h-[300px] overflow-hidden lg:col-span-5 ${activeProject.previewClassName}`}
+              className="group relative flex min-h-[300px] items-center justify-center overflow-hidden bg-secondary/40 p-6 sm:p-8 lg:col-span-5"
               aria-label={`Preview of ${activeProject.title} project`}
             >
-              <img
-                src={activeProject.imageSrc}
-                alt={activeProject.imageAlt}
-                loading="lazy"
-                referrerPolicy="no-referrer"
-                className={`transition-transform duration-500 group-hover:scale-[1.02] ${activeProject.imageClassName}`}
-              />
+              <span className="relative block aspect-[16/10] w-full max-w-[520px] overflow-hidden rounded-2xl border border-border/70 bg-background shadow-2xl">
+                <img
+                  src={activeProject.imageSrc}
+                  alt={activeProject.imageAlt}
+                  loading="lazy"
+                  referrerPolicy="no-referrer"
+                  className={`h-full w-full transition-transform duration-500 group-hover:scale-[1.02] ${activeProject.imageClassName}`}
+                />
+              </span>
             </a>
           </article>
 

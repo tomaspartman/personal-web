@@ -16,6 +16,19 @@ const projects = [
     imageClassName: "h-full w-full object-cover",
   },
   {
+    label: "Data visualization",
+    title: "Kam tečú",
+    description:
+      "Kam tečú makes Slovakia's public finances easier to explore. It brings together official budget data, ministry spending, historical comparisons, and public debt in an interactive view that shows where state money comes from and where it goes.",
+    href: "https://kamtecu.org",
+    linkLabel: "Explore project",
+    metaLabel: "kamtecu.org",
+    imageSrc: "/kamtecu-preview.png",
+    imageAlt: "Kam tečú state budget visualization",
+    previewClassName: "flex items-center justify-center bg-[#f7f5ef] p-4 sm:p-6",
+    imageClassName: "h-auto w-full object-contain shadow-2xl",
+  },
+  {
     label: "Mobile app",
     title: "BeerRadar",
     description:

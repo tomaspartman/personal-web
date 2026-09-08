@@ -3,16 +3,17 @@ import { useState } from "react";
 
 const projects = [
   {
-    label: "Featured project",
-    title: "CivicMap",
+    label: "Mobile app",
+    title: "BeerRadar",
     description:
-      "CIVICMAP is a cross-border civic tech platform for Slovakia and Czechia where residents can report local issues on an interactive map, add photos, and vote on problems that affect them. Municipalities get a transparent dashboard to track reports from new to resolved and improve trust with citizens.",
-    href: "https://civicmap.tomaspartman.com",
-    linkLabel: "Open project",
-    metaLabel: "civicmap.tomaspartman.com",
-    imageSrc: "/CivicMap_Screen.png",
-    imageAlt: "CivicMap project preview",
-    imageClassName: "object-cover",
+      "BeerRadar is a GPS beer compass for craft and draft beer on tap. It helps people search by brand or style, find nearby pubs, bars, and taprooms across Czechia and Slovakia, plan pub crawl routes, and track pints in a beer diary.",
+    href: "https://play.google.com/store/apps/details?id=tomaspartman.beerradar",
+    linkLabel: "Open app",
+    metaLabel: "Google Play",
+    imageSrc:
+      "https://play-lh.googleusercontent.com/rzH-K6vuyqaPRNIWFxFIexpZi3cMSXRs2m5Zz_z37vqXuV92mnr1gPIsyVzesPssRNFcTA0RTSqZKAO4BQBy=w512-h512-rw",
+    imageAlt: "BeerRadar app icon",
+    imageClassName: "object-contain bg-secondary/60",
   },
   {
     label: "Data visualization",
@@ -27,17 +28,16 @@ const projects = [
     imageClassName: "object-cover",
   },
   {
-    label: "Mobile app",
-    title: "BeerRadar",
+    label: "Featured project",
+    title: "CivicMap",
     description:
-      "BeerRadar is a GPS beer compass for craft and draft beer on tap. It helps people search by brand or style, find nearby pubs, bars, and taprooms across Czechia and Slovakia, plan pub crawl routes, and track pints in a beer diary.",
-    href: "https://play.google.com/store/apps/details?id=tomaspartman.beerradar",
-    linkLabel: "Open app",
-    metaLabel: "Google Play",
-    imageSrc:
-      "https://play-lh.googleusercontent.com/rzH-K6vuyqaPRNIWFxFIexpZi3cMSXRs2m5Zz_z37vqXuV92mnr1gPIsyVzesPssRNFcTA0RTSqZKAO4BQBy=w512-h512-rw",
-    imageAlt: "BeerRadar app icon",
-    imageClassName: "object-contain bg-secondary/60",
+      "CIVICMAP is a cross-border civic tech platform for Slovakia and Czechia where residents can report local issues on an interactive map, add photos, and vote on problems that affect them. Municipalities get a transparent dashboard to track reports from new to resolved and improve trust with citizens.",
+    href: "https://civicmap.tomaspartman.com",
+    linkLabel: "Open project",
+    metaLabel: "civicmap.tomaspartman.com",
+    imageSrc: "/CivicMap_Screen.png",
+    imageAlt: "CivicMap project preview",
+    imageClassName: "object-cover",
   },
 ];
 

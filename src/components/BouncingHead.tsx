@@ -7,6 +7,7 @@ const MAX_BUBBLES = 8;
 const MIN_SPLIT_SIZE = 50;
 const MIN_BUBBLE_SIZE = 44;
 const POP_DURATION = 220;
+const SPLIT_PROBABILITY = 0.65;
 
 type BubbleState = "active" | "popping";
 
@@ -230,7 +231,7 @@ export const BouncingHead = () => {
     ).length;
     const canSplit = bubble.size > MIN_SPLIT_SIZE && activeBubbleCount < MAX_BUBBLES;
 
-    if (canSplit && Math.random() < 0.5) {
+    if (canSplit && Math.random() < SPLIT_PROBABILITY) {
       splitBubble(bubble);
     } else {
       popBubble(bubble);
@@ -245,7 +246,7 @@ export const BouncingHead = () => {
           ref={(element) => registerBubble(bubble.id, element)}
           type="button"
           aria-label={`Tomas face bubble ${index + 1}. Click to pop it or split it in two.`}
-          title="Click: this bubble may pop or split in two"
+          title="Click: 65% chance to split, 35% chance to pop"
           className="group fixed left-0 top-0 z-[70] cursor-pointer touch-manipulation rounded-full focus-visible:outline-none"
           style={{
             width: `${bubble.size}px`,
@@ -253,8 +254,6 @@ export const BouncingHead = () => {
             transform: `translate3d(${bubble.x}px, ${bubble.y}px, 0)`,
           }}
           onClick={() => handleBubbleClick(bubble.id)}
-          onPointerEnter={() => setBubblePaused(bubble.id, true)}
-          onPointerLeave={() => setBubblePaused(bubble.id, false)}
           onFocus={() => setBubblePaused(bubble.id, true)}
           onBlur={() => setBubblePaused(bubble.id, false)}
         >

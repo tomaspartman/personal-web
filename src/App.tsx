@@ -7,6 +7,7 @@ import Index from "./pages/Index.tsx";
 import TravelEntry from "./pages/TravelEntry.tsx";
 import AppStoreGrowthAudit from "./pages/AppStoreGrowthAudit.tsx";
 import NotFound from "./pages/NotFound.tsx";
+import BeerRadarSupport from "./pages/BeerRadarSupport.tsx";
 
 const queryClient = new QueryClient();
 
@@ -20,6 +21,7 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/travel/:slug" element={<TravelEntry />} />
           <Route path="/app-store-growth-audit" element={<AppStoreGrowthAudit />} />
+          <Route path="/beerradar" element={<BeerRadarSupport />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

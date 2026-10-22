@@ -66,7 +66,7 @@ function SupportForm() {
       <label className="block text-sm font-medium">Message
         <textarea name="message" required minLength={10} maxLength={3000} rows={5} className={field} placeholder="Tell us what happened. Include your phone model and app version if relevant." />
       </label>
-      <p className="text-xs leading-relaxed text-muted-foreground">We use your contact details and message only to handle your support request. A detailed privacy policy is being prepared before the iOS release.</p>
+      <p className="text-xs leading-relaxed text-muted-foreground">We use your contact details and message only to handle your support request. See the <a className="underline underline-offset-4" href="/beerradar/privacy">BeerRadar Privacy Policy</a>.</p>
       <button disabled={status === "sending"} type="submit" className="inline-flex items-center gap-2 rounded-full bg-foreground px-6 py-3 text-sm font-medium text-background transition-opacity hover:opacity-85 disabled:opacity-50">
         {status === "sending" ? "Sending…" : "Send support request"} <ArrowRight className="h-4 w-4" />
       </button>
@@ -149,7 +149,7 @@ export default function BeerRadarSupport() {
           <div className="container py-16">
             <p className="eyebrow mb-4">Trust and safety</p>
             <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
-              <div><h2 className="font-display text-3xl">Your data matters.</h2><p className="mt-3 max-w-xl text-muted-foreground">A dedicated privacy policy and account deletion guide will be published here before the iOS release.</p></div>
+              <div><h2 className="font-display text-3xl">Your data matters.</h2><p className="mt-3 max-w-xl text-muted-foreground">Read our <a href="/beerradar/privacy" className="underline underline-offset-4">Privacy Policy</a> or the <a href="/beerradar/delete-account" className="underline underline-offset-4">account deletion guide</a>.</p></div>
 
             </div>
           </div>

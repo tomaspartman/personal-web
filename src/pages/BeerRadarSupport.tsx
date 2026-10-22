@@ -1,6 +1,5 @@
 import { useState, type FormEvent } from "react";
-import { ArrowRight, BookOpen, Compass, ExternalLink, HelpCircle, MapPin, Route, Shield, Smartphone } from "lucide-react";
-import { Link } from "react-router-dom";
+import { ArrowRight, BookOpen, Compass, ExternalLink, HelpCircle, MapPin, Route, Smartphone } from "lucide-react";
 import { SiteHeader } from "@/components/SiteHeader";
 
 const PLAY_URL = "https://play.google.com/store/apps/details?id=tomaspartman.beerradar";
@@ -17,7 +16,7 @@ const faqs = [
   { q: "Why is location permission requested?", a: "Your location is used to find nearby venues and guide the compass. You can change the permission in your device settings." },
   { q: "Can I use BeerRadar offline?", a: "The app includes an offline beer catalogue. Online updates, maps, sign-in and synchronization may require a connection." },
   { q: "How do I report an incorrect venue?", a: "Use the in-app reporting feature or send us the venue name, location and correction using the support form below." },
-  { q: "How do I delete my BeerRadar account?", a: "Open Profile in the app and select the account deletion option. See the separate account deletion page for details." },
+  { q: "How do I delete my BeerRadar account?", a: "Open Profile in the app and select the account deletion option. For questions about deletion, use the support form below." },
 ];
 
 function SupportForm() {
@@ -67,7 +66,7 @@ function SupportForm() {
       <label className="block text-sm font-medium">Message
         <textarea name="message" required minLength={10} maxLength={3000} rows={5} className={field} placeholder="Tell us what happened. Include your phone model and app version if relevant." />
       </label>
-      <p className="text-xs leading-relaxed text-muted-foreground">We use your contact details and message only to handle your support request. See our <Link to="/beerradar/privacy" className="underline underline-offset-4">Privacy Policy</Link>.</p>
+      <p className="text-xs leading-relaxed text-muted-foreground">We use your contact details and message only to handle your support request. A detailed privacy policy is being prepared before the iOS release.</p>
       <button disabled={status === "sending"} type="submit" className="inline-flex items-center gap-2 rounded-full bg-foreground px-6 py-3 text-sm font-medium text-background transition-opacity hover:opacity-85 disabled:opacity-50">
         {status === "sending" ? "Sending…" : "Send support request"} <ArrowRight className="h-4 w-4" />
       </button>
@@ -141,7 +140,7 @@ export default function BeerRadarSupport() {
           <div className="lg:col-span-5">
             <p className="eyebrow mb-5">Contact support</p>
             <h2 className="display text-display-lg">How can we help?</h2>
-            <p className="mt-6 max-w-md leading-relaxed text-muted-foreground">Send a request about app problems, data questions, or incorrect venue information. No public support email is required.</p>
+            <p className="mt-6 max-w-md leading-relaxed text-muted-foreground">Send a request about app problems, data questions, or incorrect venue information. Use the form below to contact BeerRadar support.</p>
           </div>
           <div className="lg:col-span-7"><SupportForm /></div>
         </section>
@@ -150,8 +149,8 @@ export default function BeerRadarSupport() {
           <div className="container py-16">
             <p className="eyebrow mb-4">Trust and safety</p>
             <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
-              <div><h2 className="font-display text-3xl">Your data matters.</h2><p className="mt-3 max-w-xl text-muted-foreground">Learn more about personal data, permissions, privacy rights and account deletion.</p></div>
-              <div className="flex flex-wrap gap-4 text-sm"><Link className="inline-flex items-center gap-2 underline underline-offset-4" to="/beerradar/privacy"><Shield className="h-4 w-4" /> Privacy Policy</Link><Link className="underline underline-offset-4" to="/beerradar/delete-account">Delete account</Link></div>
+              <div><h2 className="font-display text-3xl">Your data matters.</h2><p className="mt-3 max-w-xl text-muted-foreground">A dedicated privacy policy and account deletion guide will be published here before the iOS release.</p></div>
+
             </div>
           </div>
         </section>

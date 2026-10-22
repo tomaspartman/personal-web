@@ -8,6 +8,8 @@ import TravelEntry from "./pages/TravelEntry.tsx";
 import AppStoreGrowthAudit from "./pages/AppStoreGrowthAudit.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import BeerRadarSupport from "./pages/BeerRadarSupport.tsx";
+import BeerRadarPrivacy from "./pages/BeerRadarPrivacy.tsx";
+import BeerRadarDeleteAccount from "./pages/BeerRadarDeleteAccount.tsx";
 
 const queryClient = new QueryClient();
 
@@ -22,6 +24,8 @@ const App = () => (
           <Route path="/travel/:slug" element={<TravelEntry />} />
           <Route path="/app-store-growth-audit" element={<AppStoreGrowthAudit />} />
           <Route path="/beerradar" element={<BeerRadarSupport />} />
+          <Route path="/beerradar/privacy" element={<BeerRadarPrivacy />} />
+          <Route path="/beerradar/delete-account" element={<BeerRadarDeleteAccount />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

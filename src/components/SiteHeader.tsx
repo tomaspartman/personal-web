@@ -3,7 +3,6 @@ import { ThemeToggle } from "./ThemeToggle";
 
 const links = [
   { label: "Projects", href: "/#projects" },
-  { label: "App Audit", href: "/app-store-growth-audit" },
   { label: "About", href: "/#about" },
   { label: "Background", href: "/#background" },
   { label: "Travel", href: "/#travel" },

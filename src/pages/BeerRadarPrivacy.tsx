@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { ArrowLeft, ArrowRight, ShieldCheck } from "lucide-react";
 import { SiteHeader } from "@/components/SiteHeader";
 
-const updated = "22 October 2026";
+const updated = "16 November 2026";
 const Block = ({ title, children, id }: { title: string; children: React.ReactNode; id?: string }) => (
   <section id={id} className="scroll-mt-24 border-t border-border py-9 sm:py-11">
     <h2 className="font-display text-3xl sm:text-4xl">{title}</h2>
@@ -34,7 +34,8 @@ export default function BeerRadarPrivacy() {
               <p><strong>Location.</strong> With your permission, BeerRadar uses device location to find nearby places, power GPS navigation and offer visit-related features. Location may be processed on your device and venue coordinates may be included in check-ins or visit records you choose to save or synchronize. Optional automatic venue detection or background location is used only if that feature is enabled and the appropriate device permission is granted. You can control these permissions through your device and in-app settings where available.</p>
               <p><strong>Photos and camera.</strong> You can choose a profile photo from your photo library; QR friend scanning may use the camera. BeerRadar does not require general access to your photo library or camera just to browse the beer catalogue.</p>
               <p><strong>Support requests.</strong> When you use the BeerRadar support form, we receive the name, reply email, topic and message you submit, so we can respond. Please do not include passwords or other sensitive information.</p>
-              <p><strong>Optional analytics and technical information.</strong> If you enable analytics, Firebase Analytics can process app activity, device/app identifiers and technical usage information in accordance with its SDK operation and the options available on your device. The app also uses Google Firebase services for authentication and data synchronization; these services can process technical information such as IP addresses, device and app details to operate reliably and securely.</p>
+              <p><strong>Optional analytics and technical information.</strong> If you enable usage statistics, Firebase Analytics can process screen views and allowlisted feature actions with limited options and counts, a random app-installation identifier, and basic app, device and technical usage information. Network information may be used to derive an approximate region. Native custom event parameters do not contain raw search text, your Firebase Authentication identifier, name, email, venue or beer identifiers, diary text, prices or precise GPS coordinates. The app does not set your Firebase Authentication identifier as an Analytics user identifier.</p>
+              <p>The app also uses Google Firebase services for authentication and data synchronization; these services can process technical information such as IP addresses, device and app details to operate reliably and securely.</p>
             </Block>
             <Block title="How we use this information">
               <p>We process information to provide app functionality (beer discovery, venue navigation, account access, diary synchronization and social features), maintain account security, handle support and correction requests, honor privacy choices, and—when enabled—understand general app usage so we can improve BeerRadar.</p>
@@ -51,7 +52,7 @@ export default function BeerRadarPrivacy() {
             </Block>
             <Block title="Your privacy choices" id="choices">
               <p><strong>Location:</strong> You can allow, deny or revoke location access in iOS or Android settings. Optional automatic visit detection can be disabled within the app where available.</p>
-              <p><strong>Analytics:</strong> Optional Firebase Analytics can be enabled or disabled in BeerRadar's privacy/settings controls. The app is configured to keep optional analytics disabled unless you opt in.</p>
+              <p><strong>Analytics:</strong> Optional Firebase Analytics is off by default and only collects usage statistics after an explicit opt-in. You can choose on a separate screen during first-time setup or later in Profile, continue without statistics, and change your choice at any time in Profile. Interactions from before opt-in are discarded, not replayed. Turning statistics off stops subsequent app analytics and resets Analytics data accessible on the device, including its app-instance identifier. Withdrawal does not retroactively erase records already received by Google; use the support form for privacy requests concerning those records.</p>
               <p><strong>Profile and contributions:</strong> You can edit profile details and control optional public participation. Some content you deliberately publish may already have been seen by others.</p>
               <p><strong>Account deletion:</strong> Signed-in users can use the account deletion option in the app. You can also follow the <Link className="underline underline-offset-4" to="/beerradar/delete-account">account deletion instructions</Link> or request assistance through the <Link className="underline underline-offset-4" to="/beerradar#support">support form</Link>.</p>
               <p>If you are in a jurisdiction where privacy laws provide additional rights (such as access, rectification, erasure, restriction or objection), you can request help through our support form. We may need to verify that you control the account before fulfilling a request.</p>
@@ -64,6 +65,7 @@ export default function BeerRadarPrivacy() {
             </Block>
             <Block title="Changes to this policy">
               <p>We may update this policy as features and legal requirements change. The latest published version and its update date will always be available at this address. Material changes will be communicated where required.</p>
+              <p>Material changes to optional data use, such as a new purpose or materially different categories of personal data, require a renewed choice. Existing explicit allow or decline choices may remain valid for updates that keep the same optional usage-statistics purpose and data categories described here. A missing or invalid analytics preference never enables collection.</p>
             </Block>
             <div className="mt-10 flex flex-wrap gap-4">
               <Link to="/beerradar/delete-account" className="inline-flex items-center gap-2 rounded-full bg-foreground px-6 py-3 text-sm font-medium text-background">Account deletion <ArrowRight className="h-4 w-4" /></Link>
